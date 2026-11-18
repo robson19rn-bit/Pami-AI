@@ -29,7 +29,7 @@ val usePrivateKey = privateStore != null && file(privateStore).exists()
 
 android {
     namespace = "pl.czytamsam.czytam_sam"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37 // wymagane przez zależności (nowsze niż domyślne 36 we Flutterze)
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
