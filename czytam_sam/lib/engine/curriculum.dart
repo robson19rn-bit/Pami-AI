@@ -42,7 +42,8 @@ class Curriculum {
   MasteryConfig get config => index.config;
 
   bool _letterStarted(String id) =>
-      index.stats.keys.any((k) => k.startsWith('$id|')) || knownFromDiagnosis.contains(id);
+      knownFromDiagnosis.contains(id) ||
+      index.stats.values.any((s) => s.itemId == id && s.practiceAttempts > 0);
 
   bool _letterSettled(String id) =>
       index.mastered(id, Skill.recognizeName) && index.mastered(id, Skill.recognizeSound);

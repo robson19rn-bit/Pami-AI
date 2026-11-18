@@ -107,10 +107,11 @@ class AppState extends ChangeNotifier {
     return s;
   }
 
-  /// Litery oznaczone w diagnozie jako znane (nazwa lub głoska poprawna).
+  /// Litery, które diagnoza wprowadza od razu do ćwiczeń: znane (nazwa lub głoska
+  /// poprawna) oraz MYLONE z inną literą (wymagają ćwiczenia od początku).
   Set<String> get knownFromDiagnosis => {
         for (final a in attempts)
-          if (a.task == TaskType.diagnosis && a.outcome == Outcome.correct) a.itemId
+          if (a.task == TaskType.diagnosis && (a.outcome == Outcome.correct || (a.outcome == Outcome.incorrect && a.chosenId != null))) a.itemId
       };
 
   Curriculum get curriculum =>

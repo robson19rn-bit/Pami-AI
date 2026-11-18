@@ -88,7 +88,7 @@ kotlin {
 dependencies {
     // Lokalne rozpoznawanie mowy (Apache-2.0). Model językowy NIE jest
     // dołączany – opiekun importuje go z pliku (patrz README_PL.md).
-    implementation("com.alphacephei:vosk-android:0.3.75")
+    implementation("com.alphacephei:vosk-android:0.3.75@aar") // @aar: bez zależności przechodnich (JNA w wersji aar poniżej)
     implementation("net.java.dev.jna:jna:5.18.1@aar")
 }
 

@@ -352,6 +352,7 @@ class SessionController {
 
   TaskSpec? get current => position < _queue.length ? _queue[position] : null;
   int get total => _queue.length;
+  List<TaskSpec> get queue => List.unmodifiable(_queue);
   bool get finished => phase == Phase.finished;
 
   void _start() {

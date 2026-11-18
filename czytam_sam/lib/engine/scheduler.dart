@@ -42,12 +42,15 @@ class Capabilities {
 }
 
 class Candidate {
-  Candidate(this.itemId, this.kind, this.skill, this.task, {this.assisted = false});
+  Candidate(this.itemId, this.kind, this.skill, this.task, {this.assisted = false, this.rank = 0});
   final String itemId;
   final ItemKind kind;
   final Skill skill;
   final TaskType task;
   final bool assisted;
+
+  /// Kolejność dydaktyczna (mniej = wcześniej): litery wg kolejności nauki, potem jednostki wg poziomu.
+  final int rank;
   @override
   String toString() => '$itemId/${skill.name}/${task.name}';
 }
@@ -65,40 +68,40 @@ List<Candidate> buildCandidates(Curriculum cur, Capabilities cap) {
   for (final l in cur.activeLetters()) {
     final canPromptName = cap.canSpeak(l.id) || g;
     if (canPromptName) {
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint));
+      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint, rank: l.order));
       // T2: dotyk liczony zawsze; wypowiedź oceniana tylko przez opiekuna.
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay));
+      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay, rank: l.order));
     }
-    out.add(Candidate(l.id, ItemKind.letter, Skill.caseMatch, TaskType.t4Case));
+    out.add(Candidate(l.id, ItemKind.letter, Skill.caseMatch, TaskType.t4Case, rank: l.order));
     if (g) {
       // Pojedyncze głoski: tylko opiekun (brak zweryfikowanych nagrań).
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint));
-      out.add(Candidate(l.id, ItemKind.letter, Skill.sayName, TaskType.t3SeeName));
-      out.add(Candidate(l.id, ItemKind.letter, Skill.saySound, TaskType.t3SeeName));
+      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint, rank: l.order));
+      out.add(Candidate(l.id, ItemKind.letter, Skill.sayName, TaskType.t3SeeName, rank: l.order));
+      out.add(Candidate(l.id, ItemKind.letter, Skill.saySound, TaskType.t3SeeName, rank: l.order));
     }
   }
   if (g) {
     for (final gr in cur.activeGraphemes()) {
-      out.add(Candidate(gr.id, ItemKind.grapheme, Skill.recognizeSound, TaskType.t1HearPoint));
-      out.add(Candidate(gr.id, ItemKind.grapheme, Skill.saySound, TaskType.t3SeeName));
+      out.add(Candidate(gr.id, ItemKind.grapheme, Skill.recognizeSound, TaskType.t1HearPoint, rank: 40));
+      out.add(Candidate(gr.id, ItemKind.grapheme, Skill.saySound, TaskType.t3SeeName, rank: 40));
     }
   }
   final canJudgeReading = g || cap.asrReady;
   for (final ua in cur.units(ItemKind.syllable)) {
     final a = ua.access == Access.manualAssisted;
-    if (cap.canSpeak(ua.unit.id) || g) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.segment, TaskType.t5Segment, assisted: a));
-    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.readAloud, TaskType.t6ReadAloud, assisted: a));
+    if (cap.canSpeak(ua.unit.id) || g) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.segment, TaskType.t5Segment, assisted: a, rank: 50 + ua.unit.level));
+    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 50 + ua.unit.level));
   }
   for (final ua in cur.units(ItemKind.word)) {
     final a = ua.access == Access.manualAssisted;
-    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud, assisted: a));
+    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 60 + ua.unit.level));
     if (ua.unit.graphemes.length <= 4 && tokenCount(ua.unit) <= 5 && (cap.canSpeak(ua.unit.id) || g)) {
-      out.add(Candidate(ua.unit.id, ItemKind.word, Skill.segment, TaskType.t5Segment, assisted: a));
+      out.add(Candidate(ua.unit.id, ItemKind.word, Skill.segment, TaskType.t5Segment, assisted: a, rank: 60 + ua.unit.level));
     }
   }
   for (final k in [ItemKind.sentence, ItemKind.reading]) {
     for (final ua in cur.units(k)) {
-      out.add(Candidate(ua.unit.id, k, Skill.comprehension, TaskType.t7Comprehension, assisted: ua.access == Access.manualAssisted));
+      out.add(Candidate(ua.unit.id, k, Skill.comprehension, TaskType.t7Comprehension, assisted: ua.access == Access.manualAssisted, rank: 70 + ua.unit.level));
     }
   }
   return out;
@@ -106,9 +109,11 @@ List<Candidate> buildCandidates(Curriculum cur, Capabilities cap) {
 
 int tokenCount(ReadingUnit u) => u.text.replaceAll(RegExp(r'[^a-ząćęłńóśźż]', caseSensitive: false), '').length;
 
-Bucket bucketOf(SkillStats s, DateTime now) {
+Bucket bucketOf(SkillStats s, DateTime now, {bool confusedItem = false}) {
   final st = s.state;
   if (st == MasteryState.doPowtorzenia) return Bucket.due;
+  // Element mylony z innym (w dowolnej umiejętności, także w diagnozie) i jeszcze nieopanowany → trudny.
+  if (confusedItem && !st.isMastered) return Bucket.due;
   final acc = s.recentAccuracy;
   if ((st == MasteryState.uczone || st == MasteryState.cwiczone) && acc != null && s.validResults.length >= 3 && acc < 0.7) {
     return Bucket.due;
@@ -132,8 +137,12 @@ List<Planned> planSession({
   if (candidates.isEmpty || n <= 0) return [];
   final c = index.config;
   final buckets = {for (final b in Bucket.values) b: <Candidate>[]};
+  final confusedItems = <String>{
+    for (final st in index.stats.values)
+      if (st.confusions.isNotEmpty && (st.recentAccuracy ?? 0) < 0.8) st.itemId
+  };
   for (final cand in candidates) {
-    buckets[bucketOf(index.of(cand.itemId, cand.skill), now)]!.add(cand);
+    buckets[bucketOf(index.of(cand.itemId, cand.skill), now, confusedItem: confusedItems.contains(cand.itemId))]!.add(cand);
   }
   // Priorytety w koszykach (stabilne sortowanie po kluczu + losowy remis).
   final tiebreak = {for (final cand in candidates) cand.toString(): rng.nextDouble()};
@@ -142,13 +151,23 @@ List<Planned> planSession({
     final sa = index.of(a.itemId, a.skill), sb = index.of(b.itemId, b.skill);
     final ra = sa.state == MasteryState.doPowtorzenia ? 0 : 1, rb = sb.state == MasteryState.doPowtorzenia ? 0 : 1;
     if (ra != rb) return ra - rb;
+    // Rotacja: najdawniej ćwiczone najpierw (żaden trudny element nie jest „zagłodzony”),
+    // przy remisie – niższa poprawność.
+    final la = sa.lastAttemptAt, lb = sb.lastAttemptAt;
+    if (la == null && lb != null) return -1;
+    if (lb == null && la != null) return 1;
+    if (la != null && lb != null && la != lb) return la.compareTo(lb);
     final aa = sa.recentAccuracy ?? 1, ab = sb.recentAccuracy ?? 1;
     if (aa != ab) return aa.compareTo(ab);
     return byTie(a, b);
   });
   buckets[Bucket.current]!.sort((a, b) {
     final sa = index.of(a.itemId, a.skill), sb = index.of(b.itemId, b.skill);
-    if (sa.state.index != sb.state.index) return sb.state.index - sa.state.index; // najpierw rozpoczęte
+    // Najpierw te, które miały najmniej ćwiczeń (każda umiejętność dostaje szansę),
+    // potem wcześniejsze w kolejności nauki.
+    final ta = sa.totalAttempts == 0 ? 0 : 1, tb = sb.totalAttempts == 0 ? 0 : 1;
+    if (ta != tb) return ta - tb;
+    if (a.rank != b.rank) return a.rank - b.rank;
     return byTie(a, b);
   });
   buckets[Bucket.consolidation]!.sort((a, b) {
@@ -178,11 +197,10 @@ List<Planned> planSession({
     return cand;
   }
 
-  // Najpierw kwoty, potem dopełnienie z koszyków niepustych.
+  // Najpierw kwoty (każdy kandydat najwyżej 2 razy w ramach kwoty), potem dopełnienie.
   for (final b in Bucket.values) {
-    for (var i = 0; i < quota[b]! && buckets[b]!.isNotEmpty; i++) {
-      // nie powielaj w kwocie, jeśli koszyk krótszy niż kwota – oddaj resztę innym
-      if (cursor[b]! >= buckets[b]!.length) break;
+    final cap = buckets[b]!.length * 2;
+    for (var i = 0; i < quota[b]! && i < cap; i++) {
       picked.add(Planned(take(b)!, b));
     }
   }
@@ -206,9 +224,20 @@ List<Planned> _spread(List<Planned> items, Random rng, String? previousTarget) {
   final out = <Planned>[];
   var prev = previousTarget;
   while (pool.isNotEmpty) {
-    var idx = pool.indexWhere((p) => p.candidate.itemId != prev);
-    if (idx < 0) idx = 0;
-    final p = pool.removeAt(idx);
+    // Ile zostało zadań dla każdego celu – najpierw cel z największą liczbą
+    // (klasyczne przestawianie bez sąsiadów: gwarantuje brak powtórzeń, jeśli to możliwe).
+    final remaining = <String, int>{};
+    for (final p in pool) {
+      remaining[p.candidate.itemId] = (remaining[p.candidate.itemId] ?? 0) + 1;
+    }
+    var best = -1;
+    for (var i = 0; i < pool.length; i++) {
+      final id = pool[i].candidate.itemId;
+      if (id == prev) continue;
+      if (best < 0 || remaining[id]! > remaining[pool[best].candidate.itemId]!) best = i;
+    }
+    if (best < 0) best = 0;
+    final p = pool.removeAt(best);
     out.add(p);
     prev = p.candidate.itemId;
   }

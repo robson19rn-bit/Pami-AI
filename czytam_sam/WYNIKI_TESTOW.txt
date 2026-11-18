@@ -1,0 +1,68 @@
+# Wyniki testów – 2026-11-18 21:47 UTC
+# Flutter 3.50.0, Dart 3.14.0 (środowisko: kontener Linux; testy uruchomione lokalnie, bez urządzenia Android)
+$ dart run tool/validate_content.dart
+UWAGA [w_gałąź]: oznaczone do weryfikacji – wyłączone z puli (wymowa nosówki przed ź na końcu wyrazu wymaga weryfikacji logopedycznej)
+Litery: 32, grafemy: 12, sylaby: 117, wyrazy: 136, zdania: 33, czytanki: 10. Błędy: 0
+
+$ flutter analyze
+Analyzing czytam_sam...                                         
+No issues found! (ran in 0.9s)
+
+$ flutter test --reporter expanded
+00:00 +0: test/a04_scheduler_test.dart: (10) zaplanowane powtórki trudnych liter mają pierwszeństwo, ale utrwalanie zostaje
+00:00 +1: test/a04_scheduler_test.dart: (10b) proporcje 60/25/15 przy pełnych koszykach
+00:00 +2: test/a04_scheduler_test.dart: (11) pozycje poprawnych odpowiedzi są zrównoważone
+00:00 +3: test/a04_scheduler_test.dart: (11b) w zbudowanych zadaniach pozycja poprawnej odpowiedzi jest zrównoważona
+00:00 +4: test/a04_scheduler_test.dart: (12) brak bezpośredniego powtórzenia tego samego celu, jeśli są alternatywy
+00:00 +5: test/a04_scheduler_test.dart: liczba opcji rośnie ze stanem: 2/3/4/6; w stanie „nowe” bez par mylonych
+00:00 +6: test/a04_scheduler_test.dart: (14) sylaby wymagają konkretnych głosek, ale nie całego alfabetu
+00:00 +7: test/a04_scheduler_test.dart: (15) wyrazy i zdania nie zawierają bez oznaczenia elementów spoza poziomu dziecka
+00:00 +8: test/a04_scheduler_test.dart: aktywne litery: najwyżej 4 nowe naraz; diagnoza wprowadza znane litery od razu
+00:00 +9: test/a07_widget_test.dart: (19) brak polskiego głosu: komunikat i zablokowane odpowiedzi; nic nie jest zapisywane
+00:01 +10: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:01 +11: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:01 +12: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:02 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+Pierwsze sylaby w dniu 9; cała grupa M/A/L/O w dniu 13; prób: 1179
+Gotowe głoski: [a, l, m, o]; dostępne sylaby: [ma, mo, la, lo, am, om, al, ol]; pomyłki b/d/p: 85; potwierdzone umiejętności: 23
+00:02 +14: test/a07_widget_test.dart: panel opiekuna: bez danych pokazuje komunikat zamiast pustych wykresów
+00:03 +15: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:03 +16: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:03 +17: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:03 +18: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:03 +19: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:04 +20: test/a01_content_test.dart: (01) 32 litery polskiego alfabetu w poprawnej kolejności i z poprawnymi parami wielka/mała
+00:04 +21: test/a01_content_test.dart: dwuznaki i zmiękczenia są osobnymi grafemami, nie literami alfabetu
+00:04 +22: test/a01_content_test.dart: brak fałszywej reguły „jedna litera = jeden dźwięk” dla ą, ę, u/ó, rz/ż, ch/h
+00:04 +23: test/a01_content_test.dart: materiał spełnia minimum ilościowe i przechodzi walidację
+00:04 +24: test/a01_content_test.dart: pozycje oznaczone do weryfikacji są wyłączone z puli
+00:04 +25: test/a01_content_test.dart: walidator wykrywa błędną pozycję
+00:04 +26: test/a02_mastery_test.dart: (02) rozpoznawanie, nazywanie i głoska mają niezależne stany
+00:04 +27: test/a02_mastery_test.dart: (03) samo wskazanie (bez wypowiedzi) NIE daje pełnej znajomości litery
+00:04 +28: test/a02_mastery_test.dart: (07) poprawna odpowiedź po podpowiedzi nie zwiększa liczby samodzielnych
+00:04 +29: test/a02_mastery_test.dart: (07b) kolejne kliknięcia w tym samym zadaniu (firstTry=false) nie liczą się
+00:04 +30: test/a02_mastery_test.dart: (08) przypadkowe trafienia w jednej sesji nie oznaczają opanowania
+00:04 +31: test/a02_mastery_test.dart: (09) trwałość sprawdzana w późniejszej sesji: potwierdzenie albo powrót do powtórek
+00:04 +32: test/a02_mastery_test.dart: (09b) mowa: min. 5 prób, 4 poprawne, 2 sesje w różnych dniach
+00:04 +33: test/a02_mastery_test.dart: (13) wyniki różnych typów ćwiczeń pozostają odrębne
+00:04 +34: test/a02_mastery_test.dart: wykluczone z licznika: brak dźwięku, niepewne, nieocenione, materiał z pomocą
+00:04 +35: test/a02_mastery_test.dart: czas odpowiedzi nie wpływa na ocenę
+00:04 +36: test/a05_data_test.dart: (16) raport przelicza kategorie bez zacierania różnic
+00:04 +37: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +38: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +39: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +40: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +41: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +42: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +43: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +44: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +45: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +46: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +47: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +48: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +49: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
+00:04 +50: test/a05_data_test.dart: (18) eksport/import zachowuje historię i nie duplikuje zdarzeń
+00:05 +51: test/a05_data_test.dart: (21) działania opiekuna nie nadpisują oryginalnych prób dziecka
+00:05 +52: test/a05_data_test.dart: (22) migracja v1 → v2 nie usuwa wyników
+00:05 +53: test/a05_data_test.dart: reset profilu usuwa tylko postępy tego profilu
+00:05 +54: All tests passed!

@@ -96,6 +96,9 @@ class SkillStats {
   final Skill skill;
 
   int totalAttempts = 0;
+
+  /// Próby poza diagnozą (diagnoza nie „rozpoczyna” nauki nieznanej litery).
+  int practiceAttempts = 0;
   int firstAttempts = 0;
   int independentCorrect = 0;
   int independentErrors = 0;
@@ -157,6 +160,7 @@ SkillStats computeSkillStats(
     s.history.add(a.at);
     s.lastAttemptAt = a.at;
     if (a.firstTry) s.firstAttempts++;
+    if (a.task != TaskType.diagnosis) s.practiceAttempts++;
     if (a.responseMs != null) {
       s.responseMsSum += a.responseMs!;
       s.responseMsCount++;
