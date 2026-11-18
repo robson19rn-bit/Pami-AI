@@ -24,6 +24,7 @@ ThemeData buildTheme() {
     onSurface: Palette.ink,
   );
   return ThemeData(
+    fontFamily: 'Roboto', // systemowa czcionka Androida z pełnymi polskimi znakami
     colorScheme: scheme,
     scaffoldBackgroundColor: Palette.background,
     textTheme: const TextTheme(
@@ -34,7 +35,7 @@ ThemeData buildTheme() {
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         minimumSize: const Size(64, 56),
-        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(fontFamily: 'Roboto', fontSize: 20, fontWeight: FontWeight.w600),
         backgroundColor: Palette.primary,
         foregroundColor: Palette.onPrimary,
       ),
@@ -44,9 +45,11 @@ ThemeData buildTheme() {
         minimumSize: const Size(64, 52),
         foregroundColor: Palette.ink,
         side: const BorderSide(color: Palette.border, width: 1.5),
-        textStyle: const TextStyle(fontSize: 18),
+        textStyle: const TextStyle(fontFamily: 'Roboto', fontSize: 18),
       ),
     ),
+    textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(textStyle: const TextStyle(fontFamily: 'Roboto', fontSize: 18))),
+    chipTheme: const ChipThemeData(labelStyle: TextStyle(fontFamily: 'Roboto', fontSize: 16, color: Palette.ink)),
     appBarTheme: const AppBarTheme(backgroundColor: Palette.background, foregroundColor: Palette.ink, elevation: 0),
   );
 }

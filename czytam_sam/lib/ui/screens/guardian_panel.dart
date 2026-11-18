@@ -230,8 +230,8 @@ class _SpeechTab extends StatelessWidget {
       ),
       InfoCard(
         child: Text(
-          'Efekt podpowiedzi: poprawność samodzielna ${pct(r.accuracyIndependent)} (${r.independentAttempts} prób), '
-          'po podpowiedzi lub z pomocą ${pct(r.accuracyAfterHint)} (${r.hintedAttempts} prób). '
+          'Efekt podpowiedzi: poprawność samodzielna ${pct(r.accuracyIndependent)} (liczba prób: ${r.independentAttempts}), '
+          'po podpowiedzi lub z pomocą ${pct(r.accuracyAfterHint)} (liczba prób: ${r.hintedAttempts}). '
           'Odpowiedzi po podpowiedzi nie liczą się do opanowania.',
           style: const TextStyle(fontSize: 17),
         ),
@@ -243,7 +243,7 @@ class _SpeechTab extends StatelessWidget {
       for (final a in speech)
         ListTile(
           title: Text('${s.content.unit(a.itemId)?.text ?? s.content.displayOf(a.itemId)} – ${a.skill.label}'),
-          subtitle: Text('${a.task.label}; zapis: ${a.outcome.name}${ov.containsKey(a.id) ? ', korekta opiekuna: ${ov[a.id]!.name}' : ''}'
+          subtitle: Text('${a.task.label}; zapis: ${a.outcome.label}${ov.containsKey(a.id) ? ', korekta opiekuna: ${ov[a.id]!.label}' : ''}'
               '${a.asrText != null && a.asrText!.isNotEmpty ? '; rozpoznano: „${a.asrText}”' : ''}'),
           trailing: PopupMenuButton<Outcome>(
             tooltip: 'Koryguj ocenę',

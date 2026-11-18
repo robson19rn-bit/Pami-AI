@@ -75,6 +75,16 @@ enum Outcome {
   notEvaluated,
 }
 
+extension OutcomeLabel on Outcome {
+  String get label => switch (this) {
+        Outcome.correct => 'poprawnie',
+        Outcome.incorrect => 'jeszcze nie',
+        Outcome.noSpeech => 'nic nie usłyszano',
+        Outcome.uncertain => 'niepewne',
+        Outcome.notEvaluated => 'nieocenione',
+      };
+}
+
 /// Źródło dowodu.
 enum Evidence { touch, asr, guardian, none }
 

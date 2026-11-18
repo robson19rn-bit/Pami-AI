@@ -8,14 +8,14 @@ ale nie dało się sprawdzić w tym środowisku (powód podany). Rozróżniam �
 od „sprawdzone na prawdziwym urządzeniu” – **na urządzeniu nie sprawdzono niczego**.
 
 Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analyze` – 0 problemów,
-`flutter test` – **54/54 testów zaliczonych**), pliki testów `test/a01…a08_*.dart`.
+`flutter test` – **57/57 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
 
 ## A. Najważniejsze: APK
 
 | Wymóg | Wynik | Dowód / powód |
 |---|---|---|
-| Instalowalny APK | **FAIL (zablokowane)** | Lokalnie: brak Android SDK – host `dl.google.com` jest zablokowany przez politykę sieci (zmianę sieci odrzucono), a użycie nieoficjalnego lustra SDK zostało zablokowane przez zabezpieczenia środowiska. Ścieżka docelowa: GitHub Actions (`.github/workflows/android.yml`) buduje APK i publikuje go jako *Release* z plikiem do pobrania na tablet – **ale wysłanie kodu na GitHub (push) zostało odrzucone: aplikacja Claude nie ma prawa zapisu w repozytorium**. Po nadaniu dostępu workflow uruchomi się automatycznie. |
-| Workflow CI (pub get, analiza, testy, APK, artefakt) | **NOT_TESTED** | Plik gotowy: przypięte wersje (Flutter 3.50.0, Java 17, `--enforce-lockfile`), walidacja materiału, `flutter analyze`, `flutter test`, `flutter build apk --release`, weryfikacja `apksigner verify`, `aapt2 dump badging` (identyfikator `pl.czytamsam.app`, **błąd, jeśli APK żąda INTERNET**), SHA-256, artefakt (90 dni) i wydanie z plikiem APK. Nie uruchomiony – patrz wyżej. |
+| Instalowalny APK | **PASS (zbudowany)** / NOT_TESTED (urządzenie) | GitHub Actions, uruchomienie nr 2 (`czytam-sam-build-2`): analiza, testy, budowa i weryfikacja (`apksigner verify`, identyfikator `pl.czytamsam.app`, brak uprawnienia INTERNET) zakończone sukcesem; plik `CzytamSam-N.apk` w zakładce *Releases*. Pierwsze uruchomienie nie powiodło się (zależności wymagały `compileSdk 37`) – poprawione. Nie instalowano na fizycznym urządzeniu. |
+| Workflow CI (pub get, analiza, testy, APK, artefakt) | **PASS** | uruchomienie nr 2 zakończone sukcesem (wszystkie kroki zielone), artefakt + wydanie z plikiem APK. |
 | Kod natywny (Kotlin, kanał Vosk) | **PASS (kompilacja)** / NOT_TESTED (urządzenie) | `MainActivity.kt` skompilowany kotlinc 2.2.20 przeciw oficjalnym artefaktom: `vosk-android 0.3.75`, `jna 5.18.1` (Maven Central), `flutter_embedding_release` (silnik 3.50.0), `android-all 16` (Robolectric, Maven Central); dla `androidx.lifecycle` użyto tylko pustej zaślepki typu do sprawdzenia typów. |
 
 ## B. Wymagania nieprzekraczalne (pkt 1)
@@ -87,7 +87,8 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 | Ekran zadania bez rozpraszaczy, bez odliczania | PASS | `lesson_screen.dart`. |
 | Podsumowanie: pochwała wysiłku, bez procentów i rankingów | PASS | `SummaryScreen`. |
 | Panel opiekuna za bramką; wszystkie wymienione widoki; bez pustych wykresów | PASS | `guardian_panel.dart`; testy panelu w `a07` (komunikat „Brak historii” zamiast pustego wykresu). |
-| Test na tablecie | **NOT_TESTED** | brak sprzętu. |
+| Wygląd: własna ikona (adaptacyjna + ikona motywu Androida 13 + PNG), ekran startowy w kolorach aplikacji | PASS (zasoby) / NOT_TESTED (launcher na urządzeniu) | `res/mipmap-anydpi-v26/ic_launcher.xml`, `res/drawable/ic_launcher_*.xml`, `res/mipmap-*/ic_launcher.png`. |
+| Test na tablecie | **NOT_TESTED** | brak sprzętu; ekrany sprawdzone renderowaniem w rozmiarach telefonu i tabletu (test a09). |
 
 ## G. Dane (pkt 9) i testy obowiązkowe (pkt 11)
 
@@ -128,13 +129,12 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 | Audio | brak nagrań (świadomie – brak legalnych, zweryfikowanych nagrań głosek); instrukcja konfiguracji lektora i modelu: `README_PL.md` |
 | Testy i wyniki | `test/`, `WYNIKI_TESTOW.txt` |
 | `.github/workflows/android.yml` | gotowe (w katalogu głównym repozytorium) |
-| APK | **brak** – patrz sekcja A |
+| APK | zbudowany przez GitHub Actions – zakładka *Releases* repozytorium |
 | `README_PL.md`, `LICENSES.md`, `RAPORT_ODBIORU.md` | gotowe |
 
 ## I. Znane ograniczenia i zadania naprawcze
 
-1. **Brak APK** – wymaga nadania aplikacji Claude prawa zapisu do repozytorium (wtedy CI zbuduje APK automatycznie)
-   albo zbudowania projektu na komputerze z Android Studio (`flutter build apk --release`).
+1. **APK nie był jeszcze uruchomiony na prawdziwym tablecie** – zgłoszone uwagi z pierwszego użycia należy przekazać do poprawy.
 2. **Klucz podpisu jest jawny (testowy)** – stały, ale publiczny. Przed szerszym użyciem: prywatny klucz w GitHub
    Secrets (instrukcja w `README_PL.md`, rozdz. 7) i jednorazowe przeniesienie danych eksportem/importem.
 3. **Brak nagrań głosek** – zadania z głoskami wymagają opiekuna. W trybie „dziecko ćwiczy samo” umiejętności

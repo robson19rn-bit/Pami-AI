@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ikona „Czytam Sam”: otwarta książka z literami A i a (warstwa pierwszoplanowa ikony adaptacyjnej). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <group android:scaleX="0.86" android:scaleY="0.86" android:pivotX="54" android:pivotY="56">
+    <!-- cień książki -->
+    <path android:fillColor="#1A4639"
+        android:pathData="M54,43 C46,38 34,37 25,39 L25,78 C34,76 46,77 54,82 C62,77 74,76 83,78 L83,39 C74,37 62,38 54,43 Z"/>
+    <!-- lewa strona -->
+    <path android:fillColor="#FBF7EF"
+        android:pathData="M54,40 C46,35 34,34 26,36 L26,74 C34,72 46,73 54,78 Z"/>
+    <!-- prawa strona -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,40 C62,35 74,34 82,36 L82,74 C74,72 62,73 54,78 Z"/>
+    <!-- zakładka -->
+    <path android:fillColor="#F2A93B"
+        android:pathData="M73,35.2 L73,47 L76.5,44 L80,47 L80,35.6 C77.6,35.3 75.3,35.1 73,35.2 Z"/>
+    <!-- litera A -->
+    <path android:strokeColor="#235E50" android:strokeWidth="3.4"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M33,66 L40,47 L47,66 M35.8,59 L44.2,59"/>
+    <!-- litera a -->
+    <path android:strokeColor="#235E50" android:strokeWidth="3.4"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M71,61 A5,5 0,1,1 61,61 A5,5 0,1,1 71,61 M71,55.5 L71,66"/>
+    </group>
+</vector>

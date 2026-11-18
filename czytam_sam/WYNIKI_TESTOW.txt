@@ -1,12 +1,12 @@
-# Wyniki testów – 2026-11-18 21:47 UTC
-# Flutter 3.50.0, Dart 3.14.0 (środowisko: kontener Linux; testy uruchomione lokalnie, bez urządzenia Android)
+# Wyniki testów – 2026-11-18 23:28 UTC
+# Flutter 3.50.0, Dart 3.14.0 (kontener Linux, bez urządzenia Android)
+
 $ dart run tool/validate_content.dart
 UWAGA [w_gałąź]: oznaczone do weryfikacji – wyłączone z puli (wymowa nosówki przed ź na końcu wyrazu wymaga weryfikacji logopedycznej)
 Litery: 32, grafemy: 12, sylaby: 117, wyrazy: 136, zdania: 33, czytanki: 10. Błędy: 0
 
 $ flutter analyze
-Analyzing czytam_sam...                                         
-No issues found! (ran in 0.9s)
+No issues found! (ran in 1.0s)
 
 $ flutter test --reporter expanded
 00:00 +0: test/a04_scheduler_test.dart: (10) zaplanowane powtórki trudnych liter mają pierwszeństwo, ale utrwalanie zostaje
@@ -22,22 +22,22 @@ $ flutter test --reporter expanded
 00:01 +10: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
 00:01 +11: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
 00:01 +12: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:02 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:01 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
 Pierwsze sylaby w dniu 9; cała grupa M/A/L/O w dniu 13; prób: 1179
 Gotowe głoski: [a, l, m, o]; dostępne sylaby: [ma, mo, la, lo, am, om, al, ol]; pomyłki b/d/p: 85; potwierdzone umiejętności: 23
 00:02 +14: test/a07_widget_test.dart: panel opiekuna: bez danych pokazuje komunikat zamiast pustych wykresów
-00:03 +15: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:02 +15: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
 00:03 +16: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
 00:03 +17: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
 00:03 +18: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
 00:03 +19: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:04 +20: test/a01_content_test.dart: (01) 32 litery polskiego alfabetu w poprawnej kolejności i z poprawnymi parami wielka/mała
-00:04 +21: test/a01_content_test.dart: dwuznaki i zmiękczenia są osobnymi grafemami, nie literami alfabetu
-00:04 +22: test/a01_content_test.dart: brak fałszywej reguły „jedna litera = jeden dźwięk” dla ą, ę, u/ó, rz/ż, ch/h
-00:04 +23: test/a01_content_test.dart: materiał spełnia minimum ilościowe i przechodzi walidację
-00:04 +24: test/a01_content_test.dart: pozycje oznaczone do weryfikacji są wyłączone z puli
-00:04 +25: test/a01_content_test.dart: walidator wykrywa błędną pozycję
-00:04 +26: test/a02_mastery_test.dart: (02) rozpoznawanie, nazywanie i głoska mają niezależne stany
+00:03 +20: test/a01_content_test.dart: (01) 32 litery polskiego alfabetu w poprawnej kolejności i z poprawnymi parami wielka/mała
+00:03 +21: test/a01_content_test.dart: dwuznaki i zmiękczenia są osobnymi grafemami, nie literami alfabetu
+00:03 +22: test/a01_content_test.dart: brak fałszywej reguły „jedna litera = jeden dźwięk” dla ą, ę, u/ó, rz/ż, ch/h
+00:03 +23: test/a01_content_test.dart: materiał spełnia minimum ilościowe i przechodzi walidację
+00:03 +24: test/a01_content_test.dart: pozycje oznaczone do weryfikacji są wyłączone z puli
+00:03 +25: test/a01_content_test.dart: walidator wykrywa błędną pozycję
+00:03 +26: test/a02_mastery_test.dart: (02) rozpoznawanie, nazywanie i głoska mają niezależne stany
 00:04 +27: test/a02_mastery_test.dart: (03) samo wskazanie (bez wypowiedzi) NIE daje pełnej znajomości litery
 00:04 +28: test/a02_mastery_test.dart: (07) poprawna odpowiedź po podpowiedzi nie zwiększa liczby samodzielnych
 00:04 +29: test/a02_mastery_test.dart: (07b) kolejne kliknięcia w tym samym zadaniu (firstTry=false) nie liczą się
@@ -47,22 +47,27 @@ Gotowe głoski: [a, l, m, o]; dostępne sylaby: [ma, mo, la, lo, am, om, al, ol]
 00:04 +33: test/a02_mastery_test.dart: (13) wyniki różnych typów ćwiczeń pozostają odrębne
 00:04 +34: test/a02_mastery_test.dart: wykluczone z licznika: brak dźwięku, niepewne, nieocenione, materiał z pomocą
 00:04 +35: test/a02_mastery_test.dart: czas odpowiedzi nie wpływa na ocenę
-00:04 +36: test/a05_data_test.dart: (16) raport przelicza kategorie bez zacierania różnic
-00:04 +37: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +38: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +39: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +40: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +41: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +42: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +43: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +44: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +45: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +46: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +47: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +48: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +49: test/a05_data_test.dart: (17) po zamknięciu i ponownym otwarciu bazy postęp pozostaje
-00:04 +50: test/a05_data_test.dart: (18) eksport/import zachowuje historię i nie duplikuje zdarzeń
-00:05 +51: test/a05_data_test.dart: (21) działania opiekuna nie nadpisują oryginalnych prób dziecka
-00:05 +52: test/a05_data_test.dart: (22) migracja v1 → v2 nie usuwa wyników
-00:05 +53: test/a05_data_test.dart: reset profilu usuwa tylko postępy tego profilu
-00:05 +54: All tests passed!
+00:04 +36: test/a09_screens_tour_test.dart: (setUpAll)
+00:04 +36: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:04 +37: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:04 +38: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +39: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +40: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +41: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +42: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +43: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +44: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +45: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +46: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +47: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +48: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +49: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +50: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +51: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +52: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +53: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +54: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:08 +55: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:11 +56: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-pionowo
+00:12 +57: test/a09_screens_tour_test.dart: (tearDownAll)
+00:12 +57: All tests passed!

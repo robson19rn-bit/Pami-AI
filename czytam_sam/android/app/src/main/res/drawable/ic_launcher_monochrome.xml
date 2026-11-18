@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Wersja jednobarwna (ikony motywu Androida 13+). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <group android:scaleX="0.86" android:scaleY="0.86" android:pivotX="54" android:pivotY="56">
+    <path android:fillColor="#000000"
+        android:pathData="M54,40 C46,35 34,34 26,36 L26,74 C34,72 46,73 54,78 C62,73 74,72 82,74 L82,36 C74,34 62,35 54,40 Z M40,47 L33,66 L36.6,66 L38,62 L42,62 L43.4,66 L47,66 Z M40,52.5 L41.2,59 L38.8,59 Z M66,55.6 C63,55.6 60.6,58 60.6,61 C60.6,64 63,66.4 66,66.4 C67.1,66.4 68.1,66.1 68.9,65.5 L68.9,66 L72.4,66 L72.4,55.5 L68.9,55.5 L68.9,56.5 C68.1,55.9 67.1,55.6 66,55.6 Z M66,58.6 C67.3,58.6 68.4,59.7 68.4,61 C68.4,62.3 67.3,63.4 66,63.4 C64.7,63.4 63.6,62.3 63.6,61 C63.6,59.7 64.7,58.6 66,58.6 Z"/>
+    </group>
+</vector>
