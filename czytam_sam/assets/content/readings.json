@@ -1,0 +1,496 @@
+{
+ "_opis": "Czytanki (rosnąca trudność 1–10) z pytaniami. answer = poprawna odpowiedź.",
+ "readings": [
+  {
+   "id": "r_01",
+   "title": "Ala i kot",
+   "text": "To jest Ala. Ala ma kota. Kot lubi mleko.",
+   "graphemes": [
+    "t",
+    "o",
+    "j",
+    "e",
+    "s",
+    "a",
+    "l",
+    "m",
+    "k",
+    "u",
+    "b",
+    "i"
+   ],
+   "level": 1,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Co lubi kot?",
+     "options": [
+      "mleko",
+      "zupę",
+      "trawę"
+     ],
+     "answer": "mleko"
+    },
+    {
+     "question": "Kto ma kota?",
+     "options": [
+      "Ala",
+      "tata",
+      "Ola"
+     ],
+     "answer": "Ala"
+    }
+   ]
+  },
+  {
+   "id": "r_02",
+   "title": "Mama i tata",
+   "text": "Mama ma sok. Tata ma mak. Mama i tata idą do domu.",
+   "graphemes": [
+    "m",
+    "a",
+    "s",
+    "o",
+    "k",
+    "t",
+    "i",
+    "d",
+    "ą",
+    "u"
+   ],
+   "level": 2,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Dokąd idą mama i tata?",
+     "options": [
+      "do domu",
+      "do lasu",
+      "do szkoły"
+     ],
+     "answer": "do domu"
+    },
+    {
+     "question": "Co ma tata?",
+     "options": [
+      "mak",
+      "sok",
+      "kota"
+     ],
+     "answer": "mak"
+    }
+   ]
+  },
+  {
+   "id": "r_03",
+   "title": "Lato",
+   "text": "Jest lato. Ola i Tomek są nad morzem. Woda jest ciepła.",
+   "graphemes": [
+    "j",
+    "e",
+    "s",
+    "t",
+    "l",
+    "a",
+    "o",
+    "i",
+    "m",
+    "k",
+    "ą",
+    "n",
+    "d",
+    "rz",
+    "w",
+    "ci",
+    "p",
+    "ł"
+   ],
+   "level": 3,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Gdzie są dzieci?",
+     "options": [
+      "nad morzem",
+      "w lesie",
+      "w szkole"
+     ],
+     "answer": "nad morzem"
+    },
+    {
+     "question": "Jaka jest woda?",
+     "options": [
+      "ciepła",
+      "zimna",
+      "słodka"
+     ],
+     "answer": "ciepła"
+    }
+   ]
+  },
+  {
+   "id": "r_04",
+   "title": "Osa",
+   "text": "Osa lata nad stołem. Na stole jest dżem. Osa lubi słodki dżem.",
+   "graphemes": [
+    "o",
+    "s",
+    "a",
+    "l",
+    "t",
+    "n",
+    "d",
+    "ł",
+    "e",
+    "m",
+    "j",
+    "dż",
+    "u",
+    "b",
+    "i",
+    "k"
+   ],
+   "level": 4,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Co lubi osa?",
+     "options": [
+      "dżem",
+      "zupę",
+      "mleko"
+     ],
+     "answer": "dżem"
+    },
+    {
+     "question": "Gdzie jest dżem?",
+     "options": [
+      "na stole",
+      "w szafie",
+      "w lesie"
+     ],
+     "answer": "na stole"
+    }
+   ]
+  },
+  {
+   "id": "r_05",
+   "title": "Kot i mysz",
+   "text": "Kot siedzi pod szafą. Pod szafą jest mysz. Mysz szybko ucieka do nory.",
+   "graphemes": [
+    "k",
+    "o",
+    "t",
+    "si",
+    "e",
+    "dzi",
+    "p",
+    "d",
+    "sz",
+    "a",
+    "f",
+    "ą",
+    "j",
+    "s",
+    "m",
+    "y",
+    "b",
+    "u",
+    "ci",
+    "n",
+    "r"
+   ],
+   "level": 5,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Gdzie ucieka mysz?",
+     "options": [
+      "do nory",
+      "do szafy",
+      "do domu"
+     ],
+     "answer": "do nory"
+    },
+    {
+     "question": "Gdzie siedzi kot?",
+     "options": [
+      "pod szafą",
+      "na oknie",
+      "w ogrodzie"
+     ],
+     "answer": "pod szafą"
+    }
+   ]
+  },
+  {
+   "id": "r_06",
+   "title": "Zima",
+   "text": "Jest zima. Pada śnieg. Dzieci lepią bałwana. Bałwan ma nos z marchewki.",
+   "graphemes": [
+    "j",
+    "e",
+    "s",
+    "t",
+    "zi",
+    "m",
+    "a",
+    "p",
+    "d",
+    "ś",
+    "ni",
+    "g",
+    "dzi",
+    "ci",
+    "l",
+    "i",
+    "ą",
+    "b",
+    "ł",
+    "w",
+    "n",
+    "o",
+    "z",
+    "r",
+    "ch",
+    "k"
+   ],
+   "level": 6,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Z czego bałwan ma nos?",
+     "options": [
+      "z marchewki",
+      "z kamienia",
+      "z patyka"
+     ],
+     "answer": "z marchewki"
+    },
+    {
+     "question": "Co pada?",
+     "options": [
+      "śnieg",
+      "deszcz",
+      "grad"
+     ],
+     "answer": "śnieg"
+    }
+   ]
+  },
+  {
+   "id": "r_07",
+   "title": "W sklepie",
+   "text": "Mama i Kasia idą do sklepu. Kupują chleb, masło i mleko. Kasia niesie koszyk.",
+   "graphemes": [
+    "m",
+    "a",
+    "i",
+    "k",
+    "si",
+    "d",
+    "ą",
+    "o",
+    "s",
+    "l",
+    "e",
+    "p",
+    "u",
+    "j",
+    "ch",
+    "b",
+    "ł",
+    "ni",
+    "sz",
+    "y"
+   ],
+   "level": 7,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Kto niesie koszyk?",
+     "options": [
+      "Kasia",
+      "mama",
+      "tata"
+     ],
+     "answer": "Kasia"
+    },
+    {
+     "question": "Co kupują?",
+     "options": [
+      "chleb",
+      "lody",
+      "kwiaty"
+     ],
+     "answer": "chleb"
+    }
+   ]
+  },
+  {
+   "id": "r_08",
+   "title": "Rower",
+   "text": "Tomek dostał nowy rower. Rower jest czerwony. Tomek jeździ na nim po parku. Tata uczy go hamować.",
+   "graphemes": [
+    "t",
+    "o",
+    "m",
+    "e",
+    "k",
+    "d",
+    "s",
+    "a",
+    "ł",
+    "n",
+    "w",
+    "y",
+    "r",
+    "j",
+    "cz",
+    "ź",
+    "dzi",
+    "ni",
+    "p",
+    "u",
+    "g",
+    "h",
+    "ć"
+   ],
+   "level": 8,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Jaki kolor ma rower?",
+     "options": [
+      "czerwony",
+      "zielony",
+      "niebieski"
+     ],
+     "answer": "czerwony"
+    },
+    {
+     "question": "Gdzie jeździ Tomek?",
+     "options": [
+      "po parku",
+      "po domu",
+      "po lesie"
+     ],
+     "answer": "po parku"
+    }
+   ]
+  },
+  {
+   "id": "r_09",
+   "title": "Jeż",
+   "text": "W ogrodzie mieszka jeż. W dzień śpi pod liśćmi. Wieczorem szuka jedzenia. Jeż ma ostre kolce.",
+   "graphemes": [
+    "w",
+    "o",
+    "g",
+    "r",
+    "dzi",
+    "e",
+    "m",
+    "i",
+    "sz",
+    "k",
+    "a",
+    "j",
+    "ż",
+    "ń",
+    "ś",
+    "p",
+    "d",
+    "l",
+    "ć",
+    "cz",
+    "u",
+    "dz",
+    "ni",
+    "s",
+    "t",
+    "c"
+   ],
+   "level": 9,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Kiedy jeż szuka jedzenia?",
+     "options": [
+      "wieczorem",
+      "rano",
+      "w południe"
+     ],
+     "answer": "wieczorem"
+    },
+    {
+     "question": "Gdzie jeż śpi w dzień?",
+     "options": [
+      "pod liśćmi",
+      "na drzewie",
+      "w domu"
+     ],
+     "answer": "pod liśćmi"
+    }
+   ]
+  },
+  {
+   "id": "r_10",
+   "title": "Urodziny",
+   "text": "Dziś są urodziny Oli. Ciocia upiekła duży tort. Na torcie jest siedem świeczek. Ola zdmuchuje świeczki i wszyscy śpiewają.",
+   "graphemes": [
+    "dzi",
+    "ś",
+    "s",
+    "ą",
+    "u",
+    "r",
+    "o",
+    "n",
+    "y",
+    "l",
+    "i",
+    "ci",
+    "a",
+    "p",
+    "e",
+    "k",
+    "ł",
+    "d",
+    "ż",
+    "t",
+    "j",
+    "si",
+    "m",
+    "w",
+    "cz",
+    "z",
+    "ch",
+    "sz",
+    "c"
+   ],
+   "level": 10,
+   "goal": "czytanie krótkiego tekstu ze zrozumieniem",
+   "questions": [
+    {
+     "question": "Ile świeczek jest na torcie?",
+     "options": [
+      "siedem",
+      "pięć",
+      "dziesięć"
+     ],
+     "answer": "siedem"
+    },
+    {
+     "question": "Kto upiekł tort?",
+     "options": [
+      "ciocia",
+      "babcia",
+      "mama"
+     ],
+     "answer": "ciocia"
+    }
+   ]
+  }
+ ]
+}

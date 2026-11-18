@@ -1,0 +1,1527 @@
+{
+ "_opis": "Sylaby. graphemes = wymagane grafemy (głoski), które dziecko musi opanować przed samodzielnym czytaniem sylaby.",
+ "syllables": [
+  {
+   "id": "syl_ma",
+   "text": "ma",
+   "graphemes": [
+    "m",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ma",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_mo",
+   "text": "mo",
+   "graphemes": [
+    "m",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "mo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_me",
+   "text": "me",
+   "graphemes": [
+    "m",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "me",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_mu",
+   "text": "mu",
+   "graphemes": [
+    "m",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "mu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_my",
+   "text": "my",
+   "graphemes": [
+    "m",
+    "y"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "my",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_la",
+   "text": "la",
+   "graphemes": [
+    "l",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "la",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_lo",
+   "text": "lo",
+   "graphemes": [
+    "l",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "lo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_le",
+   "text": "le",
+   "graphemes": [
+    "l",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "le",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_lu",
+   "text": "lu",
+   "graphemes": [
+    "l",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "lu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ta",
+   "text": "ta",
+   "graphemes": [
+    "t",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ta",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_to",
+   "text": "to",
+   "graphemes": [
+    "t",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "to",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_te",
+   "text": "te",
+   "graphemes": [
+    "t",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "te",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_tu",
+   "text": "tu",
+   "graphemes": [
+    "t",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "tu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ty",
+   "text": "ty",
+   "graphemes": [
+    "t",
+    "y"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ty",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_sa",
+   "text": "sa",
+   "graphemes": [
+    "s",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "sa",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_so",
+   "text": "so",
+   "graphemes": [
+    "s",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "so",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_se",
+   "text": "se",
+   "graphemes": [
+    "s",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "se",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_su",
+   "text": "su",
+   "graphemes": [
+    "s",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "su",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_sy",
+   "text": "sy",
+   "graphemes": [
+    "s",
+    "y"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "sy",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_pa",
+   "text": "pa",
+   "graphemes": [
+    "p",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "pa",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_po",
+   "text": "po",
+   "graphemes": [
+    "p",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "po",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_pe",
+   "text": "pe",
+   "graphemes": [
+    "p",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "pe",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_pu",
+   "text": "pu",
+   "graphemes": [
+    "p",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "pu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_py",
+   "text": "py",
+   "graphemes": [
+    "p",
+    "y"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "py",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ka",
+   "text": "ka",
+   "graphemes": [
+    "k",
+    "a"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ka",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ko",
+   "text": "ko",
+   "graphemes": [
+    "k",
+    "o"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ko",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ke",
+   "text": "ke",
+   "graphemes": [
+    "k",
+    "e"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ke",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ku",
+   "text": "ku",
+   "graphemes": [
+    "k",
+    "u"
+   ],
+   "level": 1,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ku",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ra",
+   "text": "ra",
+   "graphemes": [
+    "r",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ra",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ro",
+   "text": "ro",
+   "graphemes": [
+    "r",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ro",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_re",
+   "text": "re",
+   "graphemes": [
+    "r",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "re",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ru",
+   "text": "ru",
+   "graphemes": [
+    "r",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ru",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ry",
+   "text": "ry",
+   "graphemes": [
+    "r",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ry",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_da",
+   "text": "da",
+   "graphemes": [
+    "d",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "da",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_do",
+   "text": "do",
+   "graphemes": [
+    "d",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "do",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_de",
+   "text": "de",
+   "graphemes": [
+    "d",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "de",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_du",
+   "text": "du",
+   "graphemes": [
+    "d",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "du",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_dy",
+   "text": "dy",
+   "graphemes": [
+    "d",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "dy",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_na",
+   "text": "na",
+   "graphemes": [
+    "n",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "na",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_no",
+   "text": "no",
+   "graphemes": [
+    "n",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "no",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ne",
+   "text": "ne",
+   "graphemes": [
+    "n",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ne",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_nu",
+   "text": "nu",
+   "graphemes": [
+    "n",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "nu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ny",
+   "text": "ny",
+   "graphemes": [
+    "n",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ny",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_wa",
+   "text": "wa",
+   "graphemes": [
+    "w",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "wa",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_wo",
+   "text": "wo",
+   "graphemes": [
+    "w",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "wo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_we",
+   "text": "we",
+   "graphemes": [
+    "w",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "we",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_wu",
+   "text": "wu",
+   "graphemes": [
+    "w",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "wu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_wy",
+   "text": "wy",
+   "graphemes": [
+    "w",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "wy",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ba",
+   "text": "ba",
+   "graphemes": [
+    "b",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ba",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_bo",
+   "text": "bo",
+   "graphemes": [
+    "b",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "bo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_be",
+   "text": "be",
+   "graphemes": [
+    "b",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "be",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_bu",
+   "text": "bu",
+   "graphemes": [
+    "b",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "bu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_by",
+   "text": "by",
+   "graphemes": [
+    "b",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "by",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ja",
+   "text": "ja",
+   "graphemes": [
+    "j",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ja",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_jo",
+   "text": "jo",
+   "graphemes": [
+    "j",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "jo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_je",
+   "text": "je",
+   "graphemes": [
+    "j",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "je",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ju",
+   "text": "ju",
+   "graphemes": [
+    "j",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ju",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_za",
+   "text": "za",
+   "graphemes": [
+    "z",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "za",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_zo",
+   "text": "zo",
+   "graphemes": [
+    "z",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "zo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ze",
+   "text": "ze",
+   "graphemes": [
+    "z",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ze",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_zu",
+   "text": "zu",
+   "graphemes": [
+    "z",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "zu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_zy",
+   "text": "zy",
+   "graphemes": [
+    "z",
+    "y"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "zy",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ga",
+   "text": "ga",
+   "graphemes": [
+    "g",
+    "a"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ga",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_go",
+   "text": "go",
+   "graphemes": [
+    "g",
+    "o"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "go",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ge",
+   "text": "ge",
+   "graphemes": [
+    "g",
+    "e"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ge",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_gu",
+   "text": "gu",
+   "graphemes": [
+    "g",
+    "u"
+   ],
+   "level": 2,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "gu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ła",
+   "text": "ła",
+   "graphemes": [
+    "ł",
+    "a"
+   ],
+   "level": 3,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ła",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ło",
+   "text": "ło",
+   "graphemes": [
+    "ł",
+    "o"
+   ],
+   "level": 3,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ło",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_łe",
+   "text": "łe",
+   "graphemes": [
+    "ł",
+    "e"
+   ],
+   "level": 3,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "łe",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_łu",
+   "text": "łu",
+   "graphemes": [
+    "ł",
+    "u"
+   ],
+   "level": 3,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "łu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ły",
+   "text": "ły",
+   "graphemes": [
+    "ł",
+    "y"
+   ],
+   "level": 3,
+   "kind": "CV",
+   "goal": "sylaba otwarta: spółgłoska + samogłoska",
+   "pronunciation": "ły",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_am",
+   "text": "am",
+   "graphemes": [
+    "a",
+    "m"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "am",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_om",
+   "text": "om",
+   "graphemes": [
+    "o",
+    "m"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "om",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_em",
+   "text": "em",
+   "graphemes": [
+    "e",
+    "m"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "em",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_um",
+   "text": "um",
+   "graphemes": [
+    "u",
+    "m"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "um",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_al",
+   "text": "al",
+   "graphemes": [
+    "a",
+    "l"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "al",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ol",
+   "text": "ol",
+   "graphemes": [
+    "o",
+    "l"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ol",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_el",
+   "text": "el",
+   "graphemes": [
+    "e",
+    "l"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "el",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ul",
+   "text": "ul",
+   "graphemes": [
+    "u",
+    "l"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ul",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_as",
+   "text": "as",
+   "graphemes": [
+    "a",
+    "s"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "as",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_os",
+   "text": "os",
+   "graphemes": [
+    "o",
+    "s"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "os",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_at",
+   "text": "at",
+   "graphemes": [
+    "a",
+    "t"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "at",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ot",
+   "text": "ot",
+   "graphemes": [
+    "o",
+    "t"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ot",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ak",
+   "text": "ak",
+   "graphemes": [
+    "a",
+    "k"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ak",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ok",
+   "text": "ok",
+   "graphemes": [
+    "o",
+    "k"
+   ],
+   "level": 1,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ok",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_ar",
+   "text": "ar",
+   "graphemes": [
+    "a",
+    "r"
+   ],
+   "level": 2,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "ar",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_or",
+   "text": "or",
+   "graphemes": [
+    "o",
+    "r"
+   ],
+   "level": 2,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "or",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_an",
+   "text": "an",
+   "graphemes": [
+    "a",
+    "n"
+   ],
+   "level": 2,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "an",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_on",
+   "text": "on",
+   "graphemes": [
+    "o",
+    "n"
+   ],
+   "level": 2,
+   "kind": "VC",
+   "goal": "sylaba zamknięta: samogłoska + spółgłoska",
+   "pronunciation": "on",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_sza",
+   "text": "sza",
+   "graphemes": [
+    "sz",
+    "a"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "sza",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_szo",
+   "text": "szo",
+   "graphemes": [
+    "sz",
+    "o"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "szo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_szu",
+   "text": "szu",
+   "graphemes": [
+    "sz",
+    "u"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "szu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_cza",
+   "text": "cza",
+   "graphemes": [
+    "cz",
+    "a"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "cza",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_czo",
+   "text": "czo",
+   "graphemes": [
+    "cz",
+    "o"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "czo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_czy",
+   "text": "czy",
+   "graphemes": [
+    "cz",
+    "y"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "czy",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_cha",
+   "text": "cha",
+   "graphemes": [
+    "ch",
+    "a"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "cha",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_cho",
+   "text": "cho",
+   "graphemes": [
+    "ch",
+    "o"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "cho",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_chu",
+   "text": "chu",
+   "graphemes": [
+    "ch",
+    "u"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "chu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_rza",
+   "text": "rza",
+   "graphemes": [
+    "rz",
+    "a"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "ża",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_rze",
+   "text": "rze",
+   "graphemes": [
+    "rz",
+    "e"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "że",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_rzy",
+   "text": "rzy",
+   "graphemes": [
+    "rz",
+    "y"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "ży",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_dzwo",
+   "text": "dzwo",
+   "graphemes": [
+    "dz",
+    "w",
+    "o"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "dzwo",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_dża",
+   "text": "dża",
+   "graphemes": [
+    "dż",
+    "a"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "dża",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_dżu",
+   "text": "dżu",
+   "graphemes": [
+    "dż",
+    "u"
+   ],
+   "level": 4,
+   "kind": "DW",
+   "goal": "sylaba z dwuznakiem",
+   "pronunciation": "dżu",
+   "pronunciationNote": null
+  },
+  {
+   "id": "syl_sia",
+   "text": "sia",
+   "graphemes": [
+    "si",
+    "a"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "śa",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_sie",
+   "text": "sie",
+   "graphemes": [
+    "si",
+    "e"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "śe",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_sio",
+   "text": "sio",
+   "graphemes": [
+    "si",
+    "o"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "śo",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_cia",
+   "text": "cia",
+   "graphemes": [
+    "ci",
+    "a"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "ća",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_cie",
+   "text": "cie",
+   "graphemes": [
+    "ci",
+    "e"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "će",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_cio",
+   "text": "cio",
+   "graphemes": [
+    "ci",
+    "o"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "ćo",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_zia",
+   "text": "zia",
+   "graphemes": [
+    "zi",
+    "a"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "źa",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_zie",
+   "text": "zie",
+   "graphemes": [
+    "zi",
+    "e"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "źe",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_nia",
+   "text": "nia",
+   "graphemes": [
+    "ni",
+    "a"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "ńa",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_nie",
+   "text": "nie",
+   "graphemes": [
+    "ni",
+    "e"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "ńe",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_nio",
+   "text": "nio",
+   "graphemes": [
+    "ni",
+    "o"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "ńo",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_dzia",
+   "text": "dzia",
+   "graphemes": [
+    "dzi",
+    "a"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "dźa",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  },
+  {
+   "id": "syl_dzie",
+   "text": "dzie",
+   "graphemes": [
+    "dzi",
+    "e"
+   ],
+   "level": 4,
+   "kind": "ZM",
+   "goal": "sylaba ze zmiękczeniem: „i” tylko zmiękcza, nie wymawiamy go osobno",
+   "pronunciation": "dźe",
+   "pronunciationNote": "wymowa różni się od zapisu litera po literze"
+  }
+ ]
+}

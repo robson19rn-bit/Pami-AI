@@ -1,0 +1,818 @@
+{
+ "_opis": "Zdania z pytaniem sprawdzającym zrozumienie. answer = poprawna odpowiedź; w aplikacji kolejność opcji jest losowana.",
+ "sentences": [
+  {
+   "id": "s_01",
+   "text": "To jest mama.",
+   "graphemes": [
+    "t",
+    "o",
+    "j",
+    "e",
+    "s",
+    "m",
+    "a"
+   ],
+   "level": 2,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto to jest?",
+   "options": [
+    "mama",
+    "tata",
+    "kot"
+   ],
+   "answer": "mama"
+  },
+  {
+   "id": "s_02",
+   "text": "To jest kot.",
+   "graphemes": [
+    "t",
+    "o",
+    "j",
+    "e",
+    "s",
+    "k"
+   ],
+   "level": 2,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co to jest?",
+   "options": [
+    "kot",
+    "las",
+    "sok"
+   ],
+   "answer": "kot"
+  },
+  {
+   "id": "s_03",
+   "text": "Tata ma sok.",
+   "graphemes": [
+    "t",
+    "a",
+    "m",
+    "s",
+    "o",
+    "k"
+   ],
+   "level": 1,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co ma tata?",
+   "options": [
+    "sok",
+    "mak",
+    "las"
+   ],
+   "answer": "sok"
+  },
+  {
+   "id": "s_04",
+   "text": "Mama ma mak.",
+   "graphemes": [
+    "m",
+    "a",
+    "k"
+   ],
+   "level": 1,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto ma mak?",
+   "options": [
+    "mama",
+    "tata",
+    "osa"
+   ],
+   "answer": "mama"
+  },
+  {
+   "id": "s_05",
+   "text": "Osa lata.",
+   "graphemes": [
+    "o",
+    "s",
+    "a",
+    "l",
+    "t"
+   ],
+   "level": 1,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co lata?",
+   "options": [
+    "osa",
+    "kot",
+    "ul"
+   ],
+   "answer": "osa"
+  },
+  {
+   "id": "s_06",
+   "text": "Ola ma lampę.",
+   "graphemes": [
+    "o",
+    "l",
+    "a",
+    "m",
+    "p",
+    "ę"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co ma Ola?",
+   "options": [
+    "lampę",
+    "mapę",
+    "lupę"
+   ],
+   "answer": "lampę"
+  },
+  {
+   "id": "s_07",
+   "text": "Lis jest w lesie.",
+   "graphemes": [
+    "l",
+    "i",
+    "s",
+    "j",
+    "e",
+    "t",
+    "w",
+    "si"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Gdzie jest lis?",
+   "options": [
+    "w lesie",
+    "w domu",
+    "w wodzie"
+   ],
+   "answer": "w lesie"
+  },
+  {
+   "id": "s_08",
+   "text": "Mama pije mleko.",
+   "graphemes": [
+    "m",
+    "a",
+    "p",
+    "i",
+    "j",
+    "e",
+    "l",
+    "k",
+    "o"
+   ],
+   "level": 2,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co pije mama?",
+   "options": [
+    "mleko",
+    "sok",
+    "wodę"
+   ],
+   "answer": "mleko"
+  },
+  {
+   "id": "s_09",
+   "text": "Kot śpi na kocu.",
+   "graphemes": [
+    "k",
+    "o",
+    "t",
+    "ś",
+    "p",
+    "i",
+    "n",
+    "a",
+    "c",
+    "u"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Gdzie śpi kot?",
+   "options": [
+    "na kocu",
+    "na stole",
+    "w lesie"
+   ],
+   "answer": "na kocu"
+  },
+  {
+   "id": "s_10",
+   "text": "Ryba pływa w wodzie.",
+   "graphemes": [
+    "r",
+    "y",
+    "b",
+    "a",
+    "p",
+    "ł",
+    "w",
+    "o",
+    "dzi",
+    "e"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Gdzie pływa ryba?",
+   "options": [
+    "w wodzie",
+    "w lesie",
+    "na łące"
+   ],
+   "answer": "w wodzie"
+  },
+  {
+   "id": "s_11",
+   "text": "Dom jest duży.",
+   "graphemes": [
+    "d",
+    "o",
+    "m",
+    "j",
+    "e",
+    "s",
+    "t",
+    "u",
+    "ż",
+    "y"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Jaki jest dom?",
+   "options": [
+    "duży",
+    "mały",
+    "zimny"
+   ],
+   "answer": "duży"
+  },
+  {
+   "id": "s_12",
+   "text": "Sowa ma duże oczy.",
+   "graphemes": [
+    "s",
+    "o",
+    "w",
+    "a",
+    "m",
+    "d",
+    "u",
+    "ż",
+    "e",
+    "cz",
+    "y"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto ma duże oczy?",
+   "options": [
+    "sowa",
+    "ryba",
+    "osa"
+   ],
+   "answer": "sowa"
+  },
+  {
+   "id": "s_13",
+   "text": "Tata myje auto.",
+   "graphemes": [
+    "t",
+    "a",
+    "m",
+    "y",
+    "j",
+    "e",
+    "u",
+    "o"
+   ],
+   "level": 2,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co myje tata?",
+   "options": [
+    "auto",
+    "kubek",
+    "okno"
+   ],
+   "answer": "auto"
+  },
+  {
+   "id": "s_14",
+   "text": "Koza je trawę.",
+   "graphemes": [
+    "k",
+    "o",
+    "z",
+    "a",
+    "j",
+    "e",
+    "t",
+    "r",
+    "w",
+    "ę"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co je koza?",
+   "options": [
+    "trawę",
+    "zupę",
+    "lody"
+   ],
+   "answer": "trawę"
+  },
+  {
+   "id": "s_15",
+   "text": "Ola je lody.",
+   "graphemes": [
+    "o",
+    "l",
+    "a",
+    "j",
+    "e",
+    "d",
+    "y"
+   ],
+   "level": 2,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co je Ola?",
+   "options": [
+    "lody",
+    "zupę",
+    "mak"
+   ],
+   "answer": "lody"
+  },
+  {
+   "id": "s_16",
+   "text": "Mama gotuje zupę.",
+   "graphemes": [
+    "m",
+    "a",
+    "g",
+    "o",
+    "t",
+    "u",
+    "j",
+    "e",
+    "z",
+    "p",
+    "ę"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co gotuje mama?",
+   "options": [
+    "zupę",
+    "lody",
+    "sok"
+   ],
+   "answer": "zupę"
+  },
+  {
+   "id": "s_17",
+   "text": "Balon jest czerwony.",
+   "graphemes": [
+    "b",
+    "a",
+    "l",
+    "o",
+    "n",
+    "j",
+    "e",
+    "s",
+    "t",
+    "cz",
+    "r",
+    "w",
+    "y"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Jaki jest balon?",
+   "options": [
+    "czerwony",
+    "zielony",
+    "mały"
+   ],
+   "answer": "czerwony"
+  },
+  {
+   "id": "s_18",
+   "text": "Żaba skacze do wody.",
+   "graphemes": [
+    "ż",
+    "a",
+    "b",
+    "s",
+    "k",
+    "cz",
+    "e",
+    "d",
+    "o",
+    "w",
+    "y"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto skacze do wody?",
+   "options": [
+    "żaba",
+    "koza",
+    "sowa"
+   ],
+   "answer": "żaba"
+  },
+  {
+   "id": "s_19",
+   "text": "Na niebie świeci słońce.",
+   "graphemes": [
+    "n",
+    "a",
+    "ni",
+    "e",
+    "b",
+    "i",
+    "ś",
+    "w",
+    "ci",
+    "s",
+    "ł",
+    "o",
+    "ń",
+    "c"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co świeci na niebie?",
+   "options": [
+    "słońce",
+    "lampa",
+    "oko"
+   ],
+   "answer": "słońce"
+  },
+  {
+   "id": "s_20",
+   "text": "Zimą pada śnieg.",
+   "graphemes": [
+    "zi",
+    "m",
+    "ą",
+    "p",
+    "a",
+    "d",
+    "ś",
+    "ni",
+    "e",
+    "g"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kiedy pada śnieg?",
+   "options": [
+    "zimą",
+    "latem",
+    "rano"
+   ],
+   "answer": "zimą"
+  },
+  {
+   "id": "s_21",
+   "text": "Mucha siedzi na oknie.",
+   "graphemes": [
+    "m",
+    "u",
+    "ch",
+    "a",
+    "si",
+    "e",
+    "dzi",
+    "n",
+    "o",
+    "k",
+    "ni"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Gdzie siedzi mucha?",
+   "options": [
+    "na oknie",
+    "na nosie",
+    "w zupie"
+   ],
+   "answer": "na oknie"
+  },
+  {
+   "id": "s_22",
+   "text": "W szafie wisi kurtka.",
+   "graphemes": [
+    "w",
+    "sz",
+    "a",
+    "f",
+    "i",
+    "e",
+    "si",
+    "k",
+    "u",
+    "r",
+    "t"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co wisi w szafie?",
+   "options": [
+    "kurtka",
+    "lampa",
+    "ryba"
+   ],
+   "answer": "kurtka"
+  },
+  {
+   "id": "s_23",
+   "text": "Kasia idzie do szkoły.",
+   "graphemes": [
+    "k",
+    "a",
+    "si",
+    "i",
+    "dzi",
+    "e",
+    "d",
+    "o",
+    "sz",
+    "ł",
+    "y"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Dokąd idzie Kasia?",
+   "options": [
+    "do szkoły",
+    "do lasu",
+    "do domu"
+   ],
+   "answer": "do szkoły"
+  },
+  {
+   "id": "s_24",
+   "text": "Dziadek czyta gazetę.",
+   "graphemes": [
+    "dzi",
+    "a",
+    "d",
+    "e",
+    "k",
+    "cz",
+    "y",
+    "t",
+    "g",
+    "z",
+    "ę"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co czyta dziadek?",
+   "options": [
+    "gazetę",
+    "mapę",
+    "książkę"
+   ],
+   "answer": "gazetę"
+  },
+  {
+   "id": "s_25",
+   "text": "Rano piję ciepłe mleko.",
+   "graphemes": [
+    "r",
+    "a",
+    "n",
+    "o",
+    "p",
+    "i",
+    "j",
+    "ę",
+    "ci",
+    "e",
+    "ł",
+    "m",
+    "l",
+    "k"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kiedy piję mleko?",
+   "options": [
+    "rano",
+    "wieczorem",
+    "w nocy"
+   ],
+   "answer": "rano"
+  },
+  {
+   "id": "s_26",
+   "text": "Ciocia upiekła tort.",
+   "graphemes": [
+    "ci",
+    "o",
+    "a",
+    "u",
+    "p",
+    "i",
+    "e",
+    "k",
+    "ł",
+    "t",
+    "r"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto upiekł tort?",
+   "options": [
+    "ciocia",
+    "wujek",
+    "babcia"
+   ],
+   "answer": "ciocia"
+  },
+  {
+   "id": "s_27",
+   "text": "Koń biega po łące.",
+   "graphemes": [
+    "k",
+    "o",
+    "ń",
+    "b",
+    "i",
+    "e",
+    "g",
+    "a",
+    "p",
+    "ł",
+    "ą",
+    "c"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Gdzie biega koń?",
+   "options": [
+    "po łące",
+    "po domu",
+    "po wodzie"
+   ],
+   "answer": "po łące"
+  },
+  {
+   "id": "s_28",
+   "text": "Rzeka płynie przez las.",
+   "graphemes": [
+    "rz",
+    "e",
+    "k",
+    "a",
+    "p",
+    "ł",
+    "y",
+    "ni",
+    "z",
+    "l",
+    "s"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co płynie przez las?",
+   "options": [
+    "rzeka",
+    "ryba",
+    "chmura"
+   ],
+   "answer": "rzeka"
+  },
+  {
+   "id": "s_29",
+   "text": "Jeż ma kolce.",
+   "graphemes": [
+    "j",
+    "e",
+    "ż",
+    "m",
+    "a",
+    "k",
+    "o",
+    "l",
+    "c"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Kto ma kolce?",
+   "options": [
+    "jeż",
+    "kot",
+    "żaba"
+   ],
+   "answer": "jeż"
+  },
+  {
+   "id": "s_30",
+   "text": "Babcia robi dżem z truskawek.",
+   "graphemes": [
+    "b",
+    "a",
+    "ci",
+    "r",
+    "o",
+    "i",
+    "dż",
+    "e",
+    "m",
+    "z",
+    "t",
+    "u",
+    "s",
+    "k",
+    "w"
+   ],
+   "level": 5,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Z czego babcia robi dżem?",
+   "options": [
+    "z truskawek",
+    "z mleka",
+    "z chleba"
+   ],
+   "answer": "z truskawek"
+  },
+  {
+   "id": "s_31",
+   "text": "Dzwon dzwoni głośno.",
+   "graphemes": [
+    "dz",
+    "w",
+    "o",
+    "n",
+    "ni",
+    "g",
+    "ł",
+    "ś"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Jak dzwoni dzwon?",
+   "options": [
+    "głośno",
+    "cicho",
+    "wolno"
+   ],
+   "answer": "głośno"
+  },
+  {
+   "id": "s_32",
+   "text": "Kura zniosła jajo.",
+   "graphemes": [
+    "k",
+    "u",
+    "r",
+    "a",
+    "z",
+    "ni",
+    "o",
+    "s",
+    "ł",
+    "j"
+   ],
+   "level": 4,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co zniosła kura?",
+   "options": [
+    "jajo",
+    "mleko",
+    "ser"
+   ],
+   "answer": "jajo"
+  },
+  {
+   "id": "s_33",
+   "text": "Tata pije kawę.",
+   "graphemes": [
+    "t",
+    "a",
+    "p",
+    "i",
+    "j",
+    "e",
+    "k",
+    "w",
+    "ę"
+   ],
+   "level": 3,
+   "goal": "czytanie zdania ze zrozumieniem (pytanie bez obrazka)",
+   "question": "Co pije tata?",
+   "options": [
+    "kawę",
+    "mleko",
+    "zupę"
+   ],
+   "answer": "kawę"
+  }
+ ]
+}

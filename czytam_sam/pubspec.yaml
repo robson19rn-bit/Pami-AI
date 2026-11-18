@@ -1,0 +1,36 @@
+name: czytam_sam
+description: "Czytam Sam – polska aplikacja do nauki czytania (offline, bez reklam, bez kont)."
+publish_to: 'none'
+
+# wersja+numer kompilacji (numer nadpisywany w CI: --build-number)
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.0
+
+# Wersje przypięte dokładnie; pubspec.lock jest commitowany, CI używa --enforce-lockfile.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  material_ui: 1.11.1       # BSD-3 – komponenty Material (od Flutter 3.47 osobny pakiet)
+  sqflite: 2.4.6            # BSD-2 – trwała baza SQLite
+  sqflite_common:      # BSD-2 – wspólne API SQLite
+  path: 1.9.1               # BSD-3
+  path_provider: 2.1.6      # BSD-3
+  flutter_tts: 4.2.5        # MIT – systemowy lektor Androida (offline, jeśli głos zainstalowany)
+  permission_handler: 13.0.2 # MIT – uprawnienie mikrofonu tylko na czas ćwiczeń głosowych
+  file_picker: 13.4.0       # MIT – eksport/import kopii, import modelu mowy
+  crypto: 3.0.8             # BSD-3 – suma kontrolna kopii zapasowej
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  sqflite_common_ffi: 2.4.7 # BSD-2 – SQLite w testach na komputerze
+  flutter_lints: 6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/content/

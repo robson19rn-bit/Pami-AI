@@ -1,0 +1,1907 @@
+{
+ "_opis": "Wyrazy. needsReview=true oznacza pozycję wyłączoną z puli do czasu weryfikacji.",
+ "words": [
+  {
+   "id": "w_mama",
+   "text": "mama",
+   "graphemes": [
+    "m",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "mama"
+  },
+  {
+   "id": "w_tata",
+   "text": "tata",
+   "graphemes": [
+    "t",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "tata"
+  },
+  {
+   "id": "w_lala",
+   "text": "lala",
+   "graphemes": [
+    "l",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lala"
+  },
+  {
+   "id": "w_oko",
+   "text": "oko",
+   "graphemes": [
+    "o",
+    "k"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "oko"
+  },
+  {
+   "id": "w_lato",
+   "text": "lato",
+   "graphemes": [
+    "l",
+    "a",
+    "t",
+    "o"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lato"
+  },
+  {
+   "id": "w_kot",
+   "text": "kot",
+   "graphemes": [
+    "k",
+    "o",
+    "t"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "kot"
+  },
+  {
+   "id": "w_kos",
+   "text": "kos",
+   "graphemes": [
+    "k",
+    "o",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "kos"
+  },
+  {
+   "id": "w_tak",
+   "text": "tak",
+   "graphemes": [
+    "t",
+    "a",
+    "k"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "tak"
+  },
+  {
+   "id": "w_sok",
+   "text": "sok",
+   "graphemes": [
+    "s",
+    "o",
+    "k"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "sok"
+  },
+  {
+   "id": "w_sam",
+   "text": "sam",
+   "graphemes": [
+    "s",
+    "a",
+    "m"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "sam"
+  },
+  {
+   "id": "w_las",
+   "text": "las",
+   "graphemes": [
+    "l",
+    "a",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "las"
+  },
+  {
+   "id": "w_lis",
+   "text": "lis",
+   "graphemes": [
+    "l",
+    "i",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "lis"
+  },
+  {
+   "id": "w_mak",
+   "text": "mak",
+   "graphemes": [
+    "m",
+    "a",
+    "k"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "mak"
+  },
+  {
+   "id": "w_mus",
+   "text": "mus",
+   "graphemes": [
+    "m",
+    "u",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "mus"
+  },
+  {
+   "id": "w_pas",
+   "text": "pas",
+   "graphemes": [
+    "p",
+    "a",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "pas"
+  },
+  {
+   "id": "w_osa",
+   "text": "osa",
+   "graphemes": [
+    "o",
+    "s",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "osa"
+  },
+  {
+   "id": "w_ul",
+   "text": "ul",
+   "graphemes": [
+    "u",
+    "l"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "ul"
+  },
+  {
+   "id": "w_tama",
+   "text": "tama",
+   "graphemes": [
+    "t",
+    "a",
+    "m"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "tama"
+  },
+  {
+   "id": "w_kasa",
+   "text": "kasa",
+   "graphemes": [
+    "k",
+    "a",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kasa"
+  },
+  {
+   "id": "w_mapa",
+   "text": "mapa",
+   "graphemes": [
+    "m",
+    "a",
+    "p"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "mapa"
+  },
+  {
+   "id": "w_lupa",
+   "text": "lupa",
+   "graphemes": [
+    "l",
+    "u",
+    "p",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lupa"
+  },
+  {
+   "id": "w_kula",
+   "text": "kula",
+   "graphemes": [
+    "k",
+    "u",
+    "l",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kula"
+  },
+  {
+   "id": "w_sala",
+   "text": "sala",
+   "graphemes": [
+    "s",
+    "a",
+    "l"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "sala"
+  },
+  {
+   "id": "w_sito",
+   "text": "sito",
+   "graphemes": [
+    "si",
+    "t",
+    "o"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "śito",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_puma",
+   "text": "puma",
+   "graphemes": [
+    "p",
+    "u",
+    "m",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "puma"
+  },
+  {
+   "id": "w_motyl",
+   "text": "motyl",
+   "graphemes": [
+    "m",
+    "o",
+    "t",
+    "y",
+    "l"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "motyl"
+  },
+  {
+   "id": "w_lampa",
+   "text": "lampa",
+   "graphemes": [
+    "l",
+    "a",
+    "m",
+    "p"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lampa"
+  },
+  {
+   "id": "w_mleko",
+   "text": "mleko",
+   "graphemes": [
+    "m",
+    "l",
+    "e",
+    "k",
+    "o"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "mleko"
+  },
+  {
+   "id": "w_pole",
+   "text": "pole",
+   "graphemes": [
+    "p",
+    "o",
+    "l",
+    "e"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "pole"
+  },
+  {
+   "id": "w_lot",
+   "text": "lot",
+   "graphemes": [
+    "l",
+    "o",
+    "t"
+   ],
+   "level": 1,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "lot"
+  },
+  {
+   "id": "w_mata",
+   "text": "mata",
+   "graphemes": [
+    "m",
+    "a",
+    "t"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "mata"
+  },
+  {
+   "id": "w_kaktus",
+   "text": "kaktus",
+   "graphemes": [
+    "k",
+    "a",
+    "t",
+    "u",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kaktus"
+  },
+  {
+   "id": "w_plama",
+   "text": "plama",
+   "graphemes": [
+    "p",
+    "l",
+    "a",
+    "m"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "plama"
+  },
+  {
+   "id": "w_pilot",
+   "text": "pilot",
+   "graphemes": [
+    "p",
+    "i",
+    "l",
+    "o",
+    "t"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "pilot"
+  },
+  {
+   "id": "w_klasa",
+   "text": "klasa",
+   "graphemes": [
+    "k",
+    "l",
+    "a",
+    "s"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "klasa"
+  },
+  {
+   "id": "w_stopa",
+   "text": "stopa",
+   "graphemes": [
+    "s",
+    "t",
+    "o",
+    "p",
+    "a"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "stopa"
+  },
+  {
+   "id": "w_tort",
+   "text": "tort",
+   "graphemes": [
+    "t",
+    "o",
+    "r"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "tort"
+  },
+  {
+   "id": "w_rak",
+   "text": "rak",
+   "graphemes": [
+    "r",
+    "a",
+    "k"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "rak"
+  },
+  {
+   "id": "w_ryba",
+   "text": "ryba",
+   "graphemes": [
+    "r",
+    "y",
+    "b",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "ryba"
+  },
+  {
+   "id": "w_rower",
+   "text": "rower",
+   "graphemes": [
+    "r",
+    "o",
+    "w",
+    "e"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "rower"
+  },
+  {
+   "id": "w_rama",
+   "text": "rama",
+   "graphemes": [
+    "r",
+    "a",
+    "m"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "rama"
+  },
+  {
+   "id": "w_dom",
+   "text": "dom",
+   "graphemes": [
+    "d",
+    "o",
+    "m"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dom"
+  },
+  {
+   "id": "w_dym",
+   "text": "dym",
+   "graphemes": [
+    "d",
+    "y",
+    "m"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dym"
+  },
+  {
+   "id": "w_dama",
+   "text": "dama",
+   "graphemes": [
+    "d",
+    "a",
+    "m"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "dama"
+  },
+  {
+   "id": "w_noga",
+   "text": "noga",
+   "graphemes": [
+    "n",
+    "o",
+    "g",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "noga"
+  },
+  {
+   "id": "w_nos",
+   "text": "nos",
+   "graphemes": [
+    "n",
+    "o",
+    "s"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "nos"
+  },
+  {
+   "id": "w_nora",
+   "text": "nora",
+   "graphemes": [
+    "n",
+    "o",
+    "r",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "nora"
+  },
+  {
+   "id": "w_woda",
+   "text": "woda",
+   "graphemes": [
+    "w",
+    "o",
+    "d",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "woda"
+  },
+  {
+   "id": "w_wata",
+   "text": "wata",
+   "graphemes": [
+    "w",
+    "a",
+    "t"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "wata"
+  },
+  {
+   "id": "w_sowa",
+   "text": "sowa",
+   "graphemes": [
+    "s",
+    "o",
+    "w",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "sowa"
+  },
+  {
+   "id": "w_balon",
+   "text": "balon",
+   "graphemes": [
+    "b",
+    "a",
+    "l",
+    "o",
+    "n"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "balon"
+  },
+  {
+   "id": "w_buty",
+   "text": "buty",
+   "graphemes": [
+    "b",
+    "u",
+    "t",
+    "y"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "buty"
+  },
+  {
+   "id": "w_bal",
+   "text": "bal",
+   "graphemes": [
+    "b",
+    "a",
+    "l"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "bal"
+  },
+  {
+   "id": "w_bób",
+   "text": "bób",
+   "graphemes": [
+    "b",
+    "ó"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "bup",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_jajo",
+   "text": "jajo",
+   "graphemes": [
+    "j",
+    "a",
+    "o"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "jajo"
+  },
+  {
+   "id": "w_jama",
+   "text": "jama",
+   "graphemes": [
+    "j",
+    "a",
+    "m"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "jama"
+  },
+  {
+   "id": "w_koza",
+   "text": "koza",
+   "graphemes": [
+    "k",
+    "o",
+    "z",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "koza"
+  },
+  {
+   "id": "w_zupa",
+   "text": "zupa",
+   "graphemes": [
+    "z",
+    "u",
+    "p",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "zupa"
+  },
+  {
+   "id": "w_zamek",
+   "text": "zamek",
+   "graphemes": [
+    "z",
+    "a",
+    "m",
+    "e",
+    "k"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "zamek"
+  },
+  {
+   "id": "w_gra",
+   "text": "gra",
+   "graphemes": [
+    "g",
+    "r",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "gra"
+  },
+  {
+   "id": "w_waga",
+   "text": "waga",
+   "graphemes": [
+    "w",
+    "a",
+    "g"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "waga"
+  },
+  {
+   "id": "w_góra",
+   "text": "góra",
+   "graphemes": [
+    "g",
+    "ó",
+    "r",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "gura",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_łapa",
+   "text": "łapa",
+   "graphemes": [
+    "ł",
+    "a",
+    "p"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "łapa"
+  },
+  {
+   "id": "w_łata",
+   "text": "łata",
+   "graphemes": [
+    "ł",
+    "a",
+    "t"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "łata"
+  },
+  {
+   "id": "w_masło",
+   "text": "masło",
+   "graphemes": [
+    "m",
+    "a",
+    "s",
+    "ł",
+    "o"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "masło"
+  },
+  {
+   "id": "w_koło",
+   "text": "koło",
+   "graphemes": [
+    "k",
+    "o",
+    "ł"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "koło"
+  },
+  {
+   "id": "w_cebula",
+   "text": "cebula",
+   "graphemes": [
+    "c",
+    "e",
+    "b",
+    "u",
+    "l",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 3,
+   "goal": "czytanie wyrazu 3-sylabowego",
+   "pronunciation": "cebula"
+  },
+  {
+   "id": "w_noc",
+   "text": "noc",
+   "graphemes": [
+    "n",
+    "o",
+    "c"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "noc"
+  },
+  {
+   "id": "w_córka",
+   "text": "córka",
+   "graphemes": [
+    "c",
+    "ó",
+    "r",
+    "k",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "curka",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_żaba",
+   "text": "żaba",
+   "graphemes": [
+    "ż",
+    "a",
+    "b"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "żaba"
+  },
+  {
+   "id": "w_żuk",
+   "text": "żuk",
+   "graphemes": [
+    "ż",
+    "u",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "żuk"
+  },
+  {
+   "id": "w_róża",
+   "text": "róża",
+   "graphemes": [
+    "r",
+    "ó",
+    "ż",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "ruża",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_hak",
+   "text": "hak",
+   "graphemes": [
+    "h",
+    "a",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "hak"
+  },
+  {
+   "id": "w_hamak",
+   "text": "hamak",
+   "graphemes": [
+    "h",
+    "a",
+    "m",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "hamak"
+  },
+  {
+   "id": "w_herbata",
+   "text": "herbata",
+   "graphemes": [
+    "h",
+    "e",
+    "r",
+    "b",
+    "a",
+    "t"
+   ],
+   "level": 4,
+   "syllables": 3,
+   "goal": "czytanie wyrazu 3-sylabowego",
+   "pronunciation": "herbata"
+  },
+  {
+   "id": "w_foka",
+   "text": "foka",
+   "graphemes": [
+    "f",
+    "o",
+    "k",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "foka"
+  },
+  {
+   "id": "w_fala",
+   "text": "fala",
+   "graphemes": [
+    "f",
+    "a",
+    "l"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "fala"
+  },
+  {
+   "id": "w_film",
+   "text": "film",
+   "graphemes": [
+    "f",
+    "i",
+    "l",
+    "m"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "film"
+  },
+  {
+   "id": "w_wąs",
+   "text": "wąs",
+   "graphemes": [
+    "w",
+    "ą",
+    "s"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "wąs (ą nosowe)",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_ząb",
+   "text": "ząb",
+   "graphemes": [
+    "z",
+    "ą",
+    "b"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "zomp",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_mąka",
+   "text": "mąka",
+   "graphemes": [
+    "m",
+    "ą",
+    "k",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "monka",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_zęby",
+   "text": "zęby",
+   "graphemes": [
+    "z",
+    "ę",
+    "b",
+    "y"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "zemby",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_ręka",
+   "text": "ręka",
+   "graphemes": [
+    "r",
+    "ę",
+    "k",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "renka",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_gęś",
+   "text": "gęś",
+   "graphemes": [
+    "g",
+    "ę",
+    "ś"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "gęś (ę nosowe)",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_ślimak",
+   "text": "ślimak",
+   "graphemes": [
+    "ś",
+    "l",
+    "i",
+    "m",
+    "a",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "ślimak"
+  },
+  {
+   "id": "w_ćma",
+   "text": "ćma",
+   "graphemes": [
+    "ć",
+    "m",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "ćma"
+  },
+  {
+   "id": "w_pić",
+   "text": "pić",
+   "graphemes": [
+    "p",
+    "i",
+    "ć"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "pić"
+  },
+  {
+   "id": "w_liść",
+   "text": "liść",
+   "graphemes": [
+    "l",
+    "i",
+    "ś",
+    "ć"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "liść"
+  },
+  {
+   "id": "w_koń",
+   "text": "koń",
+   "graphemes": [
+    "k",
+    "o",
+    "ń"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "koń"
+  },
+  {
+   "id": "w_słoń",
+   "text": "słoń",
+   "graphemes": [
+    "s",
+    "ł",
+    "o",
+    "ń"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "słoń"
+  },
+  {
+   "id": "w_dłoń",
+   "text": "dłoń",
+   "graphemes": [
+    "d",
+    "ł",
+    "o",
+    "ń"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dłoń"
+  },
+  {
+   "id": "w_dzień",
+   "text": "dzień",
+   "graphemes": [
+    "dzi",
+    "e",
+    "ń"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dźeń",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_szafa",
+   "text": "szafa",
+   "graphemes": [
+    "sz",
+    "a",
+    "f"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "szafa"
+  },
+  {
+   "id": "w_szkoła",
+   "text": "szkoła",
+   "graphemes": [
+    "sz",
+    "k",
+    "o",
+    "ł",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "szkoła"
+  },
+  {
+   "id": "w_kasza",
+   "text": "kasza",
+   "graphemes": [
+    "k",
+    "a",
+    "sz"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kasza"
+  },
+  {
+   "id": "w_mysz",
+   "text": "mysz",
+   "graphemes": [
+    "m",
+    "y",
+    "sz"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "mysz"
+  },
+  {
+   "id": "w_czapka",
+   "text": "czapka",
+   "graphemes": [
+    "cz",
+    "a",
+    "p",
+    "k"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "czapka"
+  },
+  {
+   "id": "w_kaczka",
+   "text": "kaczka",
+   "graphemes": [
+    "k",
+    "a",
+    "cz"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kaczka"
+  },
+  {
+   "id": "w_oczy",
+   "text": "oczy",
+   "graphemes": [
+    "o",
+    "cz",
+    "y"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "oczy"
+  },
+  {
+   "id": "w_ucho",
+   "text": "ucho",
+   "graphemes": [
+    "u",
+    "ch",
+    "o"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "ucho"
+  },
+  {
+   "id": "w_mucha",
+   "text": "mucha",
+   "graphemes": [
+    "m",
+    "u",
+    "ch",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "mucha"
+  },
+  {
+   "id": "w_chata",
+   "text": "chata",
+   "graphemes": [
+    "ch",
+    "a",
+    "t"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "chata"
+  },
+  {
+   "id": "w_chleb",
+   "text": "chleb",
+   "graphemes": [
+    "ch",
+    "l",
+    "e",
+    "b"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "chlep",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_rzeka",
+   "text": "rzeka",
+   "graphemes": [
+    "rz",
+    "e",
+    "k",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "żeka",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_morze",
+   "text": "morze",
+   "graphemes": [
+    "m",
+    "o",
+    "rz",
+    "e"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "może",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_dzwon",
+   "text": "dzwon",
+   "graphemes": [
+    "dz",
+    "w",
+    "o",
+    "n"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dzwon"
+  },
+  {
+   "id": "w_kukurydza",
+   "text": "kukurydza",
+   "graphemes": [
+    "k",
+    "u",
+    "r",
+    "y",
+    "dz",
+    "a"
+   ],
+   "level": 5,
+   "syllables": 4,
+   "goal": "czytanie wyrazu 4-sylabowego",
+   "pronunciation": "kukurydza"
+  },
+  {
+   "id": "w_dżem",
+   "text": "dżem",
+   "graphemes": [
+    "dż",
+    "e",
+    "m"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dżem"
+  },
+  {
+   "id": "w_dżungla",
+   "text": "dżungla",
+   "graphemes": [
+    "dż",
+    "u",
+    "n",
+    "g",
+    "l",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "dżungla"
+  },
+  {
+   "id": "w_jeż",
+   "text": "jeż",
+   "graphemes": [
+    "j",
+    "e",
+    "ż"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "jesz",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_nie",
+   "text": "nie",
+   "graphemes": [
+    "ni",
+    "e"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "ńe",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_kino",
+   "text": "kino",
+   "graphemes": [
+    "k",
+    "i",
+    "n",
+    "o"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kino"
+  },
+  {
+   "id": "w_lody",
+   "text": "lody",
+   "graphemes": [
+    "l",
+    "o",
+    "d",
+    "y"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lody"
+  },
+  {
+   "id": "w_miś",
+   "text": "miś",
+   "graphemes": [
+    "m",
+    "i",
+    "ś"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "miś"
+  },
+  {
+   "id": "w_pies",
+   "text": "pies",
+   "graphemes": [
+    "p",
+    "i",
+    "e",
+    "s"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "pies (p zmiękczone)",
+   "pronunciationNote": "wymowa różni się od zapisu",
+   "contextNote": "„i” przed samogłoską tylko zmiękcza poprzednią spółgłoskę (nie czytamy go osobno)"
+  },
+  {
+   "id": "w_kura",
+   "text": "kura",
+   "graphemes": [
+    "k",
+    "u",
+    "r",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kura"
+  },
+  {
+   "id": "w_dziadek",
+   "text": "dziadek",
+   "graphemes": [
+    "dzi",
+    "a",
+    "d",
+    "e",
+    "k"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "dźadek",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_ciocia",
+   "text": "ciocia",
+   "graphemes": [
+    "ci",
+    "o",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "ćoća",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_siano",
+   "text": "siano",
+   "graphemes": [
+    "si",
+    "a",
+    "n",
+    "o"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "śano",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_zima",
+   "text": "zima",
+   "graphemes": [
+    "zi",
+    "m",
+    "a"
+   ],
+   "level": 4,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "źima",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_wóz",
+   "text": "wóz",
+   "graphemes": [
+    "w",
+    "ó",
+    "z"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "wus",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_ołówek",
+   "text": "ołówek",
+   "graphemes": [
+    "o",
+    "ł",
+    "ó",
+    "w",
+    "e",
+    "k"
+   ],
+   "level": 4,
+   "syllables": 3,
+   "goal": "czytanie wyrazu 3-sylabowego",
+   "pronunciation": "ołuwek",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_łyżka",
+   "text": "łyżka",
+   "graphemes": [
+    "ł",
+    "y",
+    "ż",
+    "k",
+    "a"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "łyszka",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_taca",
+   "text": "taca",
+   "graphemes": [
+    "t",
+    "a",
+    "c"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "taca"
+  },
+  {
+   "id": "w_cukier",
+   "text": "cukier",
+   "graphemes": [
+    "c",
+    "u",
+    "k",
+    "i",
+    "e",
+    "r"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "cukier",
+   "contextNote": "„i” przed samogłoską tylko zmiękcza poprzednią spółgłoskę (nie czytamy go osobno)"
+  },
+  {
+   "id": "w_gol",
+   "text": "gol",
+   "graphemes": [
+    "g",
+    "o",
+    "l"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "gol"
+  },
+  {
+   "id": "w_gumka",
+   "text": "gumka",
+   "graphemes": [
+    "g",
+    "u",
+    "m",
+    "k",
+    "a"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "gumka"
+  },
+  {
+   "id": "w_rysunek",
+   "text": "rysunek",
+   "graphemes": [
+    "r",
+    "y",
+    "s",
+    "u",
+    "n",
+    "e",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 3,
+   "goal": "czytanie wyrazu 3-sylabowego",
+   "pronunciation": "rysunek"
+  },
+  {
+   "id": "w_źle",
+   "text": "źle",
+   "graphemes": [
+    "ź",
+    "l",
+    "e"
+   ],
+   "level": 3,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "źle"
+  },
+  {
+   "id": "w_źrebak",
+   "text": "źrebak",
+   "graphemes": [
+    "ź",
+    "r",
+    "e",
+    "b",
+    "a",
+    "k"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "źrebak"
+  },
+  {
+   "id": "w_łódź",
+   "text": "łódź",
+   "graphemes": [
+    "ł",
+    "ó",
+    "dź"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "łuć",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_dźwig",
+   "text": "dźwig",
+   "graphemes": [
+    "dź",
+    "w",
+    "i",
+    "g"
+   ],
+   "level": 4,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "dźwik",
+   "pronunciationNote": "wymowa różni się od zapisu"
+  },
+  {
+   "id": "w_okno",
+   "text": "okno",
+   "graphemes": [
+    "o",
+    "k",
+    "n"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "okno"
+  },
+  {
+   "id": "w_lalka",
+   "text": "lalka",
+   "graphemes": [
+    "l",
+    "a",
+    "k"
+   ],
+   "level": 1,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "lalka"
+  },
+  {
+   "id": "w_kubek",
+   "text": "kubek",
+   "graphemes": [
+    "k",
+    "u",
+    "b",
+    "e"
+   ],
+   "level": 2,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": "kubek"
+  },
+  {
+   "id": "w_ser",
+   "text": "ser",
+   "graphemes": [
+    "s",
+    "e",
+    "r"
+   ],
+   "level": 2,
+   "syllables": 1,
+   "goal": "czytanie wyrazu 1-sylabowego",
+   "pronunciation": "ser"
+  },
+  {
+   "id": "w_gałąź",
+   "text": "gałąź",
+   "graphemes": [
+    "g",
+    "a",
+    "ł",
+    "ą",
+    "ź"
+   ],
+   "level": 3,
+   "syllables": 2,
+   "goal": "czytanie wyrazu 2-sylabowego",
+   "pronunciation": null,
+   "needsReview": true,
+   "reviewNote": "wymowa nosówki przed ź na końcu wyrazu wymaga weryfikacji logopedycznej"
+  }
+ ]
+}
