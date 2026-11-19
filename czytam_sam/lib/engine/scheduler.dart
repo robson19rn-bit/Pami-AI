@@ -24,7 +24,11 @@ class Capabilities {
     this.ttsOk = false,
     this.asrReady = false,
     this.ttsBadUnits = const {},
+    this.assessmentOnly = false,
   });
+
+  /// Sesja „Ocena wypowiedzi z opiekunem”: tylko zadania mówione, ocenia opiekun.
+  final bool assessmentOnly;
 
   /// Opiekun jest obok (może wymówić głoskę i ocenić wypowiedź).
   final bool guardianPresent;
@@ -62,46 +66,60 @@ class Planned {
 }
 
 /// Generuje kandydatów zgodnie z etapem i możliwościami.
+///
+/// Tryb domyślny (dziecko ćwiczy samo): wszystkie polecenia czyta lektor, także
+/// głoski – podawane w słowie („na początku słowa mama”), bo syntezatory źle
+/// wymawiają głoski w izolacji. Zadania mówione bez oceniającego są ćwiczeniem
+/// (zapis „nieocenione”) – nie liczą się do opanowania.
+/// Tryb oceny ([Capabilities.assessmentOnly]): tylko wypowiedzi, ocenia opiekun.
 List<Candidate> buildCandidates(Curriculum cur, Capabilities cap) {
   final out = <Candidate>[];
-  final g = cap.guardianPresent;
+  final g = cap.guardianPresent || cap.assessmentOnly;
+  final speechJudged = g; // litery i głoski ocenia wyłącznie człowiek
+  final readingJudged = g || cap.asrReady;
+  final assess = cap.assessmentOnly;
   for (final l in cur.activeLetters()) {
-    final canPromptName = cap.canSpeak(l.id) || g;
-    if (canPromptName) {
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint, rank: l.order));
-      // T2: dotyk liczony zawsze; wypowiedź oceniana tylko przez opiekuna.
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay, rank: l.order));
+    final canPrompt = cap.canSpeak(l.id) || g;
+    if (!assess) {
+      if (canPrompt) {
+        out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint, rank: l.order));
+        // T2: dotyk liczony zawsze; wypowiedź oceniana tylko, gdy jest oceniający.
+        out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay, rank: l.order));
+        out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint, rank: l.order));
+      }
+      out.add(Candidate(l.id, ItemKind.letter, Skill.caseMatch, TaskType.t4Case, rank: l.order));
     }
-    out.add(Candidate(l.id, ItemKind.letter, Skill.caseMatch, TaskType.t4Case, rank: l.order));
-    if (g) {
-      // Pojedyncze głoski: tylko opiekun (brak zweryfikowanych nagrań).
-      out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint, rank: l.order));
+    if (speechJudged) {
       out.add(Candidate(l.id, ItemKind.letter, Skill.sayName, TaskType.t3SeeName, rank: l.order));
       out.add(Candidate(l.id, ItemKind.letter, Skill.saySound, TaskType.t3SeeName, rank: l.order));
     }
   }
-  if (g) {
-    for (final gr in cur.activeGraphemes()) {
+  for (final gr in cur.activeGraphemes()) {
+    if (!assess && (cap.canSpeak(gr.id) || g)) {
       out.add(Candidate(gr.id, ItemKind.grapheme, Skill.recognizeSound, TaskType.t1HearPoint, rank: 40));
-      out.add(Candidate(gr.id, ItemKind.grapheme, Skill.saySound, TaskType.t3SeeName, rank: 40));
     }
+    if (speechJudged) out.add(Candidate(gr.id, ItemKind.grapheme, Skill.saySound, TaskType.t3SeeName, rank: 40));
   }
-  final canJudgeReading = g || cap.asrReady;
   for (final ua in cur.units(ItemKind.syllable)) {
     final a = ua.access == Access.manualAssisted;
-    if (cap.canSpeak(ua.unit.id) || g) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.segment, TaskType.t5Segment, assisted: a, rank: 50 + ua.unit.level));
-    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 50 + ua.unit.level));
+    if (!assess && (cap.canSpeak(ua.unit.id) || g)) {
+      out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.segment, TaskType.t5Segment, assisted: a, rank: 50 + ua.unit.level));
+    }
+    if (readingJudged) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 50 + ua.unit.level));
   }
   for (final ua in cur.units(ItemKind.word)) {
     final a = ua.access == Access.manualAssisted;
-    if (canJudgeReading) out.add(Candidate(ua.unit.id, ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 60 + ua.unit.level));
-    if (ua.unit.graphemes.length <= 4 && tokenCount(ua.unit) <= 5 && (cap.canSpeak(ua.unit.id) || g)) {
+    if (readingJudged) out.add(Candidate(ua.unit.id, ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 60 + ua.unit.level));
+    if (!assess && ua.unit.graphemes.length <= 4 && tokenCount(ua.unit) <= 5 && (cap.canSpeak(ua.unit.id) || g)) {
       out.add(Candidate(ua.unit.id, ItemKind.word, Skill.segment, TaskType.t5Segment, assisted: a, rank: 60 + ua.unit.level));
     }
   }
-  for (final k in [ItemKind.sentence, ItemKind.reading]) {
-    for (final ua in cur.units(k)) {
-      out.add(Candidate(ua.unit.id, k, Skill.comprehension, TaskType.t7Comprehension, assisted: ua.access == Access.manualAssisted, rank: 70 + ua.unit.level));
+  if (!assess) {
+    for (final k in [ItemKind.sentence, ItemKind.reading]) {
+      for (final ua in cur.units(k)) {
+        out.add(Candidate(ua.unit.id, k, Skill.comprehension, TaskType.t7Comprehension,
+            assisted: ua.access == Access.manualAssisted, rank: 70 + ua.unit.level));
+      }
     }
   }
   return out;
@@ -151,14 +169,15 @@ List<Planned> planSession({
     final sa = index.of(a.itemId, a.skill), sb = index.of(b.itemId, b.skill);
     final ra = sa.state == MasteryState.doPowtorzenia ? 0 : 1, rb = sb.state == MasteryState.doPowtorzenia ? 0 : 1;
     if (ra != rb) return ra - rb;
-    // Rotacja: najdawniej ćwiczone najpierw (żaden trudny element nie jest „zagłodzony”),
-    // przy remisie – niższa poprawność.
-    final la = sa.lastAttemptAt, lb = sb.lastAttemptAt;
-    if (la == null && lb != null) return -1;
-    if (lb == null && la != null) return 1;
-    if (la != null && lb != null && la != lb) return la.compareTo(lb);
-    final aa = sa.recentAccuracy ?? 1, ab = sb.recentAccuracy ?? 1;
-    if (aa != ab) return aa.compareTo(ab);
+    // Priorytet = trudność + czas od ostatniego ćwiczenia: stale mylone elementy wracają
+    // częściej, a łatwiejsze z koszyka i tak doczekają się kolejki (brak „zagłodzenia”).
+    double score(SkillStats st) {
+      final days = st.lastAttemptAt == null ? 30.0 : now.difference(st.lastAttemptAt!).inMinutes / 1440.0;
+      return days + 3 * (1 - (st.recentAccuracy ?? 0.5));
+    }
+
+    final da = score(sa), db = score(sb);
+    if (da != db) return db.compareTo(da);
     return byTie(a, b);
   });
   buckets[Bucket.current]!.sort((a, b) {

@@ -50,16 +50,23 @@ Ważne, uczciwe ograniczenia:
 
 ## 4. Codzienne korzystanie
 
-* **Uczę się** → wybierz, czy *opiekun jest obok*, czy *dziecko ćwiczy samo*.
-  * Z opiekunem: pełny program (głoski wymawia opiekun, ocenia wypowiedzi przytrzymując przycisk „Opiekun”:
-    **Poprawnie / Jeszcze nie / Powtórz / Nie można ocenić**).
-  * Samodzielnie: tylko zadania, które aplikacja potrafi rzetelnie sprawdzić; wypowiedzi bez oceny są zapisywane
-    jako „nieocenione” i nie liczą się do opanowania.
-* Na każdym ekranie: **Powtórz polecenie**, **Podpowiedź** (tylko na życzenie lub po błędzie – odpowiedź po
-  podpowiedzi nie liczy się jako samodzielna), **Wróć później**, **Przerwij** (postęp zapisuje się na bieżąco).
-* Brak odliczania czasu i presji. Czas jest zapisywany tylko informacyjnie w raporcie opiekuna.
-* Typy zadań: T1 Usłysz i wskaż, T2 Wskaż i powiedz, T3 Zobacz i nazwij, T4 Wielka–mała,
-  T5 Które głoski słyszysz (ułóż z kafelków), T6 Przeczytaj na głos, T7 Przeczytaj i odpowiedz na pytanie.
+* **Uczę się** – dziecko ćwiczy **samo**, a całą lekcję prowadzi **lektor**: czyta polecenia, sylaby
+  i wyrazy, a głoski podaje w słowach („Wskaż literę, którą słychać na początku słowa *mama*”), bo w izolacji
+  syntezatory wymawiają je błędnie. Litery obecne w słowie i brzmiące tak samo (u/ó, h/ch) nie pojawiają się
+  wtedy jako odpowiedzi, więc zadanie jest jednoznaczne.
+* Dziecko nadal próbuje mówić (np. „Wskaż literę, a potem powiedz jej nazwę”), ale bez oceniającego taka
+  wypowiedź jest tylko ćwiczeniem – zapisuje się jako „nieoceniona” i nie liczy do opanowania.
+* **Ocena wypowiedzi z opiekunem** – *Moje postępy → przycisk „Ocena wypowiedzi”*. Kilka minut, tylko zadania
+  mówione (nazwy liter, głoski, czytanie sylab i wyrazów); panel **Poprawnie / Jeszcze nie / Powtórz /
+  Nie można ocenić** jest od razu otwarty. W zakładce *Etapy i plan* widać, co czeka na ocenę
+  (np. głoski rozpoznawane ze słuchu, których wymowy jeszcze nikt nie potwierdził). Bez tej oceny sylaby się
+  nie odblokują – to świadoma zasada: łączenie głosek wymaga ich poprawnego wymawiania.
+* Gdy polski lektor nie działa, aplikacja wyraźnie o tym informuje i polecenia czyta dorosły.
+* Na każdym ekranie: **Powtórz**, **Podpowiedź** (tylko na życzenie lub po błędzie – odpowiedź po podpowiedzi
+  nie liczy się jako samodzielna), **Później**, **Przerwij** (postęp zapisuje się na bieżąco).
+* Brak odliczania czasu i presji. Lekcja = 12 zadań (ok. 5–10 minut; zmiana w Ustawieniach).
+* Typy zadań: T1 Usłysz i wskaż (literę lub głoskę w słowie), T2 Wskaż i powiedz, T3 Zobacz i nazwij,
+  T4 Wielka–mała, T5 Które głoski słyszysz (ułóż z kafelków), T6 Przeczytaj na głos, T7 Przeczytaj i odpowiedz.
 
 ## 5. Panel opiekuna („Moje postępy”)
 

@@ -111,6 +111,13 @@ class Curriculum {
       'Litery w nauce': activeLetters().map((l) => l.upper).join(' '),
       'Głoski gotowe do łączenia': [for (final l in content.lettersInOrder) if (index.soundReady(l.id)) l.lower].join(' '),
       'Dostępne sylaby': '${syl.where((u) => u.access == Access.available).length} z ${content.pool(ItemKind.syllable).length}',
+      'Czeka na ocenę wypowiedzi z opiekunem': () {
+        final w = [
+          for (final l in content.lettersInOrder)
+            if (index.mastered(l.id, Skill.recognizeSound) && !index.mastered(l.id, Skill.saySound)) l.lower
+        ];
+        return w.isEmpty ? 'nic – można ćwiczyć dalej samodzielnie' : 'głoski: ${w.join(' ')} (rozpoznawane ze słuchu, trzeba potwierdzić wymowę)';
+      }(),
       'Do wyrazów': '${_countMastered(content.pool(ItemKind.syllable), [Skill.readAloud, Skill.segment])}/${c.syllablesBeforeWords} sylab opanowanych',
       'Do zdań': '${_countMastered(content.pool(ItemKind.word), [Skill.readAloud])}/${c.wordsBeforeSentences} wyrazów przeczytanych samodzielnie',
       'Do czytanek': '${_countMastered(content.pool(ItemKind.sentence), [Skill.comprehension])}/${c.sentencesBeforeReadings} zdań zrozumianych',

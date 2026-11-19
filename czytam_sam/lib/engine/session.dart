@@ -140,16 +140,19 @@ class TaskBuilder {
   List<String> _confusable(String id) => content.letter(id)?.confusable ?? content.grapheme(id)?.confusable ?? const [];
 
   /// Zwraca (opcje, identyfikatory, indeks poprawnej).
-  (List<String>, List<String>, int) _graphemeOptions(String target, ItemKind kind, Skill skill, {bool? upper}) {
+  /// [exclude] – grafemy, które nie mogą być dystraktorami (np. obecne w słowie-nośniku
+  /// albo brzmiące tak samo jak cel), by zadanie miało dokładnie jedną poprawną odpowiedź.
+  (List<String>, List<String>, int) _graphemeOptions(String target, ItemKind kind, Skill skill, {bool? upper, Set<String> exclude = const {}}) {
     final stats = index.of(target, skill);
     final n = optionCountFor(stats.state);
+    bool ok(String x) => x == target || !exclude.contains(x);
     final distractors = pickDistractors(
       target: target,
       count: n - 1,
       stats: stats,
-      staticConfusable: _confusable(target),
-      activePool: _activeIds(kind),
-      fullPool: _fullIds(kind),
+      staticConfusable: _confusable(target).where(ok).toList(),
+      activePool: _activeIds(kind).where(ok).toList(),
+      fullPool: _fullIds(kind).where(ok).toList(),
       rng: rng,
     );
     final count = distractors.length + 1;
@@ -169,8 +172,23 @@ class TaskBuilder {
     final id = 'task-${_n++}';
     switch (c.task) {
       case TaskType.t1HearPoint:
-        final (opts, ids, pos) = _graphemeOptions(c.itemId, c.kind, c.skill);
         if (c.skill == Skill.recognizeSound) {
+          if (cap.canSpeak(c.itemId)) {
+            // Lektor podaje głoskę w słowie (nie w izolacji – syntezatory wymawiają ją wtedy błędnie).
+            final carrier = carrierFor(content, c.itemId);
+            final exclude = {...carrier.tokens, ...homophones(c.itemId)};
+            final (opts, ids, pos) = _graphemeOptions(c.itemId, c.kind, c.skill, exclude: exclude);
+            return TaskSpec(
+              id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
+              instruction: 'Posłuchaj słowa i wskaż literę, którą słychać ${carrier.where}.',
+              promptSpeech: 'Wskaż literę, którą słychać ${carrier.where} słowa ${carrier.word}.',
+              promptMode: PromptMode.tts,
+              requiresHeardPrompt: true,
+              options: opts, optionIds: ids, correctIndex: pos,
+              hintText: 'Powiedz słowo „${carrier.word}” bardzo powoli i posłuchaj ${carrier.whereShort}.',
+            );
+          }
+          final (opts, ids, pos) = _graphemeOptions(c.itemId, c.kind, c.skill, exclude: homophones(c.itemId));
           return TaskSpec(
             id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
             instruction: 'Posłuchaj głoski i wskaż literę, która ją oznacza.',
@@ -178,9 +196,10 @@ class TaskBuilder {
             promptMode: PromptMode.guardian,
             requiresHeardPrompt: true,
             options: opts, optionIds: ids, correctIndex: pos,
-            hintText: 'Ta głoska jest na początku słowa „${_example(c.itemId)}”.',
+            hintText: 'Ta głoska jest w słowie „${_example(c.itemId)}”.',
           );
         }
+        final (opts, ids, pos) = _graphemeOptions(c.itemId, c.kind, c.skill);
         final tts = cap.canSpeak(c.itemId);
         return TaskSpec(
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
@@ -588,4 +607,42 @@ class SessionController {
     final at = min(position + 4, _queue.length);
     _queue.insert(at, t.copyAsRecheck('${t.id}-r'));
   }
+}
+
+/// Grafemy brzmiące tak samo jak dany (nie mogą być dystraktorami w zadaniach „ze słuchu”).
+Set<String> homophones(String id) => const {
+      'u': {'ó'}, 'ó': {'u'}, 'h': {'ch'}, 'ch': {'h'}, 'ż': {'rz'}, 'rz': {'ż'},
+      'ś': {'si'}, 'si': {'ś'}, 'ć': {'ci'}, 'ci': {'ć'}, 'ź': {'zi'}, 'zi': {'ź'},
+      'ń': {'ni'}, 'ni': {'ń'}, 'dź': {'dzi'}, 'dzi': {'dź'},
+    }[id] ??
+    const {};
+
+class Carrier {
+  Carrier(this.word, this.tokens, this.where, this.whereShort);
+  final String word;
+  final Set<String> tokens;
+
+  /// „na początku” / „na końcu” / „w środku”
+  final String where;
+  final String whereShort;
+}
+
+/// Grafemy, które na końcu wyrazu brzmią inaczej (ubezdźwięcznienie, nosówki) – nie wskazujemy ich „na końcu”.
+const _changesAtEnd = {'b', 'd', 'g', 'w', 'z', 'ż', 'ź', 'rz', 'dz', 'dź', 'dż', 'ą', 'ę'};
+
+/// Wybiera słowo-nośnik z przykładów: najlepiej z grafemem na początku, potem na końcu, potem w środku.
+Carrier carrierFor(ContentBundle content, String id) {
+  final examples = content.letter(id)?.examples ?? content.grapheme(id)?.examples ?? const <String>[];
+  Carrier make(String w, String where, String short) => Carrier(w, tokenizeGraphemes(w).toSet()..remove(id), where, short);
+  for (final w in examples) {
+    if (tokenizeGraphemes(w).first == id) return make(w, 'na początku', 'pierwszej głoski');
+  }
+  for (final w in examples) {
+    if (tokenizeGraphemes(w).last == id && !_changesAtEnd.contains(id)) return make(w, 'na końcu', 'ostatniej głoski');
+  }
+  for (final w in examples) {
+    final t = tokenizeGraphemes(w);
+    if (t.contains(id)) return make(w, 'w środku', 'głoski w środku słowa');
+  }
+  return make(examples.isEmpty ? id : examples.first, 'w', 'kolejnych głosek');
 }

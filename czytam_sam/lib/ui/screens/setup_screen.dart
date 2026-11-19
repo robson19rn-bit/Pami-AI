@@ -115,7 +115,7 @@ class _SetupScreenState extends State<SetupScreen> {
           ),
       ],
       const SizedBox(height: 8),
-      const Text('Uwaga: pojedynczych głosek (np. „m”) lektor nie wymawia – syntezatory często czytają je błędnie. Głoski wymawia opiekun.',
+      const Text('Głoski lektor podaje w słowach (np. „na początku słowa mama”), bo w izolacji syntezatory wymawiają je błędnie. Dziecko może ćwiczyć samo; opiekun jest potrzebny tylko do krótkiej oceny wypowiedzi (Panel opiekuna → Ocena wypowiedzi).',
           style: TextStyle(fontSize: 15)),
       _nav(canNext: heardOk != null || voice?.polishAvailable == false),
     ]);

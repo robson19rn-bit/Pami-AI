@@ -110,5 +110,5 @@ SpeechDecision decideSpeech({
     if (retriesSoFar < 1) return const SpeechDecision(SpeechDecisionKind.retry, 'Nie jestem pewien, co usłyszałem. Powiedz jeszcze raz.');
     return const SpeechDecision(SpeechDecisionKind.recordUncertain, 'Nie mogę tego ocenić. Wrócimy do tego później.');
   }
-  return const SpeechDecision(SpeechDecisionKind.recordNotEvaluated, 'Dziękuję! Tę odpowiedź oceni opiekun przy kolejnej wspólnej sesji.');
+  return const SpeechDecision(SpeechDecisionKind.recordNotEvaluated, 'Dziękuję, że mówisz na głos!');
 }

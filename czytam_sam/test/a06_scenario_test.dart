@@ -85,7 +85,7 @@ void main() {
 
     final r = Random(42);
     // Dzień 1 – jedna sesja: nic nie może być „potwierdzone”, b/d/p nieopanowane
-    var ctl = await s.startSession(guardianPresent: true, asrReady: false);
+    var ctl = await s.startSession(guardianPresent: false, asrReady: false);
     await playSession(ctl, 1, r);
     await s.endSession(ctl.completedTasks);
     expect(s.index.stats.values.where((x) => x.state == MasteryState.potwierdzone), isEmpty);
@@ -99,8 +99,9 @@ void main() {
     var syllablesDay = -1, maloDay = -1;
     for (var day = 2; day <= 40 && maloDay < 0; day++) {
       now = DateTime(2026, 9, day, 16);
-      for (var k = 0; k < 2; k++) {
-        ctl = await s.startSession(guardianPresent: true, asrReady: false);
+      // dziecko ćwiczy samo 2 razy (prowadzi lektor), potem krótka ocena wypowiedzi z opiekunem
+      for (var k = 0; k < 3; k++) {
+        ctl = await s.startSession(guardianPresent: false, asrReady: false, assessment: k == 2);
         await playSession(ctl, day, r);
         now = now.add(const Duration(hours: 2));
         await s.endSession(ctl.completedTasks);
@@ -117,9 +118,11 @@ void main() {
     // Utrwalanie: kolejne 4 dni
     for (var day = maloDay + 1; day <= maloDay + 4; day++) {
       now = DateTime(2026, 9, day, 16);
-      ctl = await s.startSession(guardianPresent: true, asrReady: false);
-      await playSession(ctl, day, r);
-      await s.endSession(ctl.completedTasks);
+      for (var k = 0; k < 2; k++) {
+        ctl = await s.startSession(guardianPresent: false, asrReady: false, assessment: k == 1);
+        await playSession(ctl, day, r);
+        await s.endSession(ctl.completedTasks);
+      }
     }
     final idx = s.index;
     final cur = s.curriculum;
@@ -129,7 +132,15 @@ void main() {
     for (final u in open) {
       expect(u.unit.graphemes.every(readyLetters.contains), isTrue, reason: '${u.unit.text} wymaga ${u.unit.graphemes}');
     }
-    expect(readyLetters.toSet().containsAll(malo), isTrue);
+    // Po dniach utrwalania każda z M/A/L/O jest gotowa albo – po pomyłce w kolejnym dniu –
+    // jawnie wróciła do powtórek (wtedy jej sylaby są czasowo niedostępne).
+    for (final x in malo) {
+      final review = [Skill.recognizeSound, Skill.saySound].any((sk) => idx.state(x, sk) == MasteryState.doPowtorzenia);
+      expect(idx.soundReady(x) || review, isTrue, reason: '$x: ${idx.state(x, Skill.recognizeSound).label} / ${idx.state(x, Skill.saySound).label}');
+      if (!idx.soundReady(x)) {
+        expect(open.any((u) => u.unit.graphemes.contains(x)), isFalse, reason: 'sylaby z „$x” ukryte na czas powtórki');
+      }
+    }
     // b/d/p wciąż nieopanowane mimo wielu sesji – brak błędnego awansu
     for (final x in confused) {
       expect(idx.soundReady(x), isFalse, reason: x);
@@ -146,7 +157,7 @@ void main() {
     // Utrwalanie: w kolejnych dniach plan zawiera zarówno trudne, jak i opanowane elementy
     now = now.add(const Duration(days: 3));
     final plan = planSession(
-      candidates: buildCandidates(s.curriculum, const Capabilities(guardianPresent: true, ttsOk: true)),
+      candidates: buildCandidates(s.curriculum, const Capabilities(ttsOk: true)),
       index: s.index,
       now: now,
       n: 20,

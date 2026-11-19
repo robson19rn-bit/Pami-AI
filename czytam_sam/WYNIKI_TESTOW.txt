@@ -1,4 +1,4 @@
-# Wyniki testów – 2026-11-18 23:28 UTC
+# Wyniki testów – 2026-11-19 07:27 UTC
 # Flutter 3.50.0, Dart 3.14.0 (kontener Linux, bez urządzenia Android)
 
 $ dart run tool/validate_content.dart
@@ -6,7 +6,7 @@ UWAGA [w_gałąź]: oznaczone do weryfikacji – wyłączone z puli (wymowa nos�
 Litery: 32, grafemy: 12, sylaby: 117, wyrazy: 136, zdania: 33, czytanki: 10. Błędy: 0
 
 $ flutter analyze
-No issues found! (ran in 1.0s)
+No issues found! (ran in 1.2s)
 
 $ flutter test --reporter expanded
 00:00 +0: test/a04_scheduler_test.dart: (10) zaplanowane powtórki trudnych liter mają pierwszeństwo, ale utrwalanie zostaje
@@ -22,22 +22,22 @@ $ flutter test --reporter expanded
 00:01 +10: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
 00:01 +11: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
 00:01 +12: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:01 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-Pierwsze sylaby w dniu 9; cała grupa M/A/L/O w dniu 13; prób: 1179
-Gotowe głoski: [a, l, m, o]; dostępne sylaby: [ma, mo, la, lo, am, om, al, ol]; pomyłki b/d/p: 85; potwierdzone umiejętności: 23
-00:02 +14: test/a07_widget_test.dart: panel opiekuna: bez danych pokazuje komunikat zamiast pustych wykresów
-00:02 +15: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:03 +16: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:03 +17: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:03 +18: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:03 +19: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
-00:03 +20: test/a01_content_test.dart: (01) 32 litery polskiego alfabetu w poprawnej kolejności i z poprawnymi parami wielka/mała
-00:03 +21: test/a01_content_test.dart: dwuznaki i zmiękczenia są osobnymi grafemami, nie literami alfabetu
-00:03 +22: test/a01_content_test.dart: brak fałszywej reguły „jedna litera = jeden dźwięk” dla ą, ę, u/ó, rz/ż, ch/h
-00:03 +23: test/a01_content_test.dart: materiał spełnia minimum ilościowe i przechodzi walidację
-00:03 +24: test/a01_content_test.dart: pozycje oznaczone do weryfikacji są wyłączone z puli
-00:03 +25: test/a01_content_test.dart: walidator wykrywa błędną pozycję
-00:03 +26: test/a02_mastery_test.dart: (02) rozpoznawanie, nazywanie i głoska mają niezależne stany
+00:02 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:03 +14: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+Pierwsze sylaby w dniu 8; cała grupa M/A/L/O w dniu 12; prób: 1564
+Gotowe głoski: [a, l, m]; dostępne sylaby: [ma, la, am, al]; pomyłki b/d/p: 165; potwierdzone umiejętności: 28
+00:03 +15: test/a07_widget_test.dart: panel opiekuna z danymi: litery, historia, plan
+00:04 +16: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +17: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +18: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +19: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +20: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +21: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +22: test/a08_privacy_offline_test.dart: (20) pełny przebieg działa bez sieci: materiał, sesja, zapis, raport, kopia
+00:04 +23: test/a08_privacy_offline_test.dart: (24) brak bibliotek reklam, telemetrii, kont, płatności i klientów HTTP
+00:04 +24: test/a08_privacy_offline_test.dart: (24b) kod aplikacji nie wykonuje połączeń sieciowych
+00:04 +25: test/a08_privacy_offline_test.dart: (24c) manifest wydania nie żąda internetu; mikrofon zadeklarowany, kopia systemowa wyłączona
+00:04 +26: test/a02_mastery_test.dart: (02) rozpoznawanie, nazywanie i głoska mają niezależne stany
 00:04 +27: test/a02_mastery_test.dart: (03) samo wskazanie (bez wypowiedzi) NIE daje pełnej znajomości litery
 00:04 +28: test/a02_mastery_test.dart: (07) poprawna odpowiedź po podpowiedzi nie zwiększa liczby samodzielnych
 00:04 +29: test/a02_mastery_test.dart: (07b) kolejne kliknięcia w tym samym zadaniu (firstTry=false) nie liczą się
@@ -47,27 +47,76 @@ Gotowe głoski: [a, l, m, o]; dostępne sylaby: [ma, mo, la, lo, am, om, al, ol]
 00:04 +33: test/a02_mastery_test.dart: (13) wyniki różnych typów ćwiczeń pozostają odrębne
 00:04 +34: test/a02_mastery_test.dart: wykluczone z licznika: brak dźwięku, niepewne, nieocenione, materiał z pomocą
 00:04 +35: test/a02_mastery_test.dart: czas odpowiedzi nie wpływa na ocenę
-00:04 +36: test/a09_screens_tour_test.dart: (setUpAll)
-00:04 +36: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:04 +37: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:04 +38: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +39: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +40: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +41: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +42: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +43: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +44: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +45: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +46: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +47: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +48: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +49: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +50: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +51: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +52: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +53: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:05 +54: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:08 +55: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:11 +56: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-pionowo
-00:12 +57: test/a09_screens_tour_test.dart: (tearDownAll)
-00:12 +57: All tests passed!
+00:05 +36: test/a09_screens_tour_test.dart: (setUpAll)
+00:05 +36: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +37: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:05 +38: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +39: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +40: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +41: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +42: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +43: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +44: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +45: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +46: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +47: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +48: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +49: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +50: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +51: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +52: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +53: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:06 +54: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:07 +54: test/a10_solo_lektor_test.dart: głoska podawana przez lektora w słowie: jednoznaczne zadanie dla każdej litery i grafemu
+a → na końcu słowa „mama”
+ą → w środku słowa „wąs”
+b → na początku słowa „balon”
+c → na początku słowa „cebula”
+ć → na początku słowa „ćma”
+d → na początku słowa „dom”
+e → na końcu słowa „pole”
+ę → w środku słowa „gęś”
+f → na początku słowa „foka”
+g → na początku słowa „gra”
+h → na początku słowa „hak”
+i → w środku słowa „lis”
+j → na początku słowa „jajo”
+k → na początku słowa „kot”
+l → na początku słowa „lala”
+ł → na początku słowa „łapa”
+m → na początku słowa „mama”
+n → na początku słowa „nos”
+ń → na końcu słowa „koń”
+o → na początku słowa „oko”
+ó → w środku słowa „góra”
+p → na początku słowa „pas”
+r → na początku słowa „rak”
+s → na początku słowa „sok”
+ś → na końcu słowa „miś”
+t → na początku słowa „tata”
+u → na początku słowa „ul”
+w → na początku słowa „woda”
+y → na końcu słowa „buty”
+z → na początku słowa „zupa”
+ź → na początku słowa „źle”
+ż → na początku słowa „żaba”
+ch → na początku słowa „chata”
+cz → na początku słowa „czapka”
+sz → na początku słowa „szafa”
+rz → na początku słowa „rzeka”
+dz → na początku słowa „dzwon”
+dź → na początku słowa „dźwig”
+dż → na początku słowa „dżem”
+ci → na początku słowa „ciocia”
+si → na początku słowa „siano”
+zi → na początku słowa „zima”
+ni → na początku słowa „nie”
+dzi → na początku słowa „dzień”
+00:07 +55: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:07 +56: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:07 +57: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:07 +58: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:10 +59: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:12 +60: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-pionowo
+00:14 +61: test/a09_screens_tour_test.dart: (tearDownAll)
+00:14 +61: All tests passed!

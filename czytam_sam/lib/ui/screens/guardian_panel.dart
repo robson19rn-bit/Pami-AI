@@ -10,6 +10,7 @@ import '../../engine/scheduler.dart';
 import '../../engine/types.dart';
 import '../theme.dart';
 import '../widgets/common.dart';
+import 'lesson_screen.dart';
 
 /// Panel opiekuna – wszystkie liczby wyliczane z rzeczywistego dziennika prób.
 class GuardianPanel extends StatelessWidget {
@@ -22,6 +23,16 @@ class GuardianPanel extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Panel opiekuna'),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: FilledButton.icon(
+                onPressed: () => startLesson(context, assessment: true),
+                icon: const Icon(Icons.record_voice_over_rounded),
+                label: const Text('Ocena wypowiedzi'),
+              ),
+            ),
+          ],
           bottom: const TabBar(isScrollable: true, tabs: [
             Tab(text: 'Litery'),
             Tab(text: 'Czytanie'),
@@ -265,7 +276,7 @@ class _PlanTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = AppScope.of(context);
     final cur = s.curriculum;
-    final cap = Capabilities(guardianPresent: true, ttsOk: s.ttsOk, asrReady: false, ttsBadUnits: s.ttsBadUnits);
+    final cap = Capabilities(guardianPresent: !s.ttsOk, ttsOk: s.ttsOk, asrReady: false, ttsBadUnits: s.ttsBadUnits);
     final plan = planSession(candidates: buildCandidates(cur, cap), index: s.index, now: s.clock(), n: s.config.sessionLength, rng: Random(1));
     final manual = s.manualStages;
     String bucketLabel(Bucket b) => switch (b) { Bucket.due => 'zaległe/trudne', Bucket.current => 'bieżące', Bucket.consolidation => 'utrwalanie' };
@@ -274,7 +285,7 @@ class _PlanTab extends StatelessWidget {
       const Text('Postęp do kolejnego etapu', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
       for (final e in cur.stageProgress().entries) ListTile(dense: true, title: Text(e.key), subtitle: Text(e.value.isEmpty ? '—' : e.value, style: const TextStyle(fontSize: 17))),
       const Divider(),
-      const Text('Co program planuje ćwiczyć (sesja z opiekunem)', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+      const Text('Co program planuje ćwiczyć (dziecko samo, prowadzi lektor)', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
       for (final p in plan)
         ListTile(
           dense: true,

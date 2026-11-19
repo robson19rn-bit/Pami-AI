@@ -137,11 +137,12 @@ class AppState extends ChangeNotifier {
   // ---------- sesja ----------
   SessionRecord? activeSession;
 
-  Future<SessionController> startSession({required bool guardianPresent, required bool asrReady}) async {
+  Future<SessionController> startSession({required bool guardianPresent, required bool asrReady, bool assessment = false}) async {
+    if (assessment) guardianPresent = true;
     final s = SessionRecord(id: ids.next('s'), profileId: profileId, startedAt: clock(), guardianPresent: guardianPresent);
     activeSession = s;
     await db.upsertSession(s);
-    final cap = Capabilities(guardianPresent: guardianPresent, ttsOk: ttsOk, asrReady: asrReady, ttsBadUnits: ttsBadUnits);
+    final cap = Capabilities(guardianPresent: guardianPresent, ttsOk: ttsOk, asrReady: asrReady, ttsBadUnits: ttsBadUnits, assessmentOnly: assessment);
     final cur = curriculum;
     final plan = planSession(
       candidates: buildCandidates(cur, cap),

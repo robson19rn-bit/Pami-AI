@@ -8,7 +8,7 @@ ale nie dało się sprawdzić w tym środowisku (powód podany). Rozróżniam �
 od „sprawdzone na prawdziwym urządzeniu” – **na urządzeniu nie sprawdzono niczego**.
 
 Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analyze` – 0 problemów,
-`flutter test` – **57/57 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
+`flutter test` – **61/61 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
 
 ## A. Najważniejsze: APK
 
@@ -57,7 +57,7 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 | Ocena pierwszej próby, bez nabijania kliknięciami | PASS | test „wielokrotne klikanie…” `a03`, (07b) `a02`. |
 | Po błędzie: spokojne wyjaśnienie, prawidłowa odpowiedź, odłożone sprawdzenie | PASS | `Feedback` z prawidłową odpowiedzią; ponowne sprawdzenie 4 zadania później, oznaczone jako „po pokazaniu odpowiedzi”. |
 | Weryfikacja, że polecenie zabrzmiało; brak kontynuacji „ze słuchu” przy ciszy | PASS (logika + widżet) / NOT_TESTED (prawdziwy TTS) | test (19) `a03`, `a07`: komunikat, zablokowane odpowiedzi; `FlutterTtsOutput` czeka na potwierdzenie startu (limit 2,5 s). |
-| Głoski tylko ze zweryfikowanych nagrań | PASS (przez wyłączenie) | Brak legalnych nagrań głosek → głoski **wymawia opiekun**, lektor nigdy. |
+| Głoski tylko ze zweryfikowanych nagrań | PASS (przez wyłączenie) | Brak legalnych nagrań głosek → lektor **nigdy nie wymawia głoski w izolacji**; podaje ją w słowie („na początku słowa mama”), a dystraktory nie zawierają liter ze słowa ani liter o tym samym brzmieniu (test a10 dla wszystkich 32 liter i 12 grafemów). |
 | 4 wyniki mikrofonu (poprawnie/niepoprawnie/nic/niepewne) | PASS | `classifyAsr`, testy (04)(06). |
 | Panel opiekuna: Poprawnie / Jeszcze nie / Powtórz / Nie można ocenić | PASS | `_guardianRating` (otwierany przytrzymaniem); test (03b). |
 | Brak uprawnienia / modelu → jawny tryb opiekuna | PASS | test (05); komunikaty w UI. |
@@ -137,9 +137,10 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 1. **APK nie był jeszcze uruchomiony na prawdziwym tablecie** – zgłoszone uwagi z pierwszego użycia należy przekazać do poprawy.
 2. **Klucz podpisu jest jawny (testowy)** – stały, ale publiczny. Przed szerszym użyciem: prywatny klucz w GitHub
    Secrets (instrukcja w `README_PL.md`, rozdz. 7) i jednorazowe przeniesienie danych eksportem/importem.
-3. **Brak nagrań głosek** – zadania z głoskami wymagają opiekuna. W trybie „dziecko ćwiczy samo” umiejętności
-   głoskowe nie rosną, więc sylaby odblokowują się tylko dzięki sesjom z opiekunem. Naprawa: nagrać legalnie
-   (np. logopeda) krótkie głoski (ok. 40 nagrań) i dodać jako zasoby.
+3. **Dziecko ćwiczy samo, opiekun tylko ocenia** – lektor prowadzi całą lekcję; wymowę (nazwy liter, głoski,
+   czytanie na głos) potwierdza opiekun w krótkiej „Ocenie wypowiedzi”. Bez niej sylaby się nie odblokują.
+   Rozpoznawanie głoski przez dziecko sprawdzane jest w słowie (głoska na początku/końcu/w środku), nie w izolacji.
+   Możliwe ulepszenie: legalne nagrania pojedynczych głosek (np. logopeda, ok. 40 nagrań).
 4. **Vosk nie sprawdzony na urządzeniu** (zużycie pamięci, czas ładowania modelu ~50 MB, obecność nazw liter
    w słowniku modelu small-pl). Słowa spoza słownika są ignorowane przez Vosk – wtedy wynik jest „niepewny”
    i decyduje opiekun. Licencji modelu nie zweryfikowano u źródła (host zablokowany).

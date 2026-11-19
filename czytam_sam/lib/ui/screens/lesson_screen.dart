@@ -12,38 +12,46 @@ import '../../services/speech_output.dart';
 import '../theme.dart';
 import '../widgets/common.dart';
 
-Future<void> startLesson(BuildContext context) async {
+/// „Uczę się”: dziecko ćwiczy samo, lektor prowadzi całą lekcję.
+/// Gdy polski lektor nie działa, dorosły musi czytać polecenia (jasny komunikat).
+Future<void> startLesson(BuildContext context, {bool assessment = false}) async {
   final s = AppScope.read(context);
-  final guardian = await showDialog<bool>(
-    context: context,
-    builder: (ctx) => AlertDialog(
-      title: const Text('Kto będzie obok?'),
-      content: const Text(
-        'Gdy opiekun jest obok, może wymawiać głoski i oceniać wypowiedzi dziecka. '
-        'Gdy dziecko ćwiczy samo, aplikacja wybiera tylko zadania, które potrafi rzetelnie sprawdzić.',
+  var guardian = assessment;
+  if (!assessment && !s.ttsOk) {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Lektor nie jest włączony'),
+        content: const Text('Bez polskiego lektora polecenia musi czytać dorosły. '
+            'Lektora włączysz w Ustawieniach (dla dorosłych).'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Anuluj')),
+          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Dorosły przeczyta polecenia')),
+        ],
       ),
-      actions: [
-        OutlinedButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Dziecko ćwiczy samo')),
-        FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Opiekun jest obok')),
-      ],
-    ),
-  );
-  if (guardian == null || !context.mounted) return;
-  final asrReady = await s.asr.modelInstalled();
-  final ctrl = await s.startSession(guardianPresent: guardian, asrReady: asrReady);
+    );
+    if (ok != true) return;
+    guardian = true;
+  }
   if (!context.mounted) return;
-  await Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (_) => LessonScreen(controller: ctrl, asrReady: asrReady),
-    ),
-  );
+  final asrReady = await s.asr.modelInstalled();
+  final ctrl = await s.startSession(guardianPresent: guardian, asrReady: asrReady, assessment: assessment);
+  if (!context.mounted) return;
+  if (ctrl.total == 0) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Na razie nie ma czego oceniać – dziecko najpierw poćwiczy samo.')));
+    await s.endSession(0);
+    return;
+  }
+  await Navigator.push(context, MaterialPageRoute(builder: (_) => LessonScreen(controller: ctrl, asrReady: asrReady, assessment: assessment)));
 }
 
 class LessonScreen extends StatefulWidget {
-  const LessonScreen({super.key, required this.controller, required this.asrReady});
+  const LessonScreen({super.key, required this.controller, required this.asrReady, this.assessment = false});
   final SessionController controller;
   final bool asrReady;
+
+  /// Sesja oceny z opiekunem – panel oceny od razu otwarty.
+  final bool assessment;
 
   @override
   State<LessonScreen> createState() => _LessonScreenState();
@@ -82,7 +90,7 @@ class _LessonScreenState extends State<LessonScreen> {
   Future<void> _onTaskShown() async {
     hint = null;
     promptError = null;
-    guardianPanelOpen = false;
+    guardianPanelOpen = widget.assessment;
     micNote = null;
     final t = c.current;
     if (t == null) return _finish();

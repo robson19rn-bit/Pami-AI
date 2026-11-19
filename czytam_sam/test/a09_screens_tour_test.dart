@@ -131,7 +131,7 @@ void main() {
 
       // Zadania T1–T7
       final cur = Curriculum(s.content, s.index);
-      const cap = Capabilities(guardianPresent: true, ttsOk: true);
+      const cap = Capabilities(guardianPresent: false, ttsOk: true);
       final builder = TaskBuilder(content: s.content, curriculum: cur, cap: cap, rng: Random(3));
       TaskSpec task(String id, ItemKind k, Skill sk, TaskType t) => builder.build(Planned(Candidate(id, k, sk, t), Bucket.current));
       final tasks = {
@@ -151,8 +151,6 @@ void main() {
         await tester.pumpWidget(wrap(s, LessonScreen(key: UniqueKey(), controller: c, asrReady: false)));
         await check(tester, '$tag-${i++}-${e.key}', errors);
         if (e.key == 'T1-gloska') {
-          await tester.tap(find.text('Przeczytałem/am polecenie'));
-          await tester.pumpAndSettle();
           await tester.tap(find.byKey(ValueKey('opt${(e.value.correctIndex + 1) % e.value.options.length}')));
           await check(tester, '$tag-${i++}-${e.key}-po-bledzie', errors);
         }
