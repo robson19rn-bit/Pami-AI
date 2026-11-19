@@ -16,6 +16,7 @@ import 'engine/session.dart';
 import 'engine/speech_policy.dart';
 import 'engine/types.dart';
 import 'services/speech_input.dart';
+import 'services/sound.dart';
 import 'services/speech_output.dart';
 
 const appVersion = '1.0.0';
@@ -26,15 +27,18 @@ class AppState extends ChangeNotifier {
     required this.db,
     required this.tts,
     required this.asr,
+    SoundService? sound,
     DateTime Function()? clock,
     Random? rng,
-  })  : clock = clock ?? DateTime.now,
+  })  : sound = sound ?? const SilentSound(),
+        clock = clock ?? DateTime.now,
         rng = rng ?? Random();
 
   final ContentBundle content;
   final ProgressDb db;
   final SpeechOutput tts;
   final SpeechInput asr;
+  final SoundService sound;
   final DateTime Function() clock;
   final Random rng;
   final IdGen ids = IdGen();
@@ -50,6 +54,8 @@ class AppState extends ChangeNotifier {
   // ---------- ustawienia ----------
   bool get setupDone => settings['setupDone'] == true;
   bool get ttsOk => settings['ttsOk'] == true;
+  bool get musicOn => settings['musicOn'] != false; // domyślnie włączona, cicho
+  bool get sfxOn => settings['sfxOn'] != false;
   double get ttsRate => (settings['ttsRate'] as num?)?.toDouble() ?? 0.42;
   EvaluationMode get evaluationMode =>
       EvaluationMode.values.asNameMap()[settings['evaluationMode'] as String? ?? 'guardian'] ?? EvaluationMode.guardian;

@@ -40,6 +40,8 @@ class TaskSpec {
     this.expectedSpeech,
     this.guardianExpected,
     this.hintText,
+    this.optionSpeech = const [],
+    this.answerSpeech,
     this.assisted = false,
     this.recheck = false,
     this.bucket,
@@ -82,6 +84,12 @@ class TaskSpec {
   final String? expectedSpeech;
   final String? guardianExpected;
   final String? hintText;
+
+  /// Jak lektor wymawia każdą opcję (np. nazwę litery) – do informacji zwrotnej; null = nie wymawiać.
+  final List<String?> optionSpeech;
+
+  /// Wzorcowe brzmienie poprawnej odpowiedzi (np. sylaba „ma”) – mówione PO odpowiedzi dziecka.
+  final String? answerSpeech;
   final bool assisted;
   final bool recheck;
   final Bucket? bucket;
@@ -110,6 +118,8 @@ class TaskSpec {
         expectedSpeech: expectedSpeech,
         guardianExpected: guardianExpected,
         hintText: hintText,
+        optionSpeech: optionSpeech,
+        answerSpeech: answerSpeech,
         assisted: assisted,
         recheck: true,
         bucket: bucket,
@@ -163,6 +173,26 @@ class TaskBuilder {
     return ([for (final id in ids) content.displayOf(id, upper: useUpper)], ids, pos);
   }
 
+  /// Podobne jednostki (ten sam rodzaj, podobna długość, wspólne głoski) jako dystraktory dla T8.
+  /// Najpierw dostępne dziecku, potem pozostałe z puli; zawsze inne brzmienie niż cel.
+  List<ReadingUnit> similarUnits(ReadingUnit u, int count) {
+    final pool = content.pool(u.kind).where((x) => x.text != u.text).toList();
+    final open = {for (final a in curriculum.units(u.kind)) a.unit.id};
+    final g = u.graphemes.toSet();
+    double score(ReadingUnit x) =>
+        (open.contains(x.id) ? 3 : 0) + x.graphemes.toSet().intersection(g).length * 1.5 - (x.text.length - u.text.length).abs() + rng.nextDouble();
+    final scored = [for (final x in pool) (x, score(x))]..sort((a, b) => b.$2.compareTo(a.$2));
+    return [for (final e in scored.take(count)) e.$1];
+  }
+
+  /// Jak lektor wymawia opcję: litera → nazwa, sylaba/wyraz → tekst, grafem wieloliterowy → nie wymawiamy.
+  String? speakOf(String id) {
+    final l = content.letter(id);
+    if (l != null) return l.nameTts;
+    if (content.grapheme(id) != null) return null;
+    return content.unit(id)?.text ?? id;
+  }
+
   String _sayable(String id) => content.letter(id)?.nameTts ?? content.grapheme(id)?.text ?? id;
   String _name(String id) => content.letter(id)?.name ?? content.grapheme(id)?.text ?? id;
   String _soundPrompt(String id) => content.letter(id)?.soundPrompt ?? content.grapheme(id)?.soundPrompt ?? id;
@@ -185,6 +215,7 @@ class TaskBuilder {
               promptMode: PromptMode.tts,
               requiresHeardPrompt: true,
               options: opts, optionIds: ids, correctIndex: pos,
+              optionSpeech: [for (final x in ids) speakOf(x)], answerSpeech: speakOf(c.itemId),
               hintText: 'Powiedz słowo „${carrier.word}” bardzo powoli i posłuchaj ${carrier.whereShort}.',
             );
           }
@@ -196,6 +227,7 @@ class TaskBuilder {
             promptMode: PromptMode.guardian,
             requiresHeardPrompt: true,
             options: opts, optionIds: ids, correctIndex: pos,
+              optionSpeech: [for (final x in ids) speakOf(x)], answerSpeech: speakOf(c.itemId),
             hintText: 'Ta głoska jest w słowie „${_example(c.itemId)}”.',
           );
         }
@@ -208,6 +240,7 @@ class TaskBuilder {
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: opts, optionIds: ids, correctIndex: pos,
+              optionSpeech: [for (final x in ids) speakOf(x)], answerSpeech: speakOf(c.itemId),
           hintText: 'Szukamy litery z początku słowa „${_example(c.itemId)}”.',
         );
       case TaskType.t2PointSay:
@@ -222,6 +255,7 @@ class TaskBuilder {
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: opts, optionIds: ids, correctIndex: pos,
+              optionSpeech: [for (final x in ids) speakOf(x)], answerSpeech: speakOf(c.itemId),
           expectedSpeech: _name(c.itemId),
           guardianExpected: 'nazwa litery: „${_name(c.itemId)}”',
           hintText: 'Szukamy litery z początku słowa „${_example(c.itemId)}”.',
@@ -238,6 +272,7 @@ class TaskBuilder {
           display: content.displayOf(c.itemId, upper: upper),
           expectedSpeech: sound ? null : _name(c.itemId),
           guardianExpected: sound ? 'głoska: ${_soundPrompt(c.itemId)}' : 'nazwa litery: „${_name(c.itemId)}”',
+          answerSpeech: sound ? null : speakOf(c.itemId),
           hintText: 'Ta litera jest na początku słowa „${_example(c.itemId)}”.',
         );
       case TaskType.t4Case:
@@ -251,6 +286,7 @@ class TaskBuilder {
           requiresHeardPrompt: false,
           display: content.displayOf(c.itemId, upper: showUpper),
           options: opts, optionIds: ids, correctIndex: pos,
+              optionSpeech: [for (final x in ids) speakOf(x)], answerSpeech: speakOf(c.itemId),
           hintText: 'Wielka i mała litera mają tę samą nazwę.',
         );
       case TaskType.t5Segment:
@@ -274,6 +310,7 @@ class TaskBuilder {
           options: [for (final t in tiles) content.displayOf(t)],
           optionIds: tiles,
           correctSequence: seq,
+          answerSpeech: u.text,
           hintText: 'Pierwsza głoska to „${content.displayOf(seq.first)}”.',
         );
       case TaskType.t6ReadAloud:
@@ -286,6 +323,7 @@ class TaskBuilder {
           requiresHeardPrompt: false,
           display: u.text,
           expectedSpeech: u.text,
+          answerSpeech: u.text,
           guardianExpected: 'poprawne odczytanie: „${u.text}”${u.pronunciation != null && u.pronunciation != u.text ? ' (wymowa: ${u.pronunciation})' : ''}',
           hintText: tokenizeGraphemes(u.text).map(content.displayOf).join(' · '),
         );
@@ -304,7 +342,29 @@ class TaskBuilder {
           display: u.text,
           question: q.question,
           options: opts, optionIds: opts, correctIndex: pos,
+          optionSpeech: opts, answerSpeech: q.answer,
           hintText: 'Przeczytaj jeszcze raz powoli, słowo po słowie.',
+        );
+      case TaskType.t8HearPickUnit:
+        final u = content.unit(c.itemId)!;
+        final n = min(optionCountFor(index.of(c.itemId, c.skill).state), 4);
+        final others = similarUnits(u, n - 1);
+        final pos = balancer.pick(others.length + 1);
+        final ids = [...others.map((x) => x.id)]..insert(pos, u.id);
+        final tts = cap.canSpeak(u.id);
+        final what = u.kind == ItemKind.syllable ? 'sylabę' : 'wyraz';
+        return TaskSpec(
+          id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket, assisted: c.assisted,
+          instruction: u.kind == ItemKind.syllable ? 'Posłuchaj i wskaż sylabę, którą słyszysz.' : 'Posłuchaj i wskaż wyraz, który słyszysz.',
+          promptSpeech: 'Wskaż $what: ${u.text}.',
+          promptMode: tts ? PromptMode.tts : PromptMode.guardian,
+          requiresHeardPrompt: true,
+          options: [for (final x in ids) content.unit(x)!.text],
+          optionIds: ids,
+          correctIndex: pos,
+          optionSpeech: [for (final x in ids) content.unit(x)!.text],
+          answerSpeech: u.text,
+          hintText: 'Zaczyna się od „${content.displayOf(tokenizeGraphemes(u.text).first)}”.',
         );
       case TaskType.diagnosis:
         throw ArgumentError('Diagnoza ma osobny przebieg');
@@ -322,11 +382,17 @@ enum Phase { awaitingPrompt, awaitingTouch, awaitingSpeech, awaitingGuardian, fe
 enum GuardianVerdict { correct, notYet, repeat, cannotAssess }
 
 class Feedback {
-  Feedback(this.correct, this.message, {this.correctAnswer});
+  Feedback(this.correct, this.message, {this.correctAnswer, this.spoken});
   final bool? correct;
   final String message;
   final String? correctAnswer;
+
+  /// Co mówi lektor (spokojna pochwała lub wyjaśnienie z wzorcową odpowiedzią).
+  final String? spoken;
 }
+
+/// Krótkie, spokojne pochwały – tylko za poprawną odpowiedź (nie za samo kliknięcie).
+const praises = ['Dobrze!', 'Brawo!', 'Świetnie!', 'Tak, dobrze!', 'Super!', 'Pięknie!'];
 
 typedef AttemptSink = Future<void> Function(Attempt a);
 
@@ -368,6 +434,27 @@ class SessionController {
   late DateTime _taskShownAt;
   int completedTasks = 0, independentCorrect = 0;
   final Set<String> _rechecked = {};
+
+  int _praise = 0;
+  String _nextPraise() => praises[_praise++ % praises.length];
+
+  /// Wzorcowe wymówienie odpowiedzi, np. „Dobrze! ma.” albo „To jest litera ka.”.
+  String _withModel(String lead, TaskSpec t) {
+    final a = t.answerSpeech;
+    if (a == null) return lead;
+    if (t.kind == ItemKind.letter) return '$lead To litera $a.';
+    if (t.type == TaskType.t7Comprehension) return lead;
+    return '$lead $a.';
+  }
+
+  String _wrongSpoken(TaskSpec t, int chosen) {
+    final said = chosen < t.optionSpeech.length ? t.optionSpeech[chosen] : null;
+    final want = t.answerSpeech;
+    if (t.type == TaskType.t7Comprehension) return want == null ? 'Spróbujemy jeszcze raz za chwilę.' : 'Dobra odpowiedź to: $want.';
+    if (said == null || want == null) return 'Zobacz, która odpowiedź jest dobra.';
+    if (t.kind == ItemKind.letter) return 'To jest litera $said. Szukaliśmy litery $want.';
+    return 'To jest $said. Szukaliśmy: $want.';
+  }
 
   TaskSpec? get current => position < _queue.length ? _queue[position] : null;
   int get total => _queue.length;
@@ -458,10 +545,13 @@ class SessionController {
     final answer = t.options[t.correctIndex];
     if (ok) {
       if (!hintUsed && !t.recheck && !t.assisted) independentCorrect++;
-      feedback = Feedback(true, t.speechSkill != null ? 'Dobrze. Teraz powiedz nazwę tej litery.' : 'Dobrze.');
+      final p = _nextPraise();
+      feedback = t.speechSkill != null
+          ? Feedback(true, '$p Teraz powiedz nazwę tej litery.', spoken: '$p Teraz powiedz nazwę tej litery.')
+          : Feedback(true, p, spoken: _withModel(p, t));
     } else {
       feedback = Feedback(false, 'To jest „${t.options[optionIndex]}”. Szukaliśmy „$answer”. Wrócimy do tego za chwilę.',
-          correctAnswer: answer);
+          correctAnswer: answer, spoken: _wrongSpoken(t, optionIndex));
       _scheduleRecheck();
       hintUsed = true; // dalsza część zadania jest już po pokazaniu odpowiedzi
     }
@@ -489,9 +579,11 @@ class SessionController {
     final answer = t.correctSequence.join(' · ');
     if (ok) {
       if (!hintUsed && !t.recheck && !t.assisted) independentCorrect++;
-      feedback = Feedback(true, 'Dobrze.');
+      final p = _nextPraise();
+      feedback = Feedback(true, p, spoken: _withModel(p, t));
     } else {
-      feedback = Feedback(false, 'Prawidłowo: $answer. Wrócimy do tego za chwilę.', correctAnswer: answer);
+      feedback = Feedback(false, 'Prawidłowo: $answer. Wrócimy do tego za chwilę.', correctAnswer: answer,
+          spoken: t.answerSpeech == null ? null : 'Posłuchaj: ${t.answerSpeech}.');
       _scheduleRecheck();
     }
     phase = Phase.feedback;
@@ -528,7 +620,8 @@ class SessionController {
       case SpeechDecisionKind.recordCorrect:
         await sink(_attempt(skill, Outcome.correct, Evidence.asr, asrText: asr?.text, asrConf: asr?.confidence));
         if (!hintUsed && !t.recheck && !t.assisted) independentCorrect++;
-        _finishSpeech(Feedback(true, d.message));
+        final p = _nextPraise();
+        _finishSpeech(Feedback(true, p, spoken: _withModel(p, t)));
       case SpeechDecisionKind.recordNoSpeech:
         await sink(_attempt(skill, Outcome.noSpeech, Evidence.asr, asrText: asr?.text));
         _finishSpeech(Feedback(null, d.message));
@@ -537,7 +630,9 @@ class SessionController {
         _finishSpeech(Feedback(null, d.message));
       case SpeechDecisionKind.recordNotEvaluated:
         await sink(_attempt(skill, Outcome.notEvaluated, Evidence.none, asrText: asr?.text, asrConf: asr?.confidence));
-        _finishSpeech(Feedback(null, d.message));
+        // Bez oceniającego: lektor podaje wzorzec, żeby dziecko samo mogło porównać.
+        _finishSpeech(Feedback(null, t.answerSpeech == null ? d.message : 'Dziękuję! Posłuchaj, jak to brzmi.',
+            spoken: t.answerSpeech == null ? d.message : _withModel('Posłuchaj.', t)));
     }
     return d;
   }
@@ -562,12 +657,13 @@ class SessionController {
       case GuardianVerdict.correct:
         await sink(_attempt(skill, Outcome.correct, Evidence.guardian, asrText: lastAsr?.text, asrConf: lastAsr?.confidence));
         if (!hintUsed && !t.recheck && !t.assisted) independentCorrect++;
-        _finishSpeech(Feedback(true, 'Dobrze.'));
+        final p = _nextPraise();
+        _finishSpeech(Feedback(true, p, spoken: _withModel(p, t)));
       case GuardianVerdict.notYet:
         await sink(_attempt(skill, Outcome.incorrect, Evidence.guardian, asrText: lastAsr?.text, asrConf: lastAsr?.confidence));
         _scheduleRecheck();
         _finishSpeech(Feedback(false, 'Jeszcze nie. Prawidłowo: ${t.guardianExpected ?? t.expectedSpeech ?? ''}. Wrócimy do tego.',
-            correctAnswer: t.expectedSpeech));
+            correctAnswer: t.expectedSpeech, spoken: t.answerSpeech == null ? 'Wrócimy do tego za chwilę.' : _withModel('Posłuchaj.', t)));
       case GuardianVerdict.cannotAssess:
         await sink(_attempt(skill, Outcome.uncertain, Evidence.guardian, asrText: lastAsr?.text, asrConf: lastAsr?.confidence));
         _finishSpeech(Feedback(null, 'W porządku, wrócimy do tego później.'));

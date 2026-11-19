@@ -4,7 +4,7 @@
 
 Kod źródłowy aplikacji oraz materiał dydaktyczny w `assets/content/` (litery, opisy głosek, sylaby, wyrazy,
 zdania, czytanki, pytania) zostały napisane od zera na potrzeby tego projektu i są udostępnione na licencji **MIT**
-(treść poniżej). Aplikacja nie zawiera cudzych nagrań, obrazów ani fontów (używa systemowego fontu Androida).
+(treść poniżej). Aplikacja nie zawiera cudzych nagrań, obrazów ani fontów (używa systemowego fontu Androida). Dźwięki i muzyczka w `assets/audio/` oraz ikona zostały wygenerowane programowo w ramach projektu (`tool/gen_audio.py`) – również na licencji MIT.
 
 ```
 MIT License
@@ -41,6 +41,7 @@ wszystkich pakietów Dart/Flutter są wyświetlane w aplikacji: *Ustawienia → 
 | flutter_tts | 4.2.5 | MIT | systemowy lektor Androida |
 | permission_handler (+ _android) | 13.0.2 | MIT | uprawnienie mikrofonu |
 | file_picker (+ android_file_picker) | 13.4.0 | MIT | eksport/import kopii, import modelu |
+| just_audio, audio_session | 0.10.6 / 0.2.4 | MIT | dźwięki odpowiedzi i muzyczka w tle |
 | Vosk Android (`com.alphacephei:vosk-android`) | 0.3.75 | Apache-2.0 (wg POM w Maven Central) | lokalne rozpoznawanie mowy |
 | JNA (`net.java.dev.jna:jna`, aar) | 5.18.1 | Apache-2.0 lub LGPL-2.1 (licencja podwójna; używamy na Apache-2.0) | most JNI dla Vosk |
 

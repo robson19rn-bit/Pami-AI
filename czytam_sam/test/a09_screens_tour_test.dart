@@ -47,7 +47,7 @@ final _boundary = GlobalKey();
 
 Widget wrap(AppState s, Widget child) => RepaintBoundary(
       key: _boundary,
-      child: AppScope(state: s, child: MaterialApp(theme: buildTheme(), debugShowCheckedModeBanner: false, home: child)),
+      child: AppScope(state: s, child: MaterialApp(key: UniqueKey(), theme: buildTheme(), debugShowCheckedModeBanner: false, home: child)),
     );
 
 /// Sprawdza brak wyjątków i (opcjonalnie) zapisuje zrzut.
@@ -144,6 +144,7 @@ void main() {
         'T6': task('w_kukurydza', ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud),
         'T7-zdanie': task('s_30', ItemKind.sentence, Skill.comprehension, TaskType.t7Comprehension),
         'T7-czytanka': task('r_10', ItemKind.reading, Skill.comprehension, TaskType.t7Comprehension),
+        'T8-sylaba': task('syl_ma', ItemKind.syllable, Skill.recognizeUnit, TaskType.t8HearPickUnit),
       };
       var i = 10;
       for (final e in tasks.entries) {
@@ -164,6 +165,23 @@ void main() {
           await tester.longPress(find.textContaining('przytrzymaj'));
           await check(tester, '$tag-${i++}-${e.key}-ocena-opiekuna', errors);
         }
+        if (e.key == 'T8-sylaba') {
+          await tester.tap(find.byKey(ValueKey('opt${e.value.correctIndex}')));
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 100));
+          final ex = tester.takeException();
+          if (ex != null) errors.add('$tag-T8-dobrze: $ex');
+          if (shotDir != null) {
+            await tester.runAsync(() async {
+              final b = _boundary.currentContext!.findRenderObject()! as RenderRepaintBoundary;
+              final img = await b.toImage(pixelRatio: 1);
+              final png = await img.toByteData(format: ui.ImageByteFormat.png);
+              File('$shotDir/$tag-${i++}-T8-dobrze.png').writeAsBytesSync(png!.buffer.asUint8List());
+            });
+          }
+          await tester.pump(const Duration(seconds: 3));
+          await tester.pumpAndSettle();
+        }
         if (e.key == 'T1-nazwa') {
           await tester.tap(find.text('Podpowiedź'));
           await check(tester, '$tag-${i++}-${e.key}-podpowiedz', errors);
@@ -178,6 +196,8 @@ void main() {
 
       await tester.pumpWidget(wrap(s, const SummaryScreen(tasks: 12)));
       await check(tester, '$tag-30-podsumowanie', errors);
+      await tester.pumpWidget(wrap(s, SummaryScreen(key: UniqueKey(), tasks: 12, unlocked: [for (final x in ['syl_ma', 'syl_mo', 'syl_la', 'syl_am']) s.content.unit(x)!])));
+      await check(tester, '$tag-31-podsumowanie-nowy-etap', errors);
 
       // Panel opiekuna – wszystkie zakładki
       await tester.pumpWidget(wrap(s, const GuardianPanel()));

@@ -9,6 +9,7 @@ import 'package:sqflite/sqflite.dart' as sqflite;
 import 'app_state.dart';
 import 'content/models.dart';
 import 'data/database.dart';
+import 'services/sound.dart';
 import 'services/speech_input.dart';
 import 'services/speech_output.dart';
 import 'ui/screens/home_screen.dart';
@@ -32,7 +33,14 @@ Future<void> main() async {
   final content = await loadContent(rootBundle);
   final path = p.join(await sqflite.getDatabasesPath(), 'czytam_sam.db');
   final db = await ProgressDb.open(sqflite.databaseFactory, path);
-  final state = AppState(content: content, db: db, tts: FlutterTtsOutput(), asr: VoskSpeechInput());
+  late final AppState state;
+  state = AppState(
+    content: content,
+    db: db,
+    tts: FlutterTtsOutput(),
+    asr: VoskSpeechInput(),
+    sound: AppSound(sfxEnabled: () => state.sfxOn, musicEnabled: () => state.musicOn),
+  );
   await state.load();
   await state.tts.setRate(state.ttsRate);
   runApp(CzytamSamApp(state: state));

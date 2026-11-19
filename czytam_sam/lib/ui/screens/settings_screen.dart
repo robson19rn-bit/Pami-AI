@@ -85,6 +85,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const VoiceCheckScreen())),
               ),
             ]),
+            _section('Dźwięki', [
+              SwitchListTile(
+                value: s.musicOn,
+                title: const Text('Spokojna muzyczka w tle'),
+                subtitle: const Text('Cicha, własna melodia; wycisza się, gdy mówi lektor i gdy słucha mikrofon.'),
+                onChanged: (v) => s.setSetting('musicOn', v),
+              ),
+              SwitchListTile(
+                value: s.sfxOn,
+                title: const Text('Dźwięk przy odpowiedzi'),
+                subtitle: const Text('Krótki sygnał po dobrej odpowiedzi i łagodny po pomyłce.'),
+                onChanged: (v) => s.setSetting('sfxOn', v),
+              ),
+            ]),
             _section('Rozpoznawanie mowy (lokalne)', [
               ListTile(
                 title: Text(modelInstalled == null

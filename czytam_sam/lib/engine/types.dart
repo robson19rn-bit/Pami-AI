@@ -30,6 +30,9 @@ enum Skill {
 
   /// Czytanie ze zrozumieniem (T7).
   comprehension,
+
+  /// Rozpoznanie całej sylaby/wyrazu ze słuchu – czytanie „całościowe”, bez składania liter (T8).
+  recognizeUnit,
 }
 
 extension SkillInfo on Skill {
@@ -43,6 +46,7 @@ extension SkillInfo on Skill {
         Skill.segment => 'głoski w sylabie',
         Skill.readAloud => 'czytanie na głos',
         Skill.comprehension => 'rozumienie',
+        Skill.recognizeUnit => 'wskazanie całej sylaby/wyrazu',
       };
 }
 
@@ -54,6 +58,7 @@ enum TaskType {
   t5Segment('T5 Które głoski słyszysz'),
   t6ReadAloud('T6 Przeczytaj na głos'),
   t7Comprehension('T7 Zrozumienie'),
+  t8HearPickUnit('T8 Usłysz i wskaż sylabę/wyraz'),
   diagnosis('Diagnoza');
 
   const TaskType(this.label);

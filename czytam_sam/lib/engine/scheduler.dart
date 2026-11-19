@@ -100,18 +100,23 @@ List<Candidate> buildCandidates(Curriculum cur, Capabilities cap) {
     }
     if (speechJudged) out.add(Candidate(gr.id, ItemKind.grapheme, Skill.saySound, TaskType.t3SeeName, rank: 40));
   }
-  for (final ua in cur.units(ItemKind.syllable)) {
-    final a = ua.access == Access.manualAssisted;
-    if (!assess && (cap.canSpeak(ua.unit.id) || g)) {
-      out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.segment, TaskType.t5Segment, assisted: a, rank: 50 + ua.unit.level));
-    }
-    if (readingJudged) out.add(Candidate(ua.unit.id, ItemKind.syllable, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 50 + ua.unit.level));
-  }
-  for (final ua in cur.units(ItemKind.word)) {
-    final a = ua.access == Access.manualAssisted;
-    if (readingJudged) out.add(Candidate(ua.unit.id, ItemKind.word, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: 60 + ua.unit.level));
-    if (!assess && ua.unit.graphemes.length <= 4 && tokenCount(ua.unit) <= 5 && (cap.canSpeak(ua.unit.id) || g)) {
-      out.add(Candidate(ua.unit.id, ItemKind.word, Skill.segment, TaskType.t5Segment, assisted: a, rank: 60 + ua.unit.level));
+  for (final k in [ItemKind.syllable, ItemKind.word]) {
+    final base = k == ItemKind.syllable ? 50 : 60;
+    for (final ua in cur.units(k)) {
+      final a = ua.access == Access.manualAssisted;
+      final rank = base + ua.unit.level;
+      final canPrompt = cap.canSpeak(ua.unit.id) || g;
+      if (!assess && canPrompt) {
+        // T8: lektor mówi całą sylabę/wyraz, dziecko wskazuje ją wśród podobnych – czytanie całościowe.
+        out.add(Candidate(ua.unit.id, k, Skill.recognizeUnit, TaskType.t8HearPickUnit, assisted: a, rank: rank));
+        if (k == ItemKind.syllable || (ua.unit.graphemes.length <= 4 && tokenCount(ua.unit) <= 5)) {
+          out.add(Candidate(ua.unit.id, k, Skill.segment, TaskType.t5Segment, assisted: a, rank: rank));
+        }
+      }
+      // Czytanie na głos: tylko przy potwierdzonej wymowie głosek (lub materiale „z pomocą”) i gdy ktoś oceni.
+      if (readingJudged && ua.access != Access.receptive) {
+        out.add(Candidate(ua.unit.id, k, Skill.readAloud, TaskType.t6ReadAloud, assisted: a, rank: rank));
+      }
     }
   }
   if (!assess) {

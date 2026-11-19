@@ -10,8 +10,12 @@ import 'types.dart';
 enum Access {
   locked,
 
-  /// Wszystkie wymagane głoski opanowane – wynik liczy się do postępów.
+  /// Wszystkie wymagane głoski opanowane (rozpoznanie + potwierdzona wymowa) – także czytanie na głos.
   available,
+
+  /// Głoski rozpoznawane ze słuchu, wymowa jeszcze niepotwierdzona: tylko zadania „słuchaj i wskaż”
+  /// oraz układanie (bez czytania na głos). Wynik liczy się do postępów.
+  receptive,
 
   /// Etap odblokowany ręcznie przez opiekuna, jednostka zawiera nieopanowane
   /// elementy: „materiał z pomocą – ręczne, bez zaliczenia”.
@@ -77,14 +81,21 @@ class Curriculum {
 
   bool graphemeReady(String g) => index.soundReady(g);
 
+  /// Głoska rozpoznawana ze słuchu (wystarcza do zadań „słuchaj i wskaż”).
+  bool graphemeHeard(String g) => index.mastered(g, Skill.recognizeSound);
+
   int _countMastered(Iterable<ReadingUnit> units, List<Skill> skills) =>
       units.where((u) => skills.any((s) => index.mastered(u.id, s))).length;
 
-  /// Czy etap (jako całość) jest osiągnięty z wyników dziecka.
-  bool stageReached(ItemKind kind) => switch (kind) {
+  static const _receptiveSkills = [Skill.segment, Skill.recognizeUnit, Skill.readAloud];
+
+  /// Czy etap osiągnięty z wyników dziecka. [spoken] – wersja z czytaniem na głos.
+  bool stageReached(ItemKind kind, {bool spoken = true}) => switch (kind) {
         ItemKind.syllable => true, // każda sylaba ma własne wymagania głoskowe
-        ItemKind.word => _countMastered(content.pool(ItemKind.syllable), [Skill.readAloud, Skill.segment]) >= config.syllablesBeforeWords,
-        ItemKind.sentence => _countMastered(content.pool(ItemKind.word), [Skill.readAloud]) >= config.wordsBeforeSentences,
+        ItemKind.word => _countMastered(content.pool(ItemKind.syllable), spoken ? [Skill.readAloud, Skill.segment] : _receptiveSkills) >=
+            config.syllablesBeforeWords,
+        ItemKind.sentence =>
+          _countMastered(content.pool(ItemKind.word), spoken ? [Skill.readAloud] : [Skill.readAloud, Skill.recognizeUnit]) >= config.wordsBeforeSentences,
         ItemKind.reading => _countMastered(content.pool(ItemKind.sentence), [Skill.comprehension]) >= config.sentencesBeforeReadings,
         _ => true,
       };
@@ -92,8 +103,9 @@ class Curriculum {
   UnitAccess accessOf(ReadingUnit u) {
     final missing = [for (final g in u.graphemes) if (!graphemeReady(g)) g];
     if (u.needsReview) return UnitAccess(u, Access.locked, missing);
-    final reached = stageReached(u.kind);
-    if (missing.isEmpty && reached) return UnitAccess(u, Access.available, missing);
+    if (missing.isEmpty && stageReached(u.kind)) return UnitAccess(u, Access.available, missing);
+    final unheard = [for (final g in u.graphemes) if (!graphemeHeard(g)) g];
+    if (unheard.isEmpty && stageReached(u.kind, spoken: false)) return UnitAccess(u, Access.receptive, missing);
     if (manualStages.contains(u.kind)) return UnitAccess(u, Access.manualAssisted, missing);
     return UnitAccess(u, Access.locked, missing);
   }
@@ -110,7 +122,8 @@ class Curriculum {
     return {
       'Litery w nauce': activeLetters().map((l) => l.upper).join(' '),
       'Głoski gotowe do łączenia': [for (final l in content.lettersInOrder) if (index.soundReady(l.id)) l.lower].join(' '),
-      'Dostępne sylaby': '${syl.where((u) => u.access == Access.available).length} z ${content.pool(ItemKind.syllable).length}',
+      'Sylaby do słuchania i wskazywania': '${syl.where((u) => u.access != Access.locked).length} z ${content.pool(ItemKind.syllable).length}',
+      'Sylaby do czytania na głos (wymowa potwierdzona)': '${syl.where((u) => u.access == Access.available).length}',
       'Czeka na ocenę wypowiedzi z opiekunem': () {
         final w = [
           for (final l in content.lettersInOrder)
@@ -118,8 +131,8 @@ class Curriculum {
         ];
         return w.isEmpty ? 'nic – można ćwiczyć dalej samodzielnie' : 'głoski: ${w.join(' ')} (rozpoznawane ze słuchu, trzeba potwierdzić wymowę)';
       }(),
-      'Do wyrazów': '${_countMastered(content.pool(ItemKind.syllable), [Skill.readAloud, Skill.segment])}/${c.syllablesBeforeWords} sylab opanowanych',
-      'Do zdań': '${_countMastered(content.pool(ItemKind.word), [Skill.readAloud])}/${c.wordsBeforeSentences} wyrazów przeczytanych samodzielnie',
+      'Do wyrazów': '${_countMastered(content.pool(ItemKind.syllable), _receptiveSkills)}/${c.syllablesBeforeWords} sylab opanowanych',
+      'Do zdań': '${_countMastered(content.pool(ItemKind.word), [Skill.readAloud, Skill.recognizeUnit])}/${c.wordsBeforeSentences} wyrazów opanowanych',
       'Do czytanek': '${_countMastered(content.pool(ItemKind.sentence), [Skill.comprehension])}/${c.sentencesBeforeReadings} zdań zrozumianych',
     };
   }

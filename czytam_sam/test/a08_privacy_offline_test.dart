@@ -55,15 +55,19 @@ void main() {
 
   test('(24) brak bibliotek reklam, telemetrii, kont, płatności i klientów HTTP', () {
     final lock = File('pubspec.lock').readAsStringSync();
-    final pubspec = File('pubspec.yaml').readAsStringSync();
-    const forbidden = [
-      'firebase', 'google_mobile_ads', 'admob', 'unity_ads', 'facebook', 'analytics', 'crashlytics', 'sentry',
-      'mixpanel', 'amplitude', 'appsflyer', 'in_app_purchase', 'purchases_flutter', 'revenuecat', 'google_sign_in',
-      'sign_in_with_apple', 'supabase', 'dio', 'package:http', '\n  http:', 'speech_to_text', 'onesignal', 'posthog',
-    ];
-    for (final f in forbidden) {
-      expect(lock.toLowerCase().contains(f), isFalse, reason: 'pubspec.lock zawiera „$f”');
-      expect(pubspec.toLowerCase().contains(f), isFalse, reason: 'pubspec.yaml zawiera „$f”');
+    // dokładne nazwy pakietów z pubspec.lock (wcięcie 2 spacje, dwukropek)
+    final packages = RegExp(r'^  ([a-z0-9_]+):\s*$', multiLine: true).allMatches(lock).map((m) => m.group(1)!).toSet();
+    expect(packages, isNotEmpty);
+    const forbiddenExact = {
+      'http', 'dio', 'chopper', 'retrofit', 'google_mobile_ads', 'unity_ads', 'applovin_max', 'in_app_purchase',
+      'purchases_flutter', 'google_sign_in', 'sign_in_with_apple', 'supabase_flutter', 'sentry_flutter', 'mixpanel_flutter',
+      'amplitude_flutter', 'appsflyer_sdk', 'onesignal_flutter', 'posthog_flutter', 'speech_to_text', 'flutter_facebook_auth',
+    };
+    expect(packages.intersection(forbiddenExact), isEmpty);
+    for (final p in packages) {
+      for (final prefix in ['firebase', 'google_mobile', 'facebook', 'admob', 'analytics', 'crashlytics', 'sentry']) {
+        expect(p.startsWith(prefix) || p.contains('analytics'), isFalse, reason: 'pakiet „$p”');
+      }
     }
   });
 

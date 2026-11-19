@@ -8,7 +8,7 @@ ale nie dało się sprawdzić w tym środowisku (powód podany). Rozróżniam �
 od „sprawdzone na prawdziwym urządzeniu” – **na urządzeniu nie sprawdzono niczego**.
 
 Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analyze` – 0 problemów,
-`flutter test` – **61/61 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
+`flutter test` – **65/65 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
 
 ## A. Najważniejsze: APK
 
@@ -119,6 +119,14 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 | (23) duże obszary dotyku, kontrast | PASS (wytyczne Fluttera: androidTapTarget, labeledTapTarget, textContrast) | a07 |
 | (24) brak reklam/telemetrii/logowania/płatnych wywołań | PASS | a08 |
 | Atomowe zapisy, rozdzielenie treści i postępów, reset dwuetapowy | PASS | zapis próby = pojedynczy INSERT natychmiast; import w transakcji; treść w `assets`, postępy w SQLite; reset: dialog + wpisanie „USUŃ”. |
+
+## G2. Zmiany po pierwszym użyciu przez dziecko (uwagi opiekuna)
+
+| Uwaga | Zmiana | Dowód |
+|---|---|---|
+| Brak wyraźnej aprobaty „dobrze/źle”, cisza poza poleceniem | Lektor mówi pochwałę z wzorcem lub spokojne wyjaśnienie; zielony znak / łagodny znak powtórki; krótki dźwięk; automatyczne przejście po dobrej odpowiedzi; pasek postępu; ogłoszenie nowego etapu | testy a07 („po dobrej odpowiedzi…”), a10 („lektor reaguje…”), zrzuty a09 |
+| Monotonia | Cicha muzyczka w tle (własna synteza), wyciszana przy mówieniu lektora i mikrofonie; wyłączalna | `lib/services/sound.dart`, `assets/audio/`, Ustawienia → Dźwięki |
+| Dziecko zna litery, ale składa wyraz litera po literze | Nowe zadanie T8 (cała sylaba/wyraz ze słuchu wśród podobnych) i wcześniejszy dostęp do sylab w trybie „słuchaj i wskaż” | test a10 (dostęp „receptive”, T8) |
 
 ## H. Pliki wynikowe (pkt 13)
 

@@ -61,12 +61,21 @@ Ważne, uczciwe ograniczenia:
   Nie można ocenić** jest od razu otwarty. W zakładce *Etapy i plan* widać, co czeka na ocenę
   (np. głoski rozpoznawane ze słuchu, których wymowy jeszcze nikt nie potwierdził). Bez tej oceny sylaby się
   nie odblokują – to świadoma zasada: łączenie głosek wymaga ich poprawnego wymawiania.
+* **Reakcja na każdą odpowiedź**: lektor mówi krótką pochwałę z wzorcem („Brawo! To litera em.”, „Dobrze! ma.”)
+  albo spokojnie wyjaśnia („To jest litera be. Szukaliśmy litery de.”); do tego zielony znak lub łagodny znak
+  powtórki i krótki dźwięk. Po dobrej odpowiedzi lekcja sama przechodzi dalej. U góry pasek postępu lekcji.
+* **Nowy etap** (np. pierwsze sylaby) jest ogłaszany na koniec lekcji pucharkiem i pochwałą lektora.
+* **Czytanie całościowe**: zadanie T8 „Usłysz i wskaż sylabę/wyraz” – lektor mówi „ma”, dziecko wskazuje całą
+  sylabę wśród podobnych (np. „am”, „mo”). Dostępne już po rozpoznawaniu głosek ze słuchu, bez czekania na ocenę
+  opiekuna; czytanie na głos (T6) – po potwierdzeniu wymowy.
+* **Muzyczka w tle** – cicha, własna; wycisza się, gdy mówi lektor lub słucha mikrofon. Wyłączenie: Ustawienia → Dźwięki.
 * Gdy polski lektor nie działa, aplikacja wyraźnie o tym informuje i polecenia czyta dorosły.
 * Na każdym ekranie: **Powtórz**, **Podpowiedź** (tylko na życzenie lub po błędzie – odpowiedź po podpowiedzi
   nie liczy się jako samodzielna), **Później**, **Przerwij** (postęp zapisuje się na bieżąco).
 * Brak odliczania czasu i presji. Lekcja = 12 zadań (ok. 5–10 minut; zmiana w Ustawieniach).
 * Typy zadań: T1 Usłysz i wskaż (literę lub głoskę w słowie), T2 Wskaż i powiedz, T3 Zobacz i nazwij,
-  T4 Wielka–mała, T5 Które głoski słyszysz (ułóż z kafelków), T6 Przeczytaj na głos, T7 Przeczytaj i odpowiedz.
+  T4 Wielka–mała, T5 Które głoski słyszysz (ułóż z kafelków), T6 Przeczytaj na głos, T7 Przeczytaj i odpowiedz,
+  T8 Usłysz i wskaż sylabę/wyraz.
 
 ## 5. Panel opiekuna („Moje postępy”)
 

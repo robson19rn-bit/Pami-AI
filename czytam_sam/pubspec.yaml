@@ -23,6 +23,7 @@ dependencies:
   permission_handler: 13.0.2 # MIT – uprawnienie mikrofonu tylko na czas ćwiczeń głosowych
   file_picker: 13.4.0       # MIT – eksport/import kopii, import modelu mowy
   crypto: 3.0.8             # BSD-3 – suma kontrolna kopii zapasowej
+  just_audio: 0.10.6        # MIT – dźwięki odpowiedzi i muzyczka w tle (pliki lokalne)
 
 dev_dependencies:
   flutter_test:
@@ -34,3 +35,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/content/
+    - assets/audio/

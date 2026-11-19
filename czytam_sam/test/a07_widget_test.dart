@@ -43,6 +43,9 @@ void main() {
     await tester.tap(find.byKey(const ValueKey('opt1')));
     await tester.pump();
     expect(log.single.outcome, Outcome.correct);
+    expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget, reason: 'wyraźne potwierdzenie dobrej odpowiedzi');
+    await tester.pump(const Duration(seconds: 3)); // automatyczne przejście dalej po dobrej odpowiedzi
+    await tester.pumpAndSettle();
   });
 
   testWidgets('(19b) działający lektor: polecenie odtworzone i odpowiedzi aktywne', (tester) async {
@@ -54,6 +57,26 @@ void main() {
     expect(tts.spoken, ['Wskaż literę de.']);
     expect(tester.widget<OutlinedButton>(find.byKey(const ValueKey('opt1'))).onPressed, isNotNull);
     expect(find.textContaining('NIE zostało'), findsNothing);
+  });
+
+  testWidgets('po dobrej odpowiedzi: zielony znak, pochwała lektora i samo przejście do kolejnego zadania', (tester) async {
+    final tts = FakeTts();
+    final s = (await tester.runAsync(() async {
+      final st = await testState(tts: tts);
+      await st.setSetting('ttsOk', true);
+      return st;
+    }))!;
+    final c = SessionController(profileId: 'p', sessionId: 's', tasks: [t1(), t1()], sink: (a) async {}, guardianPresent: false, mode: EvaluationMode.guardian);
+    await tester.pumpWidget(wrap(s, LessonScreen(controller: c, asrReady: false)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('opt1')));
+    await tester.pump();
+    expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget);
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pumpAndSettle();
+    expect(tts.spoken.any((x) => praises.any(x.startsWith)), isTrue, reason: 'lektor mówi pochwałę: ${tts.spoken}');
+    expect(c.position, 1, reason: 'przejście do następnego zadania bez dodatkowego klikania');
+    expect(c.phase, Phase.awaitingTouch);
   });
 
   testWidgets('(23) ekran startowy: duże obszary dotyku i kontrast', (tester) async {

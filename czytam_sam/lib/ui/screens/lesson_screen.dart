@@ -1,12 +1,13 @@
 import 'dart:async';
 
-import 'package:material_ui/material_ui.dart';
+import 'package:material_ui/material_ui.dart' hide Feedback;
 
 import '../../app_state.dart';
 import '../../content/models.dart';
 import '../../engine/session.dart';
 import '../../engine/speech_policy.dart';
 import '../../engine/types.dart';
+import '../../services/sound.dart';
 import '../../services/speech_input.dart';
 import '../../services/speech_output.dart';
 import '../theme.dart';
@@ -69,6 +70,13 @@ class _LessonScreenState extends State<LessonScreen> {
   MicState mic = MicState.idle;
   String? micNote;
   bool _started = false;
+  Feedback? _handledFeedback;
+  Set<String> _openBefore = const {};
+
+  Set<String> _openUnits() => {
+        for (final k in [ItemKind.syllable, ItemKind.word, ItemKind.sentence, ItemKind.reading])
+          for (final u in app.curriculum.units(k)) u.unit.id
+      };
 
   @override
   void didChangeDependencies() {
@@ -76,6 +84,8 @@ class _LessonScreenState extends State<LessonScreen> {
     app = AppScope.read(context);
     if (!_started) {
       _started = true;
+      _openBefore = _openUnits();
+      app.sound.startMusic();
       WidgetsBinding.instance.addPostFrameCallback((_) => _onTaskShown());
     }
   }
@@ -84,7 +94,31 @@ class _LessonScreenState extends State<LessonScreen> {
   void dispose() {
     app.tts.stop();
     app.asr.cancel();
+    app.sound.stopMusic();
     super.dispose();
+  }
+
+  /// Mówi tekst lektorem, wyciszając na ten czas muzykę.
+  Future<PlaybackResult> _say(String text) async {
+    await app.sound.pauseMusic();
+    final r = await app.tts.speak(text);
+    if (mounted) await app.sound.resumeMusic();
+    return r;
+  }
+
+  /// Reakcja na każdą odpowiedź: dźwięk + słowa lektora; po dobrej odpowiedzi samo „Dalej”.
+  Future<void> _reactToFeedback(Feedback f) async {
+    if (f.correct == true) await app.sound.play(Sfx.correct);
+    if (f.correct == false) await app.sound.play(Sfx.tryAgain);
+    if (f.spoken != null && app.ttsOk) {
+      await Future<void>.delayed(const Duration(milliseconds: 350));
+      if (!mounted || c.feedback != f) return;
+      await _say(f.spoken!);
+    }
+    if (f.correct == true && c.phase == Phase.feedback) {
+      await Future<void>.delayed(const Duration(milliseconds: 700));
+      if (mounted && c.feedback == f && c.phase == Phase.feedback) await _next();
+    }
   }
 
   Future<void> _onTaskShown() async {
@@ -106,7 +140,7 @@ class _LessonScreenState extends State<LessonScreen> {
       return;
     }
     setState(() => speaking = true);
-    final r = await app.tts.speak(t.promptSpeech);
+    final r = await _say(t.promptSpeech);
     if (!mounted) return;
     setState(() {
       speaking = false;
@@ -122,10 +156,16 @@ class _LessonScreenState extends State<LessonScreen> {
     });
   }
 
+  bool _finishing = false;
   Future<void> _finish() async {
+    if (_finishing) return;
+    _finishing = true;
     await app.endSession(c.completedTasks);
+    await app.sound.stopMusic();
     if (!mounted) return;
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SummaryScreen(tasks: c.completedTasks)));
+    final newIds = _openUnits().difference(_openBefore);
+    final unlocked = [for (final id in newIds) app.content.unit(id)!]..sort((a, b) => a.level.compareTo(b.level));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => SummaryScreen(tasks: c.completedTasks, unlocked: unlocked)));
   }
 
   Future<void> _next() async {
@@ -154,7 +194,9 @@ class _LessonScreenState extends State<LessonScreen> {
     }
     setState(() => mic = MicState.listening);
     final grammar = _grammarFor(t);
+    await app.sound.pauseMusic();
     final r = await app.asr.listen(grammar, maxMs: 6000);
+    await app.sound.resumeMusic();
     if (!mounted) return;
     setState(() {
       mic = MicState.idle;
@@ -190,6 +232,11 @@ class _LessonScreenState extends State<LessonScreen> {
   Widget build(BuildContext context) {
     final t = c.current;
     if (t == null) return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    final f = c.feedback;
+    if (f != null && !identical(f, _handledFeedback)) {
+      _handledFeedback = f;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _reactToFeedback(f));
+    }
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
@@ -205,6 +252,17 @@ class _LessonScreenState extends State<LessonScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: LinearProgressIndicator(
+                        value: c.total == 0 ? 0 : (c.position + (c.phase == Phase.feedback ? 1 : 0)) / c.total,
+                        minHeight: 10,
+                        backgroundColor: Palette.soft,
+                        color: Palette.primary,
+                        semanticsLabel: 'postęp lekcji',
+                      ),
+                    ),
+                    const SizedBox(height: 6),
                     _topBar(t),
                     const SizedBox(height: 12),
                     Text(
@@ -616,54 +674,93 @@ class _LessonScreenState extends State<LessonScreen> {
         : f.correct == false
         ? const Color(0xFFFFF1DC)
         : Palette.soft;
+    final icon = f.correct == true
+        ? const Icon(Icons.check_circle_rounded, size: 56, color: Palette.good)
+        : f.correct == false
+        ? const Icon(Icons.replay_circle_filled_rounded, size: 56, color: Palette.warn)
+        : const Icon(Icons.record_voice_over_rounded, size: 48, color: Palette.primary);
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: InfoCard(
         color: color,
-        child: Text(f.message, style: const TextStyle(fontSize: 22)),
+        child: Row(children: [
+          icon,
+          const SizedBox(width: 14),
+          Expanded(child: Text(f.message, style: TextStyle(fontSize: f.correct == true ? 28 : 22, fontWeight: f.correct == true ? FontWeight.w700 : FontWeight.w400))),
+        ]),
       ),
     );
   }
 }
 
 class SummaryScreen extends StatefulWidget {
-  const SummaryScreen({super.key, required this.tasks});
+  const SummaryScreen({super.key, required this.tasks, this.unlocked = const []});
   final int tasks;
+
+  /// Jednostki odblokowane w tej lekcji (nowy etap) – ogłaszane z pochwałą.
+  final List<ReadingUnit> unlocked;
   @override
   State<SummaryScreen> createState() => _SummaryScreenState();
 }
 
 class _SummaryScreenState extends State<SummaryScreen> {
   bool _spoken = false;
+
+  String _kindPl(ItemKind k) => switch (k) {
+        ItemKind.syllable => 'sylaby',
+        ItemKind.word => 'wyrazy',
+        ItemKind.sentence => 'zdania',
+        _ => 'czytanki',
+      };
+
   @override
   Widget build(BuildContext context) {
     final s = AppScope.of(context);
     final tasks = widget.tasks;
+    final byKind = <ItemKind, List<ReadingUnit>>{};
+    for (final u in widget.unlocked) {
+      (byKind[u.kind] ??= []).add(u);
+    }
     if (!_spoken) {
       _spoken = true;
-      unawaited(s.tts.speak(tasks > 0 ? 'Dziękuję za dzisiejszą pracę.' : 'Do zobaczenia.'));
+      () async {
+        if (byKind.isNotEmpty) {
+          await s.sound.play(Sfx.newStage);
+          final first = byKind.entries.first;
+          await s.tts.speak('Brawo! Nowy etap. Możesz już ćwiczyć ${_kindPl(first.key)}: ${first.value.take(4).map((u) => u.title ?? u.text).join(', ')}.');
+        } else {
+          await s.tts.speak(tasks > 0 ? 'Dziękuję za dzisiejszą pracę.' : 'Do zobaczenia.');
+        }
+      }();
     }
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.wb_sunny_rounded, size: 96, color: Palette.primary),
+                Icon(byKind.isNotEmpty ? Icons.emoji_events_rounded : Icons.wb_sunny_rounded, size: 96, color: byKind.isNotEmpty ? const Color(0xFFE09B2D) : Palette.primary),
                 const SizedBox(height: 16),
-                Text(
-                  tasks > 0 ? 'Dziękuję za dzisiejszą pracę!' : 'Do zobaczenia!',
-                  style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
-                  textAlign: TextAlign.center,
-                ),
+                Text(tasks > 0 ? 'Dziękuję za dzisiejszą pracę!' : 'Do zobaczenia!',
+                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700), textAlign: TextAlign.center),
                 const SizedBox(height: 12),
-                Text(
-                  tasks > 0 ? 'Wykonane zadania: $tasks. Wszystko jest zapisane.' : 'Postęp jest zapisany.',
-                  style: const TextStyle(fontSize: 22),
-                  textAlign: TextAlign.center,
-                ),
+                Text(tasks > 0 ? 'Wykonane zadania: $tasks. Wszystko jest zapisane.' : 'Postęp jest zapisany.',
+                    style: const TextStyle(fontSize: 22), textAlign: TextAlign.center),
+                for (final e in byKind.entries)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: InfoCard(
+                      color: const Color(0xFFFFF4DC),
+                      child: Column(children: [
+                        Text('Nowy etap! Możesz już ćwiczyć ${_kindPl(e.key)}:', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700), textAlign: TextAlign.center),
+                        const SizedBox(height: 8),
+                        Text(e.value.take(12).map((u) => u.title ?? u.text).join('   '),
+                            style: const TextStyle(fontSize: 30, color: Palette.primary), textAlign: TextAlign.center),
+                      ]),
+                    ),
+                  ),
                 const SizedBox(height: 32),
                 FilledButton(onPressed: () => Navigator.pop(context), child: const Text('Wróć do menu')),
               ],
