@@ -11,7 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers/fixtures.dart';
 
-const cfg = MasteryConfig();
+const cfg = MasteryConfig(alphabetFirst: false); // tryb „głoskowy” (sylaby bez czekania na cały alfabet)
 final day1 = DateTime(2026, 4, 1, 9), day2 = DateTime(2026, 4, 2, 9), day5 = DateTime(2026, 4, 5, 9);
 
 /// Opanowanie głoski (rozpoznanie + wypowiedź) w dwóch dniach.
@@ -157,9 +157,12 @@ void main() {
     expect(cands.where((c) => c.kind == ItemKind.sentence).every((c) => c.assisted), isTrue);
   });
 
-  test('aktywne litery: najwyżej 4 nowe naraz; diagnoza wprowadza znane litery od razu', () {
+  test('aktywne litery: najwyżej 6 nowych naraz; diagnoza wprowadza znane litery od razu', () {
     final idx = ProgressIndex.build(const [], const [], cfg);
-    expect(Curriculum(content, idx).activeLetters().map((l) => l.id), ['a', 'm', 'o', 'l']);
+    expect(Curriculum(content, idx).activeLetters().map((l) => l.id), ['a', 'm', 'o', 'l', 'e', 't']);
+    // po 3 dobrych odpowiedziach litera jest „oswojona” → wchodzi kolejna (nie trzeba pełnego opanowania)
+    final fam = ProgressIndex.build(correctRun('a', Skill.recognizeName, 3, day1, 's1'), const [], cfg);
+    expect(Curriculum(content, fam).activeLetters().map((l) => l.id), ['a', 'm', 'o', 'l', 'e', 't', 'i']);
     final withDiag = Curriculum(content, idx, knownFromDiagnosis: {'k', 'ż'});
     expect(withDiag.activeLetters().map((l) => l.id), containsAll(['k', 'ż']));
   });

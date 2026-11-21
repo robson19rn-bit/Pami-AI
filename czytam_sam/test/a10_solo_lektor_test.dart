@@ -40,7 +40,7 @@ void main() {
     for (final g in content.graphemes) {
       atts.addAll(correctRun(g.id, Skill.recognizeSound, 10, DateTime(2026, 1, 1), 's1', kind: ItemKind.grapheme));
     }
-    final idx = ProgressIndex.build(atts, const [], const MasteryConfig());
+    final idx = ProgressIndex.build(atts, const [], const MasteryConfig(alphabetFirst: false));
     final cur = Curriculum(content, idx, knownFromDiagnosis: content.letters.map((l) => l.id).toSet());
     final b = TaskBuilder(content: content, curriculum: cur, cap: const Capabilities(ttsOk: true), rng: Random(4));
     for (final l in [...content.letters.map((l) => (l.id, ItemKind.letter)), ...content.graphemes.map((g) => (g.id, ItemKind.grapheme))]) {
@@ -60,7 +60,7 @@ void main() {
   });
 
   test('dziecko samo: brak zadań wymagających opiekuna; głoski i sylaby prowadzi lektor', () {
-    final idx = ProgressIndex.build(const [], const [], const MasteryConfig());
+    final idx = ProgressIndex.build(const [], const [], const MasteryConfig(alphabetFirst: false));
     final cands = buildCandidates(Curriculum(content, idx), const Capabilities(ttsOk: true));
     expect(cands.where((c) => c.task == TaskType.t3SeeName), isEmpty, reason: 'nikt nie oceni samej wypowiedzi');
     expect(cands.where((c) => c.skill == Skill.recognizeSound), isNotEmpty, reason: 'głoski podaje lektor');
@@ -74,7 +74,7 @@ void main() {
         ...correctRun(l, Skill.saySound, 5, DateTime(2026, 1, 1), 's1'),
       ]
     ];
-    final idx = ProgressIndex.build(atts, const [], const MasteryConfig());
+    final idx = ProgressIndex.build(atts, const [], const MasteryConfig(alphabetFirst: false));
     final cands = buildCandidates(Curriculum(content, idx), const Capabilities(ttsOk: true, assessmentOnly: true));
     expect(cands, isNotEmpty);
     expect(cands.every((c) => c.skill.isSpeech), isTrue);
@@ -86,7 +86,7 @@ void main() {
       ];
 
   test('sylaby „do słuchania” odblokowane już po rozpoznaniu głosek ze słuchu; czytanie na głos dopiero po ocenie wymowy', () {
-    final idx = ProgressIndex.build(heard(['m', 'a']), const [], const MasteryConfig());
+    final idx = ProgressIndex.build(heard(['m', 'a']), const [], const MasteryConfig(alphabetFirst: false));
     final cur = Curriculum(content, idx);
     final syl = cur.units(ItemKind.syllable);
     expect(syl.map((u) => u.unit.text).toSet(), {'ma', 'am'});
@@ -98,12 +98,12 @@ void main() {
   });
 
   test('T8: lektor mówi całą sylabę, opcje to różne sylaby, dokładnie jedna poprawna', () {
-    final idx = ProgressIndex.build(heard(['m', 'a', 'o', 'l']), const [], const MasteryConfig());
+    final idx = ProgressIndex.build(heard(['m', 'a', 'o', 'l']), const [], const MasteryConfig(alphabetFirst: false));
     final b = TaskBuilder(content: content, curriculum: Curriculum(content, idx), cap: const Capabilities(ttsOk: true), rng: Random(2));
     for (var i = 0; i < 20; i++) {
       final t = b.build(Planned(Candidate('syl_ma', ItemKind.syllable, Skill.recognizeUnit, TaskType.t8HearPickUnit), Bucket.current));
       expect(t.promptMode, PromptMode.tts);
-      expect(t.promptSpeech, 'Wskaż sylabę: ma.');
+      expect(t.promptSpeech, 'Wskaż sylabę ma na ekranie.');
       expect(t.options[t.correctIndex], 'ma');
       expect(t.options.toSet().length, t.options.length);
       expect(t.options.length, greaterThanOrEqualTo(2));
@@ -111,7 +111,7 @@ void main() {
   });
 
   test('lektor reaguje na każdą odpowiedź: pochwała z wzorcem albo spokojne wyjaśnienie', () async {
-    final idx = ProgressIndex.build(const [], const [], const MasteryConfig());
+    final idx = ProgressIndex.build(const [], const [], const MasteryConfig(alphabetFirst: false));
     final b = TaskBuilder(content: content, curriculum: Curriculum(content, idx), cap: const Capabilities(ttsOk: true), rng: Random(1));
     TaskSpec t1() => b.build(Planned(Candidate('m', ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint), Bucket.current));
     final ok = SessionController(profileId: 'p', sessionId: 's', tasks: [t1()], sink: (a) async {}, guardianPresent: false, mode: EvaluationMode.guardian);
@@ -119,7 +119,7 @@ void main() {
     final f1 = await ok.touch(ok.current!.correctIndex);
     expect(f1!.correct, isTrue);
     expect(praises.any((p) => f1.spoken!.startsWith(p)), isTrue);
-    expect(f1.spoken, contains('To litera em.'));
+    expect(f1.spoken, contains('To litera em, zgadza się.'));
 
     final task = t1();
     final bad = SessionController(profileId: 'p', sessionId: 's', tasks: [task], sink: (a) async {}, guardianPresent: false, mode: EvaluationMode.guardian);
@@ -127,7 +127,7 @@ void main() {
     final wrong = (task.correctIndex + 1) % task.options.length;
     final f2 = await bad.touch(wrong);
     expect(f2!.correct, isFalse);
-    expect(f2.spoken, 'To jest litera ${content.letter(task.optionIds[wrong])!.nameTts}. Szukaliśmy litery em.');
+    expect(f2.spoken, 'To jest litera ${content.letter(task.optionIds[wrong])!.nameTts}, a szukaliśmy litery em, spróbujemy jeszcze raz.');
 
     // dziecko samo mówi nazwę (T2) – lektor podaje wzorzec do porównania, bez oceny
     final t2 = b.build(Planned(Candidate('m', ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay), Bucket.current));
@@ -135,7 +135,7 @@ void main() {
     solo.promptDelivered();
     await solo.touch(t2.correctIndex);
     await solo.speechFinished(null);
-    expect(solo.feedback!.spoken, 'Posłuchaj. To litera em.');
+    expect(solo.feedback!.spoken, 'Posłuchaj. To litera em, powtórz.');
     expect(solo.feedback!.correct, isNull, reason: 'bez oceniającego nie ma „dobrze/źle” za wymowę');
   });
 }

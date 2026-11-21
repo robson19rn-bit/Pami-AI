@@ -65,7 +65,7 @@ void main() {
     var now = DateTime(2026, 9, 1, 16);
     final s = await testState(clock: () => now, tts: FakeTts(), seed: 11);
     await s.setSetting('ttsOk', true);
-    await s.setSetting('config', const MasteryConfig(sessionLength: 30).toJson());
+    await s.setSetting('config', const MasteryConfig(sessionLength: 30, alphabetFirst: false).toJson());
 
     // Diagnoza: 20 liter – nazwy znane (b/d/p mylone), głoski znane częściowo
     for (final l in known20) {
@@ -96,8 +96,8 @@ void main() {
     expect(s.curriculum.units(ItemKind.syllable), isEmpty, reason: 'po jednej sesji brak sylab');
 
     // Kolejne dni: 2 sesje dziennie
-    var syllablesDay = -1, maloDay = -1;
-    for (var day = 2; day <= 40 && maloDay < 0; day++) {
+    var syllablesDay = -1, maloDay = -1, listenDay = -1;
+    for (var day = 2; day <= 60 && maloDay < 0; day++) {
       now = DateTime(2026, 9, day, 16);
       // dziecko ćwiczy samo 2 razy (prowadzi lektor), potem krótka ocena wypowiedzi z opiekunem
       for (var k = 0; k < 3; k++) {
@@ -108,10 +108,13 @@ void main() {
       }
       final avail = s.curriculum.units(ItemKind.syllable).where((u) => u.access == Access.available);
       if (avail.isNotEmpty && syllablesDay < 0) syllablesDay = day;
+      if (listenDay < 0 && s.curriculum.units(ItemKind.syllable).isNotEmpty) listenDay = day;
       if (malo.every(s.index.soundReady)) maloDay = day;
     }
     // ignore: avoid_print
-    print('Pierwsze sylaby w dniu $syllablesDay; cała grupa M/A/L/O w dniu $maloDay; prób: ${s.attempts.length}');
+    print('Sylaby do słuchania od dnia $listenDay; do czytania na głos od dnia $syllablesDay; cała grupa M/A/L/O w dniu $maloDay; prób: ${s.attempts.length}');
+    expect(listenDay, greaterThan(1));
+    expect(listenDay, lessThanOrEqualTo(syllablesDay), reason: 'słuchanie sylab wcześniej niż czytanie na głos');
     expect(syllablesDay, greaterThan(1));
     expect(maloDay, greaterThan(0), reason: 'grupa M/A/L/O powinna zostać opanowana');
     expect(s.curriculum.units(ItemKind.syllable).map((u) => u.unit.text), containsAll(['ma', 'la', 'mo', 'lo', 'al', 'ol', 'am', 'om']));

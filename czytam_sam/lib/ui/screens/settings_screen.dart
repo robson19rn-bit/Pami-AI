@@ -138,6 +138,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ]),
             _section('Parametry nauki (zaawansowane)', [
+              SwitchListTile(
+                value: s.config.alphabetFirst,
+                title: const Text('Najpierw cały alfabet, potem sylaby'),
+                subtitle: const Text('Sylaby, wyrazy i dwuznaki pojawią się dopiero, gdy dziecko pewnie rozpoznaje wszystkie 32 litery.'),
+                onChanged: (v) => s.setSetting('config', {...s.config.toJson(), 'alphabetFirst': v}),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text('Wartości domyślne są przykładowe i można je zmienić – nie są uniwersalną normą naukową.', style: TextStyle(fontSize: 15)),
@@ -348,7 +354,7 @@ class VoiceCheckScreen extends StatelessWidget {
               title: Text('nazwa: „${l.name}”'),
               subtitle: l.ttsRisk ? const Text('Krótka nazwa – sprawdź szczególnie uważnie.') : null,
               onTap: () async {
-                final r = await s.tts.speak('Wskaż literę ${l.nameTts}.');
+                final r = await s.tts.speak('Wskaż literę ${l.nameTts} na ekranie.');
                 if (r != PlaybackResult.played && context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Lektor nie odtworzył dźwięku.')));
                 }

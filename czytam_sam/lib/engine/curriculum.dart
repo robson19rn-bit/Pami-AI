@@ -49,40 +49,80 @@ class Curriculum {
       knownFromDiagnosis.contains(id) ||
       index.stats.values.any((s) => s.itemId == id && s.practiceAttempts > 0);
 
-  bool _letterSettled(String id) =>
-      index.mastered(id, Skill.recognizeName) && index.mastered(id, Skill.recognizeSound);
+  /// Litera „oswojona”: dziecko pewnie ją rozpoznaje (≥3 samodzielne próby, ≥80% z ostatnich 5 poprawnych)
+  /// albo już ją opanowało. Wystarcza to do wprowadzenia kolejnej litery – pełne opanowanie
+  /// i potwierdzenie w kolejnych dniach odbywają się równolegle, w powtórkach.
+  bool letterFamiliar(String id) {
+    final skills = [Skill.recognizeName, Skill.recognizeSound, Skill.caseMatch];
+    if (skills.any((sk) => index.of(id, sk).state.isMastered)) return true;
+    // Łącznie ze wszystkich zadań rozpoznawania (kolejność chronologiczna nie jest tu istotna).
+    final all = [for (final sk in skills) ...index.of(id, sk).validResults];
+    if (all.length < 3) return false;
+    final w = all.length > 6 ? all.sublist(all.length - 6) : all;
+    return w.where((x) => x).length / w.length >= 0.8;
+  }
 
-  /// Litery aktualnie w nauce: rozpoczęte + kolejne nowe, tak by naraz uczyć
-  /// najwyżej [MasteryConfig.maxActiveNewLetters] nieutrwalonych liter.
+  /// Litery w nauce: rozpoczęte (lub znane z diagnozy) + kolejne nowe, tak by naraz było najwyżej
+  /// [MasteryConfig.maxActiveNewLetters] liter, których dziecko jeszcze pewnie nie rozpoznaje.
+  /// Dziecko, które zna litery, przechodzi więc szybko przez cały alfabet.
   List<Letter> activeLetters() {
     final ordered = content.lettersInOrder;
     final active = <Letter>[];
-    var unsettled = 0;
+    var unfamiliar = 0;
     for (final l in ordered) {
       if (_letterStarted(l.id)) {
         active.add(l);
-        if (!_letterSettled(l.id)) unsettled++;
+        if (!letterFamiliar(l.id)) unfamiliar++;
       }
     }
     for (final l in ordered) {
-      if (unsettled >= config.maxActiveNewLetters) break;
+      if (unfamiliar >= config.maxActiveNewLetters) break;
       if (active.contains(l)) continue;
       active.add(l);
-      unsettled++;
+      unfamiliar++;
     }
     return active;
   }
 
-  /// Dwuznaki i zmiękczenia: dostępne, gdy litery składowe mają gotowe głoski.
-  List<Grapheme> activeGraphemes() => [
+  /// Litera „poznana”: pewnie rozpoznawana ORAZ jej głoska pewnie rozpoznawana ze słuchu
+  /// (głoski są potrzebne od pierwszej sylaby).
+  bool letterKnown(String id) => letterFamiliar(id) && graphemeHeard(id);
+
+  /// Cały alfabet poznany: wszystkie 32 litery (nazwa/kształt i głoska) pewnie rozpoznawane.
+  bool get alphabetComplete => content.letters.every((l) => letterKnown(l.id));
+
+  /// Czego brakuje do poznania litery – do priorytetu w lekcji.
+  Map<String, Set<Skill>> lettersFocus() => {
+        for (final l in activeLetters())
+          if (!letterKnown(l.id))
+            l.id: letterFamiliar(l.id) ? {Skill.recognizeSound} : {Skill.recognizeName, Skill.recognizeSound, Skill.caseMatch}
+      };
+
+  /// Litery jeszcze niepoznane (do panelu opiekuna i do priorytetu w lekcji).
+  List<Letter> lettersNotYetFamiliar() => [for (final l in content.lettersInOrder) if (!letterKnown(l.id)) l];
+
+  /// Czy etap liter blokuje dalszą część (ustawienie „najpierw cały alfabet”).
+  bool get lettersStageOnly => config.alphabetFirst && !alphabetComplete;
+
+  /// Dwuznaki i zmiękczenia: dostępne, gdy litery składowe mają gotowe głoski (i – przy ustawieniu
+  /// „najpierw cały alfabet” – po poznaniu całego alfabetu).
+  List<Grapheme> activeGraphemes() => lettersStageOnly ? const [] : [
         for (final g in content.graphemes)
           if (g.letters.every(index.soundReady)) g
       ];
 
   bool graphemeReady(String g) => index.soundReady(g);
 
-  /// Głoska rozpoznawana ze słuchu (wystarcza do zadań „słuchaj i wskaż”).
-  bool graphemeHeard(String g) => index.mastered(g, Skill.recognizeSound);
+  /// Głoska pewnie rozpoznawana ze słuchu (≥3 samodzielne próby, ≥80% z ostatnich 5, albo opanowana) –
+  /// wystarcza do zadań „słuchaj i wskaż sylabę”, które same są ćwiczeniem o niskim ryzyku.
+  bool graphemeHeard(String g) {
+    final st = index.of(g, Skill.recognizeSound);
+    if (st.state.isMastered) return true;
+    final v = st.validResults;
+    if (v.length < 3) return false;
+    final w = v.length > 5 ? v.sublist(v.length - 5) : v;
+    return w.where((x) => x).length / w.length >= 0.8;
+  }
 
   int _countMastered(Iterable<ReadingUnit> units, List<Skill> skills) =>
       units.where((u) => skills.any((s) => index.mastered(u.id, s))).length;
@@ -103,6 +143,7 @@ class Curriculum {
   UnitAccess accessOf(ReadingUnit u) {
     final missing = [for (final g in u.graphemes) if (!graphemeReady(g)) g];
     if (u.needsReview) return UnitAccess(u, Access.locked, missing);
+    if (lettersStageOnly && !manualStages.contains(u.kind)) return UnitAccess(u, Access.locked, missing);
     if (missing.isEmpty && stageReached(u.kind)) return UnitAccess(u, Access.available, missing);
     final unheard = [for (final g in u.graphemes) if (!graphemeHeard(g)) g];
     if (unheard.isEmpty && stageReached(u.kind, spoken: false)) return UnitAccess(u, Access.receptive, missing);
@@ -119,7 +160,11 @@ class Curriculum {
   Map<String, String> stageProgress() {
     final syl = units(ItemKind.syllable);
     final c = config;
+    final notYet = lettersNotYetFamiliar();
     return {
+      'Alfabet (pewnie rozpoznawane litery)': '${32 - notYet.length} z 32'
+          '${notYet.isEmpty ? ' – cały alfabet poznany' : '; jeszcze: ${notYet.map((l) => l.lower).join(' ')}'}'
+          '${c.alphabetFirst && notYet.isNotEmpty ? ' (sylaby po poznaniu całego alfabetu)' : ''}',
       'Litery w nauce': activeLetters().map((l) => l.upper).join(' '),
       'Głoski gotowe do łączenia': [for (final l in content.lettersInOrder) if (index.soundReady(l.id)) l.lower].join(' '),
       'Sylaby do słuchania i wskazywania': '${syl.where((u) => u.access != Access.locked).length} z ${content.pool(ItemKind.syllable).length}',

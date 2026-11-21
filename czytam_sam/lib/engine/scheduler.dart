@@ -42,8 +42,12 @@ class Capabilities {
   /// Jednostki, które lektor czyta błędnie (oznaczone przez opiekuna).
   final Set<String> ttsBadUnits;
 
-  bool canSpeak(String unitId) => ttsOk && !ttsBadUnits.contains(unitId);
+  bool canSpeak(String unitId) => ttsOk && !ttsBadUnits.contains(unitId) && !ttsKnownBad.contains(unitId);
 }
+
+/// Jednostki, które syntezatory czytają jako skrót lub obce słowo („ok” → „okej”) –
+/// nie podajemy ich lektorem (tylko opiekun lub czytanie przez dziecko).
+const ttsKnownBad = {'syl_ok'};
 
 class Candidate {
   Candidate(this.itemId, this.kind, this.skill, this.task, {this.assisted = false, this.rank = 0});
@@ -156,13 +160,18 @@ List<Planned> planSession({
   required int n,
   required Random rng,
   String? previousTarget,
+
+  /// Elementy blokujące postęp (np. litery jeszcze niepoznane) – pierwszeństwo w koszyku bieżących;
+  /// wartość = umiejętności, których brakuje (te idą najpierw).
+  Map<String, Set<Skill>> focus = const {},
 }) {
   if (candidates.isEmpty || n <= 0) return [];
   final c = index.config;
   final buckets = {for (final b in Bucket.values) b: <Candidate>[]};
   final confusedItems = <String>{
     for (final st in index.stats.values)
-      if (st.confusions.isNotEmpty && (st.recentAccuracy ?? 0) < 0.8) st.itemId
+      // mylony wielokrotnie (≥2 pomyłki) i wciąż niepewny – pojedyncza pomyłka nie blokuje nowych liter
+      if (st.confusions.values.fold(0, (x, y) => x + y) >= 2 && (st.recentAccuracy ?? 0) < 0.8) st.itemId
   };
   for (final cand in candidates) {
     buckets[bucketOf(index.of(cand.itemId, cand.skill), now, confusedItem: confusedItems.contains(cand.itemId))]!.add(cand);
@@ -187,10 +196,15 @@ List<Planned> planSession({
   });
   buckets[Bucket.current]!.sort((a, b) {
     final sa = index.of(a.itemId, a.skill), sb = index.of(b.itemId, b.skill);
-    // Najpierw te, które miały najmniej ćwiczeń (każda umiejętność dostaje szansę),
-    // potem wcześniejsze w kolejności nauki.
+    // 1) nigdy nie ćwiczone umiejętności, 2) najdawniej ćwiczona DANA umiejętność (rotacja po całym
+    // alfabecie bez zaniedbywania np. wymowy liter często ćwiczonych dotykiem), 3) kolejność nauki.
     final ta = sa.totalAttempts == 0 ? 0 : 1, tb = sb.totalAttempts == 0 ? 0 : 1;
     if (ta != tb) return ta - tb;
+    int f(Candidate c) => focus[c.itemId] == null ? 2 : (focus[c.itemId]!.contains(c.skill) ? 0 : 1);
+    final fa = f(a), fb = f(b);
+    if (fa != fb) return fa - fb;
+    final la = sa.lastAttemptAt, lb = sb.lastAttemptAt;
+    if (la != null && lb != null && la != lb) return la.compareTo(lb);
     if (a.rank != b.rank) return a.rank - b.rank;
     return byTie(a, b);
   });
@@ -213,28 +227,44 @@ List<Planned> planSession({
 
   final picked = <Planned>[];
   final cursor = {for (final b in Bucket.values) b: 0};
-  Candidate? take(Bucket b) {
+  // Różnorodność: w jednej lekcji najwyżej 2 zadania z tym samym elementem; limit łamiemy dopiero,
+  // gdy w żadnym koszyku nie ma już innych elementów (bardzo mała pula).
+  final perItem = <String, int>{};
+  Candidate? take(Bucket b, {bool strict = true}) {
     final list = buckets[b]!;
     if (list.isEmpty) return null;
-    final cand = list[cursor[b]! % list.length];
-    cursor[b] = cursor[b]! + 1;
-    return cand;
+    for (var k = 0; k < list.length; k++) {
+      final cand = list[(cursor[b]! + k) % list.length];
+      if (!strict || (perItem[cand.itemId] ?? 0) < 2) {
+        cursor[b] = cursor[b]! + k + 1;
+        perItem[cand.itemId] = (perItem[cand.itemId] ?? 0) + 1;
+        return cand;
+      }
+    }
+    return null;
   }
 
-  // Najpierw kwoty (każdy kandydat najwyżej 2 razy w ramach kwoty), potem dopełnienie.
+  // Najpierw kwoty koszyków, potem dopełnienie z dowolnego koszyka (nadal z limitem), na końcu bez limitu.
   for (final b in Bucket.values) {
-    final cap = buckets[b]!.length * 2;
-    for (var i = 0; i < quota[b]! && i < cap; i++) {
-      picked.add(Planned(take(b)!, b));
+    for (var i = 0; i < quota[b]!; i++) {
+      final cand = take(b);
+      if (cand == null) break;
+      picked.add(Planned(cand, b));
     }
   }
   final order = [Bucket.due, Bucket.current, Bucket.consolidation];
-  var guard = 0;
-  while (picked.length < n && guard++ < n * 10) {
-    for (final b in order) {
-      if (picked.length >= n) break;
-      final cand = take(b);
-      if (cand != null) picked.add(Planned(cand, b));
+  for (final strict in [true, false]) {
+    var progress = true;
+    while (picked.length < n && progress) {
+      progress = false;
+      for (final b in order) {
+        if (picked.length >= n) break;
+        final cand = take(b, strict: strict);
+        if (cand != null) {
+          picked.add(Planned(cand, b));
+          progress = true;
+        }
+      }
     }
   }
 

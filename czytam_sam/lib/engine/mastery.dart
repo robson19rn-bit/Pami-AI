@@ -19,12 +19,16 @@ class MasteryConfig {
     this.shareDue = 0.60,
     this.shareCurrent = 0.25,
     this.shareConsolidation = 0.15,
-    this.maxActiveNewLetters = 4,
+    this.maxActiveNewLetters = 6,
     this.syllablesBeforeWords = 3,
     this.wordsBeforeSentences = 5,
     this.sentencesBeforeReadings = 3,
     this.sessionLength = 12,
+    this.alphabetFirst = true,
   });
+
+  /// Najpierw cały alfabet (wszystkie 32 litery pewnie rozpoznawane), dopiero potem sylaby, wyrazy i dwuznaki.
+  final bool alphabetFirst;
 
   final int recognitionMinAttempts, recognitionWindow;
   final double recognitionMinAccuracy;
@@ -52,6 +56,7 @@ class MasteryConfig {
         'wordsBeforeSentences': wordsBeforeSentences,
         'sentencesBeforeReadings': sentencesBeforeReadings,
         'sessionLength': sessionLength,
+        'alphabetFirst': alphabetFirst,
       };
 
   factory MasteryConfig.fromJson(Map<String, dynamic> j) {
@@ -76,6 +81,7 @@ class MasteryConfig {
       wordsBeforeSentences: i('wordsBeforeSentences', d.wordsBeforeSentences),
       sentencesBeforeReadings: i('sentencesBeforeReadings', d.sentencesBeforeReadings),
       sessionLength: i('sessionLength', d.sessionLength),
+      alphabetFirst: j['alphabetFirst'] is bool ? j['alphabetFirst'] as bool : d.alphabetFirst,
     );
   }
 }

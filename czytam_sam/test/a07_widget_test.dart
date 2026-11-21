@@ -140,7 +140,8 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Etapy i plan'));
     await tester.pumpAndSettle();
-    expect(find.textContaining('Co program planuje'), findsOneWidget);
     expect(find.textContaining('Postęp do kolejnego etapu'), findsOneWidget);
+    expect(find.textContaining('Alfabet (pewnie rozpoznawane litery)'), findsOneWidget);
+
   });
 }

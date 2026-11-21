@@ -727,7 +727,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
         if (byKind.isNotEmpty) {
           await s.sound.play(Sfx.newStage);
           final first = byKind.entries.first;
-          await s.tts.speak('Brawo! Nowy etap. Możesz już ćwiczyć ${_kindPl(first.key)}: ${first.value.take(4).map((u) => u.title ?? u.text).join(', ')}.');
+          await s.tts.speak('Brawo! Nowy etap. Możesz już ćwiczyć ${_kindPl(first.key)}: ${first.value.take(4).map((u) => u.title ?? u.text).join(', ')}, świetnie!');
         } else {
           await s.tts.speak(tasks > 0 ? 'Dziękuję za dzisiejszą pracę.' : 'Do zobaczenia.');
         }

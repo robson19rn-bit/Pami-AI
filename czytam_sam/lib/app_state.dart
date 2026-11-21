@@ -156,6 +156,7 @@ class AppState extends ChangeNotifier {
       now: clock(),
       n: config.sessionLength,
       rng: rng,
+      focus: cur.lettersFocus(),
     );
     final builder = TaskBuilder(content: content, curriculum: cur, cap: cap, rng: rng);
     final tasks = plan.map(builder.build).toList();

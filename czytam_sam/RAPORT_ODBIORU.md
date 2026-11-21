@@ -8,7 +8,7 @@ ale nie dało się sprawdzić w tym środowisku (powód podany). Rozróżniam �
 od „sprawdzone na prawdziwym urządzeniu” – **na urządzeniu nie sprawdzono niczego**.
 
 Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analyze` – 0 problemów,
-`flutter test` – **65/65 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
+`flutter test` – **69/69 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
 
 ## A. Najważniejsze: APK
 
@@ -127,6 +127,13 @@ Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analy
 | Brak wyraźnej aprobaty „dobrze/źle”, cisza poza poleceniem | Lektor mówi pochwałę z wzorcem lub spokojne wyjaśnienie; zielony znak / łagodny znak powtórki; krótki dźwięk; automatyczne przejście po dobrej odpowiedzi; pasek postępu; ogłoszenie nowego etapu | testy a07 („po dobrej odpowiedzi…”), a10 („lektor reaguje…”), zrzuty a09 |
 | Monotonia | Cicha muzyczka w tle (własna synteza), wyciszana przy mówieniu lektora i mikrofonie; wyłączalna | `lib/services/sound.dart`, `assets/audio/`, Ustawienia → Dźwięki |
 | Dziecko zna litery, ale składa wyraz litera po literze | Nowe zadanie T8 (cała sylaba/wyraz ze słuchu wśród podobnych) i wcześniejszy dostęp do sylab w trybie „słuchaj i wskaż” | test a10 (dostęp „receptive”, T8) |
+
+## G3. Błędy zgłoszone po 8 lekcjach (naprawione)
+
+| Zgłoszenie | Przyczyna | Naprawa | Dowód |
+|---|---|---|---|
+| Polecenie „Wskaż literę em.” lektor czytał jako „emerytowany” | Syntezator Androida rozwija skróty z kropką („em.”, „ul.”, „ok.”) | Żadna nazwa litery, sylaba ani krótki wyraz nie stoi przed kropką („Wskaż literę em na ekranie.”); sylaba „ok” nie jest podawana lektorem | test a11 (ponad 500 zdań lektora) |
+| Aplikacja „utknęła” na ok. 6 literach | Nowa litera wchodziła dopiero po pełnym opanowaniu poprzednich; lekcja skupiała się na 2–3 literach; jedna mylona litera mogła zająć całą lekcję | Nowa litera po pewnym rozpoznawaniu poprzednich (3 dobre odpowiedzi, do 6 nowych naraz); max 2 zadania na literę w lekcji; rotacja od najdawniej ćwiczonych | test a12: 8 lekcji → 17 aktywnych liter, 6–7 różnych liter w każdej lekcji (wcześniej 4 litery na stałe) |
 
 ## H. Pliki wynikowe (pkt 13)
 

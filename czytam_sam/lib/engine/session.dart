@@ -211,7 +211,7 @@ class TaskBuilder {
             return TaskSpec(
               id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
               instruction: 'Posłuchaj słowa i wskaż literę, którą słychać ${carrier.where}.',
-              promptSpeech: 'Wskaż literę, którą słychać ${carrier.where} słowa ${carrier.word}.',
+              promptSpeech: 'Posłuchaj słowa ${carrier.word} i wskaż literę, którą słychać ${carrier.where}.',
               promptMode: PromptMode.tts,
               requiresHeardPrompt: true,
               options: opts, optionIds: ids, correctIndex: pos,
@@ -236,7 +236,7 @@ class TaskBuilder {
         return TaskSpec(
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
           instruction: 'Wskaż literę, którą usłyszysz.',
-          promptSpeech: tts ? 'Wskaż literę ${_sayable(c.itemId)}.' : 'Wskaż literę ${_name(c.itemId)}.',
+          promptSpeech: 'Wskaż literę ${tts ? _sayable(c.itemId) : _name(c.itemId)} na ekranie.',
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: opts, optionIds: ids, correctIndex: pos,
@@ -304,7 +304,7 @@ class TaskBuilder {
         return TaskSpec(
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket, assisted: c.assisted,
           instruction: 'Posłuchaj i ułóż z kafelków to, co słyszysz.',
-          promptSpeech: u.text,
+          promptSpeech: 'Posłuchaj: ${u.text}, i ułóż to z kafelków.',
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: [for (final t in tiles) content.displayOf(t)],
@@ -356,7 +356,7 @@ class TaskBuilder {
         return TaskSpec(
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket, assisted: c.assisted,
           instruction: u.kind == ItemKind.syllable ? 'Posłuchaj i wskaż sylabę, którą słyszysz.' : 'Posłuchaj i wskaż wyraz, który słyszysz.',
-          promptSpeech: 'Wskaż $what: ${u.text}.',
+          promptSpeech: 'Wskaż $what ${u.text} na ekranie.',
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: [for (final x in ids) content.unit(x)!.text],
@@ -439,21 +439,24 @@ class SessionController {
   String _nextPraise() => praises[_praise++ % praises.length];
 
   /// Wzorcowe wymówienie odpowiedzi, np. „Dobrze! ma.” albo „To jest litera ka.”.
-  String _withModel(String lead, TaskSpec t) {
+  ///
+  /// Zasada: nazwa litery, sylaba ani krótki wyraz NIGDY nie stoją tuż przed kropką – lektor Androida
+  /// rozwija wtedy skróty („em.” → „emerytowany”, „ul.” → „ulica”, „ok.” → „około”).
+  String _withModel(String lead, TaskSpec t, {String end = 'zgadza się'}) {
     final a = t.answerSpeech;
     if (a == null) return lead;
-    if (t.kind == ItemKind.letter) return '$lead To litera $a.';
+    if (t.kind == ItemKind.letter) return '$lead To litera $a, $end.';
     if (t.type == TaskType.t7Comprehension) return lead;
-    return '$lead $a.';
+    return '$lead Słychać: $a, $end.';
   }
 
   String _wrongSpoken(TaskSpec t, int chosen) {
     final said = chosen < t.optionSpeech.length ? t.optionSpeech[chosen] : null;
     final want = t.answerSpeech;
-    if (t.type == TaskType.t7Comprehension) return want == null ? 'Spróbujemy jeszcze raz za chwilę.' : 'Dobra odpowiedź to: $want.';
+    if (t.type == TaskType.t7Comprehension) return want == null ? 'Spróbujemy jeszcze raz za chwilę.' : 'Dobra odpowiedź to $want, spróbujemy jeszcze raz.';
     if (said == null || want == null) return 'Zobacz, która odpowiedź jest dobra.';
-    if (t.kind == ItemKind.letter) return 'To jest litera $said. Szukaliśmy litery $want.';
-    return 'To jest $said. Szukaliśmy: $want.';
+    if (t.kind == ItemKind.letter) return 'To jest litera $said, a szukaliśmy litery $want, spróbujemy jeszcze raz.';
+    return 'To jest $said, a szukaliśmy $want, spróbujemy jeszcze raz.';
   }
 
   TaskSpec? get current => position < _queue.length ? _queue[position] : null;
@@ -583,7 +586,7 @@ class SessionController {
       feedback = Feedback(true, p, spoken: _withModel(p, t));
     } else {
       feedback = Feedback(false, 'Prawidłowo: $answer. Wrócimy do tego za chwilę.', correctAnswer: answer,
-          spoken: t.answerSpeech == null ? null : 'Posłuchaj: ${t.answerSpeech}.');
+          spoken: t.answerSpeech == null ? null : 'Posłuchaj: ${t.answerSpeech}, spróbujemy jeszcze raz.');
       _scheduleRecheck();
     }
     phase = Phase.feedback;
@@ -632,7 +635,7 @@ class SessionController {
         await sink(_attempt(skill, Outcome.notEvaluated, Evidence.none, asrText: asr?.text, asrConf: asr?.confidence));
         // Bez oceniającego: lektor podaje wzorzec, żeby dziecko samo mogło porównać.
         _finishSpeech(Feedback(null, t.answerSpeech == null ? d.message : 'Dziękuję! Posłuchaj, jak to brzmi.',
-            spoken: t.answerSpeech == null ? d.message : _withModel('Posłuchaj.', t)));
+            spoken: t.answerSpeech == null ? d.message : _withModel('Posłuchaj.', t, end: 'powtórz')));
     }
     return d;
   }
@@ -663,7 +666,7 @@ class SessionController {
         await sink(_attempt(skill, Outcome.incorrect, Evidence.guardian, asrText: lastAsr?.text, asrConf: lastAsr?.confidence));
         _scheduleRecheck();
         _finishSpeech(Feedback(false, 'Jeszcze nie. Prawidłowo: ${t.guardianExpected ?? t.expectedSpeech ?? ''}. Wrócimy do tego.',
-            correctAnswer: t.expectedSpeech, spoken: t.answerSpeech == null ? 'Wrócimy do tego za chwilę.' : _withModel('Posłuchaj.', t)));
+            correctAnswer: t.expectedSpeech, spoken: t.answerSpeech == null ? 'Wrócimy do tego za chwilę.' : _withModel('Posłuchaj.', t, end: 'powtórz')));
       case GuardianVerdict.cannotAssess:
         await sink(_attempt(skill, Outcome.uncertain, Evidence.guardian, asrText: lastAsr?.text, asrConf: lastAsr?.confidence));
         _finishSpeech(Feedback(null, 'W porządku, wrócimy do tego później.'));
