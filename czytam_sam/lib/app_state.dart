@@ -120,8 +120,11 @@ class AppState extends ChangeNotifier {
           if (a.task == TaskType.diagnosis && (a.outcome == Outcome.correct || (a.outcome == Outcome.incorrect && a.chosenId != null))) a.itemId
       };
 
-  Curriculum get curriculum =>
-      Curriculum(content, index, knownFromDiagnosis: knownFromDiagnosis, manualStages: manualStages);
+  /// Litery wskazane przez opiekuna jako trudne.
+  Set<String> get hardLetters => Set<String>.from((settings['profile.$profileId.hardLetters'] as List?) ?? const []);
+
+  Curriculum get curriculum => Curriculum(content, index,
+      knownFromDiagnosis: knownFromDiagnosis, manualStages: manualStages, hardLetters: hardLetters);
 
   GuardianReport get report => buildReport(attempts, actions, sessions);
 
@@ -157,6 +160,7 @@ class AppState extends ChangeNotifier {
       n: config.sessionLength,
       rng: rng,
       focus: cur.lettersFocus(),
+      hard: {for (final id in hardLetters) if (!cur.letterKnown(id)) id},
     );
     final builder = TaskBuilder(content: content, curriculum: cur, cap: cap, rng: rng);
     final tasks = plan.map(builder.build).toList();

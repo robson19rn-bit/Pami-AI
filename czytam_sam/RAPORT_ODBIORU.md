@@ -8,7 +8,7 @@ ale nie dało się sprawdzić w tym środowisku (powód podany). Rozróżniam �
 od „sprawdzone na prawdziwym urządzeniu” – **na urządzeniu nie sprawdzono niczego**.
 
 Dowody: `WYNIKI_TESTOW.txt` (pełny wydruk: walidacja materiału, `flutter analyze` – 0 problemów,
-`flutter test` – **69/69 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
+`flutter test` – **72/72 testów zaliczonych**, w tym przegląd wszystkich ekranów i typów zadań w 3 rozmiarach: telefon, tablet poziomo i pionowo – bez błędów układu), pliki testów `test/a01…a08_*.dart`.
 
 ## A. Najważniejsze: APK
 

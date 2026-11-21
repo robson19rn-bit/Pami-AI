@@ -32,7 +32,7 @@ class UnitAccess {
 }
 
 class Curriculum {
-  Curriculum(this.content, this.index, {this.knownFromDiagnosis = const {}, this.manualStages = const {}});
+  Curriculum(this.content, this.index, {this.knownFromDiagnosis = const {}, this.manualStages = const {}, this.hardLetters = const {}});
 
   final ContentBundle content;
   final ProgressIndex index;
@@ -43,10 +43,14 @@ class Curriculum {
   /// Etapy odblokowane ręcznie (ItemKind.syllable / word / sentence / reading).
   final Set<ItemKind> manualStages;
 
+  /// Litery wskazane przez opiekuna jako trudne – od razu w nauce i częściej ćwiczone.
+  final Set<String> hardLetters;
+
   MasteryConfig get config => index.config;
 
   bool _letterStarted(String id) =>
       knownFromDiagnosis.contains(id) ||
+      hardLetters.contains(id) ||
       index.stats.values.any((s) => s.itemId == id && s.practiceAttempts > 0);
 
   /// Litera „oswojona”: dziecko pewnie ją rozpoznaje (≥3 samodzielne próby, ≥80% z ostatnich 5 poprawnych)
@@ -84,9 +88,21 @@ class Curriculum {
     return active;
   }
 
-  /// Litera „poznana”: pewnie rozpoznawana ORAZ jej głoska pewnie rozpoznawana ze słuchu
-  /// (głoski są potrzebne od pierwszej sylaby).
-  bool letterKnown(String id) => letterFamiliar(id) && graphemeHeard(id);
+  /// „Dobry wynik” z litery – próg przejścia dalej przy ustawieniu „najpierw cały alfabet”:
+  /// ≥5 samodzielnych odpowiedzi w zadaniach z literą i ≥4 dobre wśród ostatnich 5 (albo litera opanowana).
+  bool letterGood(String id) {
+    final skills = [Skill.recognizeName, Skill.caseMatch, Skill.recognizeSound];
+    if (index.mastered(id, Skill.recognizeName)) return true;
+    final all = [for (final sk in skills) ...index.of(id, sk).validResults];
+    if (all.length < 5) return false;
+    return all.sublist(all.length - 5).where((x) => x).length >= 4;
+  }
+
+  bool _isLetter(String id) => content.letter(id) != null;
+
+  /// Litera „poznana”. Przy „najpierw cały alfabet”: dobry wynik w zadaniach z literami (bez zadań
+  /// ze słowami-nośnikami). W trybie głoskowym: pewne rozpoznawanie litery i jej głoski ze słuchu.
+  bool letterKnown(String id) => config.alphabetFirst ? letterGood(id) : letterFamiliar(id) && graphemeHeard(id);
 
   /// Cały alfabet poznany: wszystkie 32 litery (nazwa/kształt i głoska) pewnie rozpoznawane.
   bool get alphabetComplete => content.letters.every((l) => letterKnown(l.id));
@@ -95,7 +111,11 @@ class Curriculum {
   Map<String, Set<Skill>> lettersFocus() => {
         for (final l in activeLetters())
           if (!letterKnown(l.id))
-            l.id: letterFamiliar(l.id) ? {Skill.recognizeSound} : {Skill.recognizeName, Skill.recognizeSound, Skill.caseMatch}
+            l.id: config.alphabetFirst
+                ? {Skill.recognizeName, Skill.caseMatch}
+                : letterFamiliar(l.id)
+                    ? {Skill.recognizeSound}
+                    : {Skill.recognizeName, Skill.recognizeSound, Skill.caseMatch}
       };
 
   /// Litery jeszcze niepoznane (do panelu opiekuna i do priorytetu w lekcji).
@@ -106,16 +126,22 @@ class Curriculum {
 
   /// Dwuznaki i zmiękczenia: dostępne, gdy litery składowe mają gotowe głoski (i – przy ustawieniu
   /// „najpierw cały alfabet” – po poznaniu całego alfabetu).
-  List<Grapheme> activeGraphemes() => lettersStageOnly ? const [] : [
-        for (final g in content.graphemes)
-          if (g.letters.every(index.soundReady)) g
-      ];
+  List<Grapheme> activeGraphemes() => lettersStageOnly
+      ? const []
+      : [
+          for (final g in content.graphemes)
+            if (config.alphabetFirst || g.letters.every(index.soundReady)) g
+        ];
 
-  bool graphemeReady(String g) => index.soundReady(g);
+  /// Głoska gotowa do czytania na głos. Litera przy „najpierw alfabet”: poznana + wymowa głoski
+  /// potwierdzona przez opiekuna. Pozostałe: rozpoznanie ze słuchu + potwierdzona wymowa.
+  bool graphemeReady(String g) =>
+      config.alphabetFirst && _isLetter(g) ? letterKnown(g) && index.mastered(g, Skill.saySound) : index.soundReady(g);
 
   /// Głoska pewnie rozpoznawana ze słuchu (≥3 samodzielne próby, ≥80% z ostatnich 5, albo opanowana) –
   /// wystarcza do zadań „słuchaj i wskaż sylabę”, które same są ćwiczeniem o niskim ryzyku.
   bool graphemeHeard(String g) {
+    if (config.alphabetFirst && _isLetter(g)) return letterKnown(g);
     final st = index.of(g, Skill.recognizeSound);
     if (st.state.isMastered) return true;
     final v = st.validResults;

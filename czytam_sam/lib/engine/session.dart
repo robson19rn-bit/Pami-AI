@@ -205,13 +205,13 @@ class TaskBuilder {
         if (c.skill == Skill.recognizeSound) {
           if (cap.canSpeak(c.itemId)) {
             // Lektor podaje głoskę w słowie (nie w izolacji – syntezatory wymawiają ją wtedy błędnie).
-            final carrier = carrierFor(content, c.itemId);
+            final carrier = carrierFor(content, c.itemId, rng: rng);
             final exclude = {...carrier.tokens, ...homophones(c.itemId)};
             final (opts, ids, pos) = _graphemeOptions(c.itemId, c.kind, c.skill, exclude: exclude);
             return TaskSpec(
               id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket,
               instruction: 'Posłuchaj słowa i wskaż literę, którą słychać ${carrier.where}.',
-              promptSpeech: 'Posłuchaj słowa ${carrier.word} i wskaż literę, którą słychać ${carrier.where}.',
+              promptSpeech: 'Posłuchaj słowa ${carrier.word}, potem wskaż literę, którą słychać ${carrier.where}.',
               promptMode: PromptMode.tts,
               requiresHeardPrompt: true,
               options: opts, optionIds: ids, correctIndex: pos,
@@ -251,7 +251,7 @@ class TaskBuilder {
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: Skill.recognizeName, speechSkill: Skill.sayName,
           bucket: p.bucket,
           instruction: 'Wskaż literę, a potem powiedz jej nazwę.',
-          promptSpeech: 'Wskaż literę $nameText, a potem powiedz jej nazwę.',
+          promptSpeech: 'Wskaż literę $nameText na ekranie, potem powiedz jej nazwę.',
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: opts, optionIds: ids, correctIndex: pos,
@@ -304,7 +304,7 @@ class TaskBuilder {
         return TaskSpec(
           id: id, type: c.task, kind: c.kind, itemId: c.itemId, skill: c.skill, bucket: p.bucket, assisted: c.assisted,
           instruction: 'Posłuchaj i ułóż z kafelków to, co słyszysz.',
-          promptSpeech: 'Posłuchaj: ${u.text}, i ułóż to z kafelków.',
+          promptSpeech: 'Posłuchaj: ${u.text}, potem ułóż to z kafelków.',
           promptMode: tts ? PromptMode.tts : PromptMode.guardian,
           requiresHeardPrompt: true,
           options: [for (final t in tiles) content.displayOf(t)],
@@ -455,8 +455,9 @@ class SessionController {
     final want = t.answerSpeech;
     if (t.type == TaskType.t7Comprehension) return want == null ? 'Spróbujemy jeszcze raz za chwilę.' : 'Dobra odpowiedź to $want, spróbujemy jeszcze raz.';
     if (said == null || want == null) return 'Zobacz, która odpowiedź jest dobra.';
-    if (t.kind == ItemKind.letter) return 'To jest litera $said, a szukaliśmy litery $want, spróbujemy jeszcze raz.';
-    return 'To jest $said, a szukaliśmy $want, spróbujemy jeszcze raz.';
+    // Bez spójnika „a” – brzmi identycznie jak litera „a” i myli dziecko.
+    if (t.kind == ItemKind.letter) return 'To jest litera $said, szukaliśmy litery $want, spróbujemy jeszcze raz.';
+    return 'To jest $said, szukaliśmy $want, spróbujemy jeszcze raz.';
   }
 
   TaskSpec? get current => position < _queue.length ? _queue[position] : null;
@@ -730,12 +731,12 @@ class Carrier {
 const _changesAtEnd = {'b', 'd', 'g', 'w', 'z', 'ż', 'ź', 'rz', 'dz', 'dź', 'dż', 'ą', 'ę'};
 
 /// Wybiera słowo-nośnik z przykładów: najlepiej z grafemem na początku, potem na końcu, potem w środku.
-Carrier carrierFor(ContentBundle content, String id) {
+Carrier carrierFor(ContentBundle content, String id, {Random? rng}) {
   final examples = content.letter(id)?.examples ?? content.grapheme(id)?.examples ?? const <String>[];
   Carrier make(String w, String where, String short) => Carrier(w, tokenizeGraphemes(w).toSet()..remove(id), where, short);
-  for (final w in examples) {
-    if (tokenizeGraphemes(w).first == id) return make(w, 'na początku', 'pierwszej głoski');
-  }
+  // Różne słowa (nie ciągle to samo) – najpierw z grafemem na początku.
+  final initial = [for (final w in examples) if (tokenizeGraphemes(w).first == id) w];
+  if (initial.isNotEmpty) return make(initial[rng == null ? 0 : rng.nextInt(initial.length)], 'na początku', 'pierwszej głoski');
   for (final w in examples) {
     if (tokenizeGraphemes(w).last == id && !_changesAtEnd.contains(id)) return make(w, 'na końcu', 'ostatniej głoski');
   }

@@ -1,4 +1,4 @@
-# Wyniki testów – 2026-11-21 16:57 UTC
+# Wyniki testów – 2026-11-21 18:31 UTC
 # Flutter 3.50.0, Dart 3.14.0 (kontener Linux, bez urządzenia Android)
 
 $ dart run tool/validate_content.dart
@@ -6,7 +6,7 @@ UWAGA [w_gałąź]: oznaczone do weryfikacji – wyłączone z puli (wymowa nos�
 Litery: 32, grafemy: 12, sylaby: 117, wyrazy: 136, zdania: 33, czytanki: 10. Błędy: 0
 
 $ flutter analyze
-No issues found! (ran in 1.1s)
+No issues found! (ran in 1.0s)
 
 $ flutter test --reporter expanded
 00:00 +0: test/a04_scheduler_test.dart: (10) zaplanowane powtórki trudnych liter mają pierwszeństwo, ale utrwalanie zostaje
@@ -18,62 +18,68 @@ $ flutter test --reporter expanded
 00:00 +6: test/a04_scheduler_test.dart: (14) sylaby wymagają konkretnych głosek, ale nie całego alfabetu
 00:00 +7: test/a04_scheduler_test.dart: (15) wyrazy i zdania nie zawierają bez oznaczenia elementów spoza poziomu dziecka
 00:00 +8: test/a04_scheduler_test.dart: aktywne litery: najwyżej 6 nowych naraz; diagnoza wprowadza znane litery od razu
-00:00 +9: test/a07_widget_test.dart: (19) brak polskiego głosu: komunikat i zablokowane odpowiedzi; nic nie jest zapisywane
-00:01 +10: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:01 +11: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:02 +12: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:02 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:02 +14: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:03 +15: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:04 +16: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +17: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +18: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +19: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +20: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +21: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +22: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +23: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +24: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +25: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:05 +26: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +27: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +28: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +29: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +30: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +31: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +32: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +33: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +34: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +35: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-00:06 +36: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
-Sylaby do słuchania od dnia 3; do czytania na głos od dnia 34; cała grupa M/A/L/O w dniu 53; prób: 7014
-Gotowe głoski: [g, l, m, o, s, z]; dostępne sylaby: [mo, lo, so, zo, go, om, ol, os]; pomyłki b/d/p: 313; potwierdzone umiejętności: 29
-00:11 +37: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:12 +37: test/a12_rotacja_liter_test.dart: 8 lekcji bez diagnozy: kolejne litery wchodzą, a lekcje obejmują wiele różnych liter
-różne litery w lekcjach: [6, 6, 7, 7, 7, 9, 7, 6]; łącznie ćwiczone: 18; aktywne: 18
-00:12 +38: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
-00:12 +39: test/a12_rotacja_liter_test.dart: najpierw cały alfabet: żadnych sylab, dopóki wszystkie 32 litery nie są pewnie rozpoznawane; potem sylaby
+00:05 +9: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:06 +10: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:06 +11: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:07 +12: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:07 +13: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:07 +14: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:08 +15: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:09 +16: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +17: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +18: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +19: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +20: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +21: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +22: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +23: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +24: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +25: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:10 +26: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +27: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +28: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +29: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +30: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +31: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +32: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +33: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +34: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +35: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+00:11 +36: test/a06_scenario_test.dart: scenariusz: diagnoza → brak błędnego awansu → M/A/L/O → sylaby → utrwalanie
+Sylaby do słuchania od dnia 3; do czytania na głos od dnia 41; cała grupa M/A/L/O w dniu 44; prób: 5817
+Gotowe głoski: [a, e, g, m, n, o]; dostępne sylaby: [ma, mo, me, na, no, ne, ga, go, ge, am, om, em, an, on]; pomyłki b/d/p: 276; potwierdzone umiejętności: 38
+00:13 +37: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:14 +37: test/a12_rotacja_liter_test.dart: 8 lekcji bez diagnozy: kolejne litery wchodzą, a lekcje obejmują wiele różnych liter
+różne litery w lekcjach: [6, 6, 6, 6, 6, 7, 6, 8]; łącznie ćwiczone: 15; aktywne: 16
+00:14 +38: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:15 +38: test/a12_rotacja_liter_test.dart: najpierw cały alfabet: żadnych sylab, dopóki wszystkie 32 litery nie są pewnie rozpoznawane; potem sylaby
 cały alfabet po lekcji 18; pierwsza sylaba w lekcji 19
-00:12 +40: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +41: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +42: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +43: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +44: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +45: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:13 +46: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +47: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +48: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +49: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +50: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +51: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +52: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +53: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +54: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +55: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +56: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +57: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:14 +58: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +58: test/a10_solo_lektor_test.dart: głoska podawana przez lektora w słowie: jednoznaczne zadanie dla każdej litery i grafemu
+00:15 +39: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:16 +39: test/a12_rotacja_liter_test.dart: dziecko jak wnuk: zna większość liter, myli b/p/d, trudne j g f h i litery ze znakami (zaznaczone przez opiekuna)
+wnuk: cały alfabet po lekcji 39; trudne litery w pierwszych 3 lekcjach: 10 z 15
+00:16 +40: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:16 +41: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:16 +42: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:17 +43: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:17 +44: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:17 +45: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:17 +46: test/a09_screens_tour_test.dart: przegląd ekranów: telefon
+00:17 +47: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:17 +48: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:17 +49: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +50: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +51: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +52: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +53: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +54: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +55: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +56: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +57: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +58: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +59: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +60: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +61: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +61: test/a10_solo_lektor_test.dart: głoska podawana przez lektora w słowie: jednoznaczne zadanie dla każdej litery i grafemu
 a → na końcu słowa „mama”
 ą → w środku słowa „wąs”
 b → na początku słowa „balon”
@@ -118,14 +124,14 @@ si → na początku słowa „siano”
 zi → na początku słowa „zima”
 ni → na początku słowa „nie”
 dzi → na początku słowa „dzień”
-00:15 +59: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +60: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +61: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +62: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +63: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +64: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +65: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
-00:15 +66: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-pionowo
-00:17 +67: test/a11_lektor_skroty_test.dart: żadne zdanie lektora nie kończy się nazwą litery, sylabą ani krótkim wyrazem z kropką
-00:21 +68: test/a11_lektor_skroty_test.dart: „ok” nie jest podawane lektorem (czytane jako „okej”)
-00:21 +69: All tests passed!
+00:18 +62: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +63: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +64: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +65: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +66: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:18 +67: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:19 +68: test/a09_screens_tour_test.dart: przegląd ekranów: tablet-poziomo
+00:19 +69: test/a11_lektor_skroty_test.dart: żadne zdanie lektora nie kończy się nazwą litery, sylabą ani krótkim wyrazem z kropką
+00:21 +70: test/a11_lektor_skroty_test.dart: żadne zdanie lektora nie kończy się nazwą litery, sylabą ani krótkim wyrazem z kropką
+00:24 +71: test/a11_lektor_skroty_test.dart: „ok” nie jest podawane lektorem (czytane jako „okej”)
+00:24 +72: All tests passed!

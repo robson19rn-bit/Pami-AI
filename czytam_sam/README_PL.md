@@ -65,10 +65,13 @@ Ważne, uczciwe ograniczenia:
   albo spokojnie wyjaśnia („To jest litera be. Szukaliśmy litery de.”); do tego zielony znak lub łagodny znak
   powtórki i krótki dźwięk. Po dobrej odpowiedzi lekcja sama przechodzi dalej. U góry pasek postępu lekcji.
 * **Nowy etap** (np. pierwsze sylaby) jest ogłaszany na koniec lekcji pucharkiem i pochwałą lektora.
-* **Najpierw cały alfabet**: sylaby, wyrazy i dwuznaki pojawiają się dopiero, gdy dziecko pewnie rozpoznaje
-  wszystkie 32 litery i ich głoski (postęp: Moje postępy → Etapy i plan → „Alfabet: X z 32”). Nowe litery wchodzą
+* **Najpierw cały alfabet**: pierwsza część to wyłącznie zadania z literami (wskaż literę, wskaż i powiedz,
+  wielka–mała). Sylaby, wyrazy i dwuznaki pojawiają się dopiero po dobrym wyniku ze wszystkich 32 liter
+  (min. 5 odpowiedzi na literę, 4 z 5 ostatnich dobre) (postęp: Moje postępy → Etapy i plan → „Alfabet: X z 32”). Nowe litery wchodzą
   po kilka naraz, a lekcja daje pierwszeństwo literom jeszcze niepoznanym. Można to wyłączyć w Ustawieniach
   („Najpierw cały alfabet, potem sylaby”).
+* **Litery sprawiające trudność**: Ustawienia → zaznacz litery, które dziecko myli lub których nie zna
+  (np. b, p, d, j, g, f, h, ą, ę, ó…) – wejdą od razu do lekcji i będą ćwiczone częściej.
 * **Czytanie całościowe**: zadanie T8 „Usłysz i wskaż sylabę/wyraz” – lektor mówi „ma”, dziecko wskazuje całą
   sylabę wśród podobnych (np. „am”, „mo”). Dostępne już po rozpoznawaniu głosek ze słuchu, bez czekania na ocenę
   opiekuna; czytanie na głos (T6) – po potwierdzeniu wymowy.

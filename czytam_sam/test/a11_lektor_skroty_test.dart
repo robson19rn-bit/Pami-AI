@@ -57,8 +57,13 @@ void main() {
     }
 
     final spoken = <String>[];
+    final letterSpoken = <String>[];
     for (final t in tasks) {
-      if (t.promptMode == PromptMode.tts) spoken.add(t.promptSpeech);
+      final isLetter = t.kind == ItemKind.letter || t.kind == ItemKind.grapheme;
+      if (t.promptMode == PromptMode.tts) {
+        spoken.add(t.promptSpeech);
+        if (isLetter) letterSpoken.add(t.promptSpeech);
+      }
       for (final variant in [0, 1]) {
         final c = SessionController(profileId: 'p', sessionId: 's', tasks: [t], sink: (a) async {}, guardianPresent: variant == 1, mode: EvaluationMode.guardian);
         c.promptDelivered();
@@ -76,7 +81,10 @@ void main() {
         }
         if (c.phase == Phase.awaitingSpeech) await c.speechFinished(null);
         if (c.phase == Phase.awaitingGuardian) await c.guardianRate(variant == 0 ? GuardianVerdict.correct : GuardianVerdict.notYet);
-        if (c.feedback?.spoken != null) spoken.add(c.feedback!.spoken!);
+        if (c.feedback?.spoken != null) {
+          spoken.add(c.feedback!.spoken!);
+          if (isLetter) letterSpoken.add(c.feedback!.spoken!);
+        }
       }
     }
     expect(spoken.length, greaterThan(500));
@@ -87,6 +95,19 @@ void main() {
       }
     }
     expect(bad.toSet().toList(), isEmpty);
+
+    // Spójniki i przyimki brzmiące jak litery („a”, „i”, „o”, „u”…) mylą dziecko: w zdaniach o literach
+    // jednoliterowe słowo może wystąpić wyłącznie jako nazwa litery – zaraz po „litera/literę/litery”.
+    final vowelWord = RegExp(r'(?<![a-ząćęłńóśźż])([aeiouyąęó])(?![a-ząćęłńóśźż])', caseSensitive: false);
+    final ambiguous = <String>{};
+    for (final text in letterSpoken) {
+      for (final m in vowelWord.allMatches(text)) {
+        final before = text.substring(0, m.start).trimRight();
+        if (!RegExp(r'liter[aęy]$').hasMatch(before)) ambiguous.add(text);
+      }
+    }
+    expect(ambiguous.toList(), isEmpty, reason: 'zdania z dwuznacznym „a/i/o/u”');
+    expect(letterSpoken.length, greaterThan(150));
   });
 
   test('„ok” nie jest podawane lektorem (czytane jako „okej”)', () {

@@ -58,6 +58,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const DiagnosisScreen())),
               ),
             ]),
+            _section('Litery sprawiające trudność', [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text('Zaznacz litery, które dziecko myli lub których nie zna. Wejdą od razu do lekcji '
+                    'i będą ćwiczone częściej, aż dziecko zacznie je pewnie rozpoznawać.', style: TextStyle(fontSize: 15)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Wrap(spacing: 6, runSpacing: 6, children: [
+                  for (final l in s.content.lettersInOrder.toList()..sort((a, b) => 'aąbcćdeęfghijklłmnńoóprsśtuwyzźż'.indexOf(a.id).compareTo('aąbcćdeęfghijklłmnńoóprsśtuwyzźż'.indexOf(b.id))))
+                    FilterChip(
+                      label: Text('${l.upper} ${l.lower}', style: const TextStyle(fontSize: 20)),
+                      selected: s.hardLetters.contains(l.id),
+                      onSelected: (v) {
+                        final n = {...s.hardLetters};
+                        v ? n.add(l.id) : n.remove(l.id);
+                        s.setSetting('profile.${s.profileId}.hardLetters', n.toList());
+                      },
+                    ),
+                ]),
+              ),
+            ]),
             _section('Lektor (polecenia głosowe)', [
               SwitchListTile(
                 value: s.ttsOk,

@@ -48,7 +48,9 @@ void main() {
         final t = b.build(Planned(Candidate(l.$1, l.$2, Skill.recognizeSound, TaskType.t1HearPoint), Bucket.current));
         expect(t.promptMode, PromptMode.tts, reason: l.$1);
         expect(t.promptSpeech, contains('słowa'));
-        final carrier = carrierFor(content, l.$1);
+        // słowo-nośnik z polecenia („Posłuchaj słowa X, potem …”) – bywa losowane spośród przykładów
+        final word = RegExp(r'Posłuchaj słowa (\S+),').firstMatch(t.promptSpeech)!.group(1)!;
+        final carrier = Carrier(word, tokenizeGraphemes(word).toSet()..remove(l.$1), '', '');
         expect(t.optionIds.where((x) => x == l.$1).length, 1);
         for (final x in t.optionIds.where((x) => x != l.$1)) {
           expect(carrier.tokens.contains(x), isFalse, reason: '${l.$1}: „$x” jest w słowie ${carrier.word}');
@@ -127,7 +129,7 @@ void main() {
     final wrong = (task.correctIndex + 1) % task.options.length;
     final f2 = await bad.touch(wrong);
     expect(f2!.correct, isFalse);
-    expect(f2.spoken, 'To jest litera ${content.letter(task.optionIds[wrong])!.nameTts}, a szukaliśmy litery em, spróbujemy jeszcze raz.');
+    expect(f2.spoken, 'To jest litera ${content.letter(task.optionIds[wrong])!.nameTts}, szukaliśmy litery em, spróbujemy jeszcze raz.');
 
     // dziecko samo mówi nazwę (T2) – lektor podaje wzorzec do porównania, bez oceny
     final t2 = b.build(Planned(Candidate('m', ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay), Bucket.current));

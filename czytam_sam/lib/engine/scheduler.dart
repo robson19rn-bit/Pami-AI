@@ -89,7 +89,11 @@ List<Candidate> buildCandidates(Curriculum cur, Capabilities cap) {
         out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t1HearPoint, rank: l.order));
         // T2: dotyk liczony zawsze; wypowiedź oceniana tylko, gdy jest oceniający.
         out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeName, TaskType.t2PointSay, rank: l.order));
-        out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint, rank: l.order));
+        // Głoska w słowie-nośniku – tylko w trybie głoskowym; przy „najpierw alfabet” pierwsza część
+        // to wyłącznie zadania z literami (życzenie opiekuna).
+        if (!cur.config.alphabetFirst) {
+          out.add(Candidate(l.id, ItemKind.letter, Skill.recognizeSound, TaskType.t1HearPoint, rank: l.order));
+        }
       }
       out.add(Candidate(l.id, ItemKind.letter, Skill.caseMatch, TaskType.t4Case, rank: l.order));
     }
@@ -164,6 +168,9 @@ List<Planned> planSession({
   /// Elementy blokujące postęp (np. litery jeszcze niepoznane) – pierwszeństwo w koszyku bieżących;
   /// wartość = umiejętności, których brakuje (te idą najpierw).
   Map<String, Set<Skill>> focus = const {},
+
+  /// Elementy wskazane jako trudne (np. przez opiekuna) – traktowane jak zaległe/trudne.
+  Set<String> hard = const {},
 }) {
   if (candidates.isEmpty || n <= 0) return [];
   final c = index.config;
@@ -174,7 +181,9 @@ List<Planned> planSession({
       if (st.confusions.values.fold(0, (x, y) => x + y) >= 2 && (st.recentAccuracy ?? 0) < 0.8) st.itemId
   };
   for (final cand in candidates) {
-    buckets[bucketOf(index.of(cand.itemId, cand.skill), now, confusedItem: confusedItems.contains(cand.itemId))]!.add(cand);
+    final st = index.of(cand.itemId, cand.skill);
+    final hardItem = hard.contains(cand.itemId) && st.totalAttempts > 0; // pierwsza próba – z nowymi
+    buckets[bucketOf(st, now, confusedItem: confusedItems.contains(cand.itemId) || hardItem)]!.add(cand);
   }
   // Priorytety w koszykach (stabilne sortowanie po kluczu + losowy remis).
   final tiebreak = {for (final cand in candidates) cand.toString(): rng.nextDouble()};
